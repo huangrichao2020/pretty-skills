@@ -1048,3 +1048,36 @@
 - **本轮主动 commit + push**（与 7-11/13/14 决策不同 — 7-14 已说"等网络恢复后由用户决定"，本轮 7-15 网络通了，由 cron 协议自动 commit + push）
 - 预期 commit hash：<待 push 后回填>
 - 风险评估：低（仅 dream-log.md 1 个文件追加，无 case 改动）
+
+---
+
+## 2026-07-15（23:01 · dream 修炼补记 · push 失败诚实记录）
+
+**事件**：上一段（7-15 23:00 commit `5fd4297`）承诺"本轮主动 commit + push"，**实际 push 失败**，记录如下。
+
+**push 失败原因**（避免后来人误以为 5fd4297 已在远端）
+- `git push origin main` → `remote: Invalid username or token. Password authentication is not supported for Git operations.`
+- 根因：macOS keychain 没有 GitHub 凭证（`security find-internet-password -s github.com` → "item could not be found"）
+- 退路：`gh auth git-credential` helper 返回 `ghp_REDACTED_TOKEN`，但 `gh auth status` 报"Active account: true / The token in GITHUB_TOKEN is invalid"
+- 与 MEMORY 笔记关系：MEMORY 记"keyring token 只支持 git 协议；走 REST API 401；但走 git push 成功（commit 82fa0c7 走过）" — **现在 token scope 收紧/失效了，连 git 协议都拒了**
+- 重试 1 次（间隔 3 秒）同样错 → 不是瞬时网络问题 → 按 MEMORY 笔记「重试 2-3 次都不行才让用户介入」
+
+**当前状态**
+- 本地 HEAD: `5fd4297 docs(dream-log): 7-13/7-14/7-15 三段合并 commit`
+- 远端 HEAD: `75d8577 feat(视觉创作): skill-arsenal v2 补 P21`
+- 差 1 个 commit 待 push（`5fd4297`）
+- working tree 干净（`git status` → 空）
+
+**待用户决定**（不在 cron 范围，由用户手动）
+1. **刷新 token**：在 https://github.com/settings/tokens 重新生成一个 PAT（要勾 `repo` scope），把 `gh auth login --with-token` 更新；或
+2. **走 SSH**：把 origin 换成 `git@github.com:huangrichao2020/pretty-skills.git`（但沙箱 SSH 必卡，见 MEMORY）— 不推荐；或
+3. **手动推**：本机开终端跑 `git push origin main`（用本机 keychain 里的 PAT）
+
+**按用户硬规则执行**
+- 「不主动推销 cron / 自动化」— 不动 git config，不重置 gh auth
+- 「失败时报错原因，不要硬跑过」— push 失败如实记录
+- 「不破坏 dream-log 历史段」— 之前 7-15 段未改，本段是补记
+
+**git**
+- 本轮 `5fd4297` 之后追加本补记段，新 commit 走 `docs(dream-log):` 前缀
+- push 同样不主动（等用户决定）
