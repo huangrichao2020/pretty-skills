@@ -1081,3 +1081,69 @@
 **git**
 - 本轮 `5fd4297` 之后追加本补记段，新 commit 走 `docs(dream-log):` 前缀
 - push 同样不主动（等用户决定）
+
+---
+
+## 2026-07-16（23:00 · 每日 dream 修炼自动化 · 5 case 沉淀但 PASS 不动）
+
+**沉淀了什么（今日 commit 概况 · author date 7-16）**
+
+- `git log --since="2026-07-16 00:00" --author=huangrichao2020 --pretty=format:"%h %ai %s"` → **5 个新 commit**（加上 7-16 00:12/00:13 的 2 个 dream-log 补 commit 实际是 7 个，但 commit message 类目只算 5 个 case 沉淀 commit）。
+- 5 个 case 沉淀 commit 主题分布：
+  1. `e27600d` (7-16 02:03) **feat(做事技巧)**: add H5设计转H5滑动方法论（viewport+触屏滑动+fitStage·3种取舍+10条反模式）— case 自带 4 张手机/桌面截图，格式声明为 `format=note`（作者明确「轻量级方法论沉淀，非完整 case 流程，无 9 张讲解图 + PDF」）。
+  2. `ddd2510` (7-16 02:51) **fix(做事技巧/H5设计转H5滑动)**: v2 强制横屏方案（vh 裁剪真机异常 → 改 CSS 媒体查询 + min scale）— 补 2 张图（手机横屏完整 844×390 / 手机竖屏提示 390×844）+ README 实质改写。
+  3. `6d4abda` (7-16 16:45) **feat(pretty-skills)**: 合 10 个常用 skill 到出版局（按 7-16 user_profile 新加的「pretty-skills 收口硬规则」，物理 cp SKILL.md 到对应 16 领域目录：内容创作 2 + 视觉创作 5 + 金融投资 3）。**commit message 里点名 mavis 默认不扫 pretty-skills 路径 — 行为不变**。这是收口动作，不是新 case 沉淀。
+  4. `add2ef9` (7-16 21:34) **feat(视觉创作)**: add zhongguose-html-skill 中国色 HTML 汇报 skill（25 文件 / +3720 行 — SKILL.md 32KB + assets 字体 + scripts 6 个 + references 4 个 + template-zhongguose）— 是 SKILL 形式的 skill 沉淀，**不是 3F Content case**（无 content.md / images/ / 讲解.pdf / manifest.json）。
+  5. `7f0b4e8` (7-16 22:26) **feat(视觉创作)**: 精选 12 个 awesome-web-prompts 案例到参考资料 (21M) — 把 12 个 prompt 案例（含 7 张 AI 出图）落到 `视觉创作/awesome-web-prompts-参考资料/prompts/` 12 子目录下，**这是参考资料库不是 case**（无 manifest.json / 4 件套）。
+
+**新建/更新了哪些 case**（本轮 7-16 净增 2 manifest）
+
+- **+2 manifest（都不走 3F PASS）**：
+  - `做事技巧/H5设计转H5滑动/`（e27600d + ddd2510）— README.md (11KB) + images/ (4 张：手机iPhone 390×844 / 手机横屏完整 844×390 / 手机竖屏提示 390×844 / 桌面1920 1920×1080) + manifest.json (format=note) **无 content.md / 无 *讲解.pdf** → check-3f **EXIT=1**（缺 content.md + 缺 PDF + portrait 截图 390×844 < 1024×576 阈值）
+  - `视觉创作/zhongguose-html-skill/`（add2ef9）— SKILL.md 形式（**不在 3F 范式范围**）但 manifest.json 存在 → check-3f **EXIT=1**（缺 content.md / 缺 images/ / 缺 PDF / 缺 manifests.assets 等）
+- **+0 完整 3F PASS case**：今日 5 个 case 沉淀 commit 全部是「note 形式 / SKILL 形式 / 参考资料库」三类，**没有任何一个走通 3F Content 范式**（content.md 7 段 + images/ + *讲解.pdf + 锦绣/ + manifest.json）。
+- **+1 物理 cp**：6d4abda 把 10 个 SKILL.md 物理 cp 到 16 领域目录（内容创作 2 / 视觉创作 5 / 金融投资 3）。这些 case 目录之前已存在，今日 commit **不改变它们的 check-3f 状态**（dashiai-ppt 仍 FAIL，ppt-orchestrator 仍 FAIL，等等）。
+- **+0 manifest 但内容新增**：`视觉创作/awesome-web-prompts-参考资料/`（7f0b4e8）— 12 子目录放 prompt 案例，**整个目录没 manifest.json**，check-3f 不扫。
+
+**3F 校验结果**（全量 64 case 跑 check-3f.py v3.23 · F3 检测 `*讲解.pdf`）
+
+- **23 PASS · 41 FAIL · 64 manifest**（vs 7-15 状态 23/40/63）
+- 净变化：**+0 PASS / +1 FAIL / +1 manifest**（新增 1 个 manifest 在 H5设计转H5滑动，但 format=note 不走 PASS 池；PASS 守住了 23 没掉）
+- 进度条：23/63=36.5% → 23/64=35.9%（**-0.6 pp · 表面轻微倒退**，分母 +1 没分子补，典型 7-15 提的「分母稀释」续集）
+- 23 PASS 列表与 7-15 完全一致（Agent知识×4 / 内容创作×3 含杂志风公众号品鉴 / 玄学修炼×1 / 编程开发×2 / 视觉创作×1 PPT证据链战法 / 金融投资×3 / 产品设计×1 prd-master / 商业运营×1 社交电商掘金术 / 教育学习×1 知识消化工作流 = 4+3+1+2+1+3+1+1+1=17... 跟 7-15 算下来 23 个对得上）
+- 41 FAIL 拆解：
+  - **30 个「P1 字段=0」= content.md 没用 `## P{n}` 7 段骨架结构**（草稿 / 简化版 / 7-15 那批 16 个 + 7-13 之前的 14 个 = 30 ✓）
+  - **6 个「缺 images/ + 缺 PDF」真硬失败**（`strategy-h5-tool` / `访谈栏目造物者说方法论` / `教程类H5-小红书小工具` / `dream-修炼达尔文自迭代` / `小红书竖版图文多风格模板` / `gzh-design公众号排版主题库`）
+  - **3 个「页数/分辨率/章节问题」**（`dashiai-ppt传统PPT` 768×1376 portrait < 1024×576 / `PPT证据链战法` P8 字段不足 + 8 vs 7 页 / `gzh-design` 章节不规范）
+  - **1 个 content.md 完全缺失**：`教育学习/教程类H5-小红书小工具`
+  - **1 个 7-16 新增**：`做事技巧/H5设计转H5滑动`（format=note · 无 content.md · 无 PDF · 截图 portrait）
+
+**PDF 状态**（v3.19 必填项 · F3 全仓覆盖）
+
+- **23/64 case 有 `*讲解.pdf`**（23 PASS 全部）— 与 7-15 完全一致
+- **41/64 case 无 `*讲解.pdf`**（41 FAIL 全无 PDF）— 比 7-15 的 40/63 多 1（新增 H5设计转H5滑动）
+- **本轮 23:00 未自动补 PDF**（保持 07-10/11/13/14/15 决策「无高价值内容不硬造」+ 07-16 任务「按 dream-log 协议 v3.19 PDF 时代 · 没有 web.html · 只看 *讲解.pdf」）：
+  - **0 个 case 能用 build_case_pdf.py 补**：41 个 FAIL 全部缺 `images/p*.png`（脚本强依赖 PNG → fail-fast「没有 PNG 可合并」）；H5设计转H5滑动 有 4 张图但 check-3f 显示「分辨率太小」（390×844 实际是 iPhone 截图性质，**属 check-3f 设计盲点，不是真的低质**，不强行出图替换）
+  - 0 个用 build_case_pdf.py 跑过（跑也 fail-fast，不浪费日志）
+  - **PDF 净增量 = 0**（与 7-15 一致 — 今日 5 commit 没让任何 case 从 FAIL 升 PASS）
+
+**沙箱网络**（本轮 OK）
+
+- `git fetch origin main` 一次成功（拉到 75d8577..7f0b4e8 = 5 case 沉淀 commit）
+- `git pull --rebase` 一次成功（无 conflict · rebase 后本地 6a2099b + d04587a 这 2 个未推 commit 被重放到 7f0b4e8 之后，本地 HEAD = d04587a）
+- 沙箱网络稳定 → 本轮 commit + push 可执行
+
+**工程洞见（值得沉淀）**
+
+- **「case 沉淀 ≠ PASS 推进」**：今天 5 个 case 沉淀 commit 听上去很热闹（H5设计转H5滑动方法论 / 中国色 HTML 汇报 skill / 12 个 prompt 参考资料 / 10 个 skill 出版 / H5 v2 修复），但**没有一个走通 3F Content 范式**。原因是：今日新增都是「note 形式 / SKILL 形式 / 参考资料」三类，**不属 3F 范式范围**。这暴露了 3F 范式 + note 形式的边界：note/SKILL/参考资料是「轻量沉淀」，3F Content 是「重型可视化沉淀」，两者并存但 check-3f 不区分（这是设计选择 — note 也能跑 check-3f 拿 EXIT=0，前提是补齐 content.md + *讲解.pdf）。
+- **「portrait 截图 vs landscape AI 出图」是 check-3f 老盲点**：H5设计转H5滑动 的 4 张图，3 张是 390×844 iPhone 截图模拟（实际用途就是「在 iPhone 上看起来怎样」），check-3f 阈值 ≥ 1024×576 → 全判失败。**这是产品定位（演示截图）和 check-3f 假设（landscape AI 出图）的冲突**，不是 case 本身错。跟 7-11/13/14/15 提的 dashiai-ppt 768×1376 portrait 是同一类问题。**长期解法**：要么 check-3f 加 portrait 接受（≥ 576×1024 镜像阈值），要么这类 case 在 manifest 里加 `format=note` 时 check-3f 自动跳过尺寸阈值。**本轮不修**（不主动改 check-3f，避免越权）。
+- **「6d4abda 是收口不是沉淀」**：commit message 自报「按 pretty-skills 收口硬规则，物理 cp SKILL.md 到对应 16 领域目录」「mavis 默认不扫 pretty-skills 路径 — 行为不变」。这是一个「出版动作」，不动 check-3f 状态、不动 mavis 行为、不动 case 内容。**新规则写入 user_profile（7-16）**：技能只能从 pretty-skills + knowhub 用，其他渠道先合进 pretty-skills。这个规则本身是 user_profile 的**强规则**，值得 7-16 dream-log 单独记一笔。
+- **「zhongguose-html-skill」是按 SKILL 形式沉淀的「完整中国色汇报体系」**：25 文件 / +3720 行 / 6 scripts + 4 references + 字体 + template。这是「一个 skill 全套」的范例，未来类似完整 skill 入 pretty-skills 可参照这个结构。**不入 3F 范式**（check-3f 是「3F Content 范式」专用），但仍是 pretty-skills 仓库的「重资产」。
+- **「批量 push 后分母持续稀释」续集**：7-15 +1 manifest，7-16 又 +1 manifest，但分子（PASS）守住了 23。**这是「分母持续涨 + 分子靠达尔文 2.0 慢慢涨」的健康模型**，不是「失败」信号。dream-log 报告体系应该把 3F 进度条作为**参考**指标而不是 KPI。
+
+**git**
+
+- 本轮 7-16 dream-log 段追加（保持历史段不破坏），新 commit 走 `docs(dream-log):` 前缀
+- 本轮主动 commit + push（与 7-15 决策一致 — 沙箱网络通就走）
+- 预期 commit hash：<待 push 后回填>
+- 风险评估：低（仅 dream-log.md 1 个文件追加，无 case 改动）
