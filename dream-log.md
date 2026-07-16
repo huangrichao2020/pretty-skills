@@ -1147,3 +1147,41 @@
 - 本轮主动 commit + push（与 7-15 决策一致 — 沙箱网络通就走）
 - 预期 commit hash：<待 push 后回填>
 - 风险评估：低（仅 dream-log.md 1 个文件追加，无 case 改动）
+
+---
+
+## 2026-07-16（23:01 · dream 修炼补记 · push 失败诚实记录 · 同 7-15 凭证问题复发）
+
+**事件**：上一段（7-16 commit `0b66b31`）承诺"本轮主动 commit + push"，**实际 push 失败**，跟 7-15 23:01 同一根因。
+
+**push 失败原因**（避免后来人误以为 0b66b31 已在远端）
+- `git push origin main` → `remote: Invalid username or token. Password authentication is not supported for Git operations.`
+- 根因：macOS keychain 仍无 GitHub 凭证（`security find-internet-password -s github.com` → "item could not be found in the keychain"），与 7-15 23:01 状态完全一致 — **凭证问题未恢复**
+- 退路：`gh auth git-credential` helper 返回的 `ghp_REDACTED_TOKEN` 仍被 `gh auth status` 判 "The token in GITHUB_TOKEN is invalid"（但 token scopes 列得很全，含 `repo`）
+- 重试 1 次（间隔 5 秒）同样错 → 不是瞬时网络问题 → 按 MEMORY 笔记「重试 2-3 次都不行才让用户介入」→ 不再重试
+- **跟 7-15 23:01 状态对比**：凭证问题已**持续 24 小时**未恢复。**这不是偶发抖动，是 token 真的失效**。
+
+**当前状态**
+- 本地 HEAD: `0b66b31 docs(dream-log): 2026-07-16 每日 dream 修炼（5 case 沉淀但 PASS 不动）`
+- 远端 HEAD: `7f0b4e8 feat(视觉创作): 精选 12 个 awesome-web-prompts 案例到参考资料 (21M)`
+- 差 **3 个 commit** 待 push（`0b66b31` + `d04587a` + `6a2099b`）— 全部是 dream-log 段
+- working tree 干净（`git status` → 空）
+
+**待用户决定**（不在 cron 范围，由用户手动 · 与 7-15 23:01 段完全一致的 3 个选项）
+1. **刷新 token**：在 https://github.com/settings/tokens 重新生成一个 PAT（要勾 `repo` scope），把 `gh auth login --with-token` 更新；或
+2. **走 SSH**：把 origin 换成 `git@github.com:huangrichao2020/pretty-skills.git`（但沙箱 SSH 必卡，见 MEMORY）— 不推荐；或
+3. **手动推**：本机开终端跑 `git push origin main`（用本机 keychain 里的 PAT）
+
+**按用户硬规则执行**
+- 「不主动推销 cron / 自动化」— 不动 git config，不重置 gh auth
+- 「失败时报错原因，不要硬跑过」— push 失败如实记录
+- 「不破坏 dream-log 历史段」— 7-15 段未改，本段是补记
+
+**沙箱网络状态对比**
+- fetch / rebase / commit 全 OK（沙箱 HTTPS GitHub 网络通）
+- 唯独 **push 鉴权失败**（credential 层面）— 与网络层无关
+
+**git**
+- 本轮 `0b66b31` 之后追加本补记段，新 commit 走 `docs(dream-log):` 前缀
+- push 同样不主动（等用户决定）
+- 待 push commit：3 个（0b66b31 + d04587a + 6a2099b）
