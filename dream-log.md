@@ -1185,3 +1185,33 @@
 - 本轮 `0b66b31` 之后追加本补记段，新 commit 走 `docs(dream-log):` 前缀
 - push 同样不主动（等用户决定）
 - 待 push commit：3 个（0b66b31 + d04587a + 6a2099b）
+
+## 2026-07-19（每日 dream 修炼自动化）
+
+**回顾范围**：当日（07-19）与用户对话 + 工作成果（git）+ rebase 后状态。
+
+**结论：今日无新增沉淀。**
+- 会话检索：cron 自动化任务（`cron-executor` 沙箱 session · `account_name=cron-executor`），07-19 当日 0 个用户对话（无 human-in-loop）。
+- git：本地 5 个 ahead commit 全部是 dream-log 文档（7-13 / 7-14 / 7-15 / 7-16 / 7-17），**今日 0 个新 case commit**（`git log --since="2026-07-19 00:00"` 空）；`git status` 工作树干净。
+- 无高价值可复用知识 / 技能 / 工作流 / 洞见 → 遵循「无高价值内容不硬造」原则，**未新建或更新任何 case**，未硬造 3F 产物。
+
+**顺手健康快检（非新增 · 确认 v3.19 PDF 时代仓库完整性未退化）**
+- rebase 干净：远端 `40aba1f docs: 更新 Pretty-skills 使用交流群微信二维码` 拉到本地，本地 5 个 dream-log commit 全部移到远端 case commit 之后（`5698bf5` / `7f74400` / `af84acf` / `dd7b802` / `40aba1f`），零冲突；`git status -sb` → `[ahead 5]` 工作树干净。
+- 对全仓 **25 个 3F Content case**（筛 `manifest.json` + `content.md` + `*讲解.pdf` + `images/` 四件套）跑 `check-3f.py`（v3.23）→ **23 PASS / 2 FAIL**（与 7-17 段完全一致，**零回归**）：
+  - **PASS（23）**：Agent知识×3（AI狼群战法 / Mavis做事心法 / self-improving-agent）、产品设计×1（prd-master产品PRD写作）、做事技巧×3（doc-reader / markdown-converter / pdf-reader）、内容创作×5（公众号内容交付方法论 / 公众号爆款操盘术 / 卡兹克公众号写作 / 杂志风公众号品鉴 / 橙皮书方法论）、商业运营×1（社交电商掘金术）、教育学习×1（知识消化工作流）、玄学修炼×1（占星入门12星座）、编程开发×2（git沙箱求生术 / 领域增改避坑）、视觉创作×1（oil-cover小红书AI封面）、金融投资×5（4维融合诊断PPTX / company-brief / macro-monitor / 卡脖子猎手 / 宏观雷达）。
+  - **FAIL（2，均为老问题 · 非本次回归 · 非本次范围）**：
+    - `视觉创作/PPT证据链战法` — content.md 8 页 vs images/ 7 PNG 不一致（缺 p7.png）+ 「P8 只有 3 字段」（check-3f 把 "## 关联 skill" 段误识别成 P8）。7-12 段后追加了 P7（HTML 攻略 v2 升级）但未补对应 PNG；属"建后追加未同步"历史遗留，**非本次回归**。
+    - `视觉创作/dashiai-ppt传统PPT` — content.md 10 页 vs images/ 17 PNG + 17 张 PNG 全部 portrait 768×1376（vs check-3f 假设 landscape ≥1024×576）。与 7-11/7-13/7-15/7-16/7-17 记录一致老问题（portrait 分辨率 / 页数对齐冲突），属 check-3f 设计盲点 / 产品定位冲突，**非本次回归、非本次范围**。
+
+**PDF 状态（v3.19 必填 · 本次目标）**
+- **25/25 = 100% case 都有 `*讲解.pdf`**（v3.19 替代 web.html 目标保持达成 · 本次生成 PDF = **0 个** · 不需要补）
+- 关键 PDF 列表（顺手抽检 · 与 7-17 完全一致）：
+  - `PPT证据链战法讲解.pdf`（413 KB · 7 页 · 7 image object · 7-12 沉淀时生成）
+  - `dashiai-ppt传统PPT讲解.pdf`（6.7 MB · 主版本）+ `讲解-v2.pdf`（6.1 MB）+ `讲解-v3.pdf`（1.4 MB）+ `讲解-v4.pdf`（1.4 MB · 7-12 SKILL.md 三段式工作流配套）
+  - 其余 23 个 case 各 1 个 `*讲解.pdf`（均 ≥ 50KB · PIL 合并 PNG · v3.20 极简版）
+
+**git**
+- 本次 `git add` + `commit` 仅本文件（dream-log 追加 07-19 段 · 健康快检型 · 无新 case 沉淀）。
+- 5 → 6 ahead commit（新增本 commit）。
+- **未 push**（按 7-15 / 7-16 / 7-17 同口径：凭证问题自 7-15 起已持续 5 天未恢复，`git push origin main` 报 `Invalid username or token. Password authentication is not supported for Git operations.`；cron 自动化不主动 retry push，避免又失败加噪音；等用户处理凭证后手动 push 6 个 ahead commit）。
+- 风险评估：低（仅 dream-log.md 1 个文件追加，无 case 改动）。
