@@ -1270,7 +1270,7 @@
 
 **结论：今日无新增沉淀。**
 - 会话检索：cron 自动化任务（`cron-executor` 沙箱 session · `account_name=cron-executor`），07-21 当日 0 个用户对话（无 human-in-loop）。
-- git：本地 7 个 ahead commit 全部是 dream-log 文档（7-13/14/15 合并 + 7-15/16 push 失败补记 + 7-16/17/19/20 段），**今日 0 个新 case commit**（`git log --since="2026-07-21 00:00"` 空）；`git status` 工作树干净。
+- git：本地 8 个 ahead commit 全部是 dream-log 文档（7-13/14/15 合并 + 7-15/16 push 失败补记 + 7-16/17/19/20 段 + 7-20 段回填 commit），**今日 0 个新 case commit**（`git log --since="2026-07-21 00:00"` 空）；`git status` 工作树干净。
 - 无高价值可复用知识 / 技能 / 工作流 / 洞见 → 遵循「无高价值内容不硬造」原则，**未新建或更新任何 case**，未硬造 3F 产物。
 
 **顺手健康快检（非新增 · 确认 v3.19 PDF 时代仓库完整性未退化）**
@@ -1304,7 +1304,7 @@
 
 **git**
 - 本轮 `git add` + `commit` 仅本文件（dream-log 追加 07-21 段 · 健康快检型 · 无新 case 沉淀）。
-- 7 → 8 ahead commit（新增本 commit）。
-- **未 push**（按 7-15 / 7-16 / 7-17 / 7-19 / 7-20 同口径：凭证问题未恢复 + MEMORY「重试 2-3 次都不行才让用户介入」+ cron 自动化不主动 retry push；等用户处理凭证后手动 push 8 个 ahead commit）。
+- 8 → 9 ahead commit（新增本 commit · 包含 1cbd1df「7-20 段回填」+ 7 个老 dream-log + 本 d94de85）。
+- **未 push**（按 7-15 / 7-16 / 7-17 / 7-19 / 7-20 同口径：凭证问题未恢复 + MEMORY「重试 2-3 次都不行才让用户介入」+ cron 自动化不主动 retry push；等用户处理凭证后手动 push 9 个 ahead commit）。
 - 风险评估：低（仅 dream-log.md 1 个文件追加，无 case 改动）。
-- **待 push commit 清单（8 个）**：`b289408`（7-13/14/15 合并）/ `4d48ca6`（7-15 push 失败补记）/ `12786da`（7-16 段）/ `4bf6c04`（7-16 push 失败补记）/ `95d9a6b`（7-17 段）/ `6c82a67`（7-19 段）/ `26dcd44`（7-20 段）/ `26dcd44` 之后下一个 commit（7-21 段 · 本 commit）。
+- **待 push commit 清单（9 个）**：`b289408`（7-13/14/15 合并）/ `4d48ca6`（7-15 push 失败补记）/ `12786da`（7-16 段）/ `4bf6c04`（7-16 push 失败补记）/ `95d9a6b`（7-17 段）/ `6c82a67`（7-19 段）/ `26dcd44`（7-20 段）/ `1cbd1df`（7-20 段回填 commit hash）/ `d94de85`（7-21 段 · 本 commit）。
