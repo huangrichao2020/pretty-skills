@@ -1308,3 +1308,70 @@
 - **未 push**（按 7-15 / 7-16 / 7-17 / 7-19 / 7-20 同口径：凭证问题未恢复 + MEMORY「重试 2-3 次都不行才让用户介入」+ cron 自动化不主动 retry push；等用户处理凭证后手动 push 9 个 ahead commit）。
 - 风险评估：低（仅 dream-log.md 1 个文件追加，无 case 改动）。
 - **待 push commit 清单（9 个）**：`b289408`（7-13/14/15 合并）/ `4d48ca6`（7-15 push 失败补记）/ `12786da`（7-16 段）/ `4bf6c04`（7-16 push 失败补记）/ `95d9a6b`（7-17 段）/ `6c82a67`（7-19 段）/ `26dcd44`（7-20 段）/ `1cbd1df`（7-20 段回填 commit hash）/ `d94de85`（7-21 段 · 本 commit）。
+
+---
+
+## 2026-07-22（每日 dream 修炼自动化）
+
+**回顾范围**：当日（07-22）用户对话 + 用户当日推到远端的 case + git rebase 后状态。
+
+**结论：今日 0 个人机对话沉淀 + 1 个新 case 来自远端 rebase。**
+- 会话检索：cron 自动化任务（`cron-executor` 沙箱 session · `account_name=cron-executor`），07-22 当日 0 个用户对话（无 human-in-loop，agent 跑在沙箱无 human 信号）。
+- git：本地 9 个 ahead commit 全部是 dream-log 文档（7-13/14/15 合并 + 7-15/16 push 失败补记 + 7-16/17/19/20/21 段），**今日 0 个新 case commit**（`git log --since="2026-07-22 00:00"` 空）；`git status` 工作树干净。
+- **唯一增量来源**：`git pull --rebase` 拉到用户 07-22 00:20 推的 `8ac097e` — 新增 `视觉创作/cinema-dna-21x9x3电影感三联`（电影感三联镜头叙事合同 + Anti-AI 纪律 + 光学缺陷 + Triptych 节奏 + 21:9 纵横比 + 现场摄影 5+ 参数 · Mavis 工具栈适配）。
+- 本 cron 未沉淀新方法论（今日人机 0 对话）→ 遵循「无高价值内容不硬造」原则，**未新建或更新任何 case**（除 dream-log 自身追加段外）。
+
+**顺手健康快检（非新增 · 确认 v3.19 PDF 时代仓库完整性未退化 + 净增 1 case）**
+- rebase 干净：`git fetch origin main` → 拉到 5 个新 commit（`8ac097e` + 之前 4 个 `40aba1f` / `5698bf5` / `7f74400` / `af84acf` 已记录）；`git pull --rebase origin main` → 10 个 ahead commit 全部成功移到远端 5 个新 commit 之上，**零冲突**；`git status -sb` → `[ahead 10]` 工作树干净。
+- 全量跑 check-3f（v3.23 · 与 7-21 同版本）→ **24 PASS / 2 FAIL**（与 7-21 段对比：+1 PASS / 0 FAIL 净增）：
+  - **筛选口径**：全仓 `find -name manifest.json` 命中 **74 个 case**（与 7-21 段 73 对比 +1 = cinema-dna 新增）
+  - **有 `*讲解.pdf` 子集** = **27 个**（74 - 47 缺 PDF = 27 · 与 7-21 段 26 对比 +1 = cinema-dna 新增）
+  - **4-element 完整子集**（manifest.json + content.md + `*讲解.pdf` + images/ 四件套）= **26 个**（与 7-21 段 25 对比 +1 = cinema-dna 新增）：
+    - **PASS（24）**：Agent知识×3（AI狼群战法 / Mavis做事心法 / self-improving-agent）、产品设计×1（prd-master产品PRD写作）、做事技巧×3（doc-reader / markdown-converter / pdf-reader）、内容创作×5（公众号内容交付方法论 / 公众号爆款操盘术 / 卡兹克公众号写作 / 杂志风公众号品鉴 / 橙皮书方法论）、商业运营×1（社交电商掘金术）、教育学习×1（知识消化工作流）、玄学修炼×1（占星入门12星座）、编程开发×2（git沙箱求生术 / 领域增改避坑）、视觉创作×2（oil-cover小红书AI封面 / **cinema-dna-21x9x3电影感三联 ← 7-22 远端 rebase 新增**）、金融投资×5（4维融合诊断PPTX / company-brief / macro-monitor / 卡脖子猎手 / 宏观雷达）。
+    - **FAIL（2，均为老问题 · 非本次回归 · 非本次范围）**：
+      - `视觉创作/PPT证据链战法` — content.md 8 页 vs images/ 7 PNG 不一致（缺 p7.png）+ 「P8 只有 3 字段」（check-3f 把 "## 关联 skill" 段误识别成 P8）。7-12 段后追加了 P7（HTML 攻略 v2 升级）但未补对应 PNG；属"建后追加未同步"历史遗留，**非本次回归**。
+      - `视觉创作/dashiai-ppt传统PPT` — content.md 10 页 vs images/ 17 PNG + 17 张 PNG 全部 portrait 768×1376（vs check-3f 假设 landscape ≥1024×576）。与 7-11/7-13/7-15/7-16/7-17/7-19/7-20/7-21 记录一致老问题（portrait 分辨率 / 页数对齐冲突），属 check-3f 设计盲点 / 产品定位冲突，**非本次回归、非本次范围**。
+  - **特殊：1 个有 PDF 但非 4-element 完整**：`视觉创作/gzh-design公众号排版主题库`（有 content.md + PDF + manifest，但**无 images/ 目录**）— check-3f PASS（v3.2 起 images/ 改为软警告，PDF 7 个 image object 充足），与 7-21 段一致。
+  - **48 个非 3F 范式 case**（含 1 个 gzh-design 特殊）全部因缺 content.md / 缺 images/ / 缺 manifest 等 FAIL，**全部历史遗留、非本次回归**。
+  - **净变化（7-21 → 7-22）**：+1 manifest（cinema-dna）+1 有 PDF（cinema-dna）+1 4-element 完整（cinema-dna）+1 PASS（cinema-dna）/ 0 FAIL 净增 / 0 老 PASS 退化 = **零回归**。
+
+**新增 case 详情 · cinema-dna-21x9x3电影感三联**（`8ac097e` 7-22 00:20 · 远端拉来）
+- **定位**：电影感三联镜头叙事 · 3 镜头合同（建立世界/建立关系/留下余韵）+ 现场摄影 5+ 参数 + Anti-AI 纪律 + 光学缺陷 + Triptych 节奏
+- **格式**：4-element 完整（manifest.json + content.md 9 页 + 9 张主图 + 667 KB 讲解.pdf 含 9 image object + 锦绣/readme.md + prompts/p0-p8 + 4 examples 子目录）
+- **check-3f v3.23 EXIT=0**：9 页 × 4-7 字段全合规（1 页 5 字段、其余 8 页 7 字段），缺「认知锚点」1/9 + 缺 Shot List（v3.23 软警告，不影响 PASS）；图片真实性 9 张均过。
+- **软警告（非失败）**：
+  - 9 张主图纵横比 479:613 / 309:349 / 765:968 / 1530:1937 **均非标**（建议 16:9 / 3:4 / 9:16）— **预期内**，case 定位是 21:9 电影感三联，不是 16:9 标准宽屏。
+  - 锦绣/cover-横屏/竖屏 缺 + slides/ 0 张（v3 软警告，不影响 PASS）— 用户主出图走 images/ 主图，没按 v3.1 锦绣 4 形态出满。
+- **源数据**：dacnay816y62-hub/cinema-dna-21x9x3（GitHub 39 stars · 2026-07-20）；contributor=Mavis；domain=视觉创作；visibility=public。
+- **相关 skill**（manifest.related_skills）：scroll-world / dashiai-ppt / H5设计转H5滑动 / ai-image-to-pptx / wechat-delivery — 与现有视觉创作/内容创作工具栈打通。
+
+**PDF 状态（v3.19 必填 · 本次目标）**
+- **27 个 `*讲解.pdf` 存在于全仓**（24 PASS + 2 老 FAIL 带 PDF + 1 特殊 gzh-design）— 与 7-21 段 26 对比 +1
+- **26/26 = 100% 4-element 完整 case 都有 `*讲解.pdf`**（v3.19 替代 web.html 目标**连续 6 天保持达成** · 本次生成 PDF = **0 个** · 不需要补）
+- **新增 PDF**：`cinema-dna-21x9x3电影感三联讲解.pdf`（667 KB / 683316 bytes · 9 image object · 用户 commit `8ac097e` 时已生成）
+- **47/74 manifest 缺 `*讲解.pdf`**（与 7-21 段 47/73 持平）：
+  - **44 个**缺 PNG（`images/` 空 / 不存在）→ build_case_pdf.py fail-fast「没有 PNG 可合并」，**无法自动补**
+  - **3 个**有 PNG 但无 `*讲解.pdf`（与 7-21 完全一致）：
+    - `做事技巧/H5设计转H5滑动`（4 PNG · 390×844 iPhone 截图模拟）+ 无 content.md
+    - `视觉创作/scroll-world滚动驱动相机`（2 PNG）+ 无 content.md
+    - `教育学习/教程类H5-小红书小工具`（0 PNG · 仅 manifest + content.md）
+  - **0 个用 build_case_pdf.py 跑过**（44 个缺 PNG 跑也 fail-fast；3 个有 PNG 的不是 3F 范式，跑出来也只是"凑数"，违背「无高价值内容不硬造」原则 — 与 7-20/7-21 决策一致）
+  - **PDF 净增量（本周）= +1**（cinema-dna · 7-22 单日），**总净增量（v3.19 时代 6 天）= +2**（7-22 cinema-dna + 7-17 杂志风公众号品鉴 · 7-18/19/20/21 连续 4 天零增量已突破）
+
+**已知问题 · 非本 cron 范围（诚实记录）**
+- `INDEX.md` 仍**未包含** `cinema-dna-21x9x3电影感三联` 条目（用户 commit `8ac097e` 时只更 case 目录本身，没更 INDEX.md 的 case 清单表）— 与 7-12 / 7-17 段"建 case 漏同步 INDEX"历史遗留同模式。
+- `INDEX.md` 末行"最后更新：2026-07-14 · 14 个 case 全部 public" 也未跟进 7-16 那批 7 case / 7-17 杂志风 / 7-22 cinema-dna 的计数。
+- **本 cron 不主动改 INDEX.md**（避免越权改用户文件）；由下次合并 PR 时一起补 INDEX 同步。
+
+**沙箱网络**（本轮 fetch/rebase OK，push 仍卡凭证）
+- `git fetch origin main` 一次成功（5 个新 commit · 5MB 类 · 走 `https://github.com/huangrichao2020/pretty-skills.git`）
+- `git pull --rebase origin main` 一次成功（10 个 ahead commit 全部 rebase 到 5 个新 commit 之上 · 零冲突）
+- `git push origin main` 第一次 → 预期失败（凭证问题自 7-15 起已持续 7+ 天未恢复 · 横跨 7 段 dream-log）
+
+**git**
+- 本轮 `git add` + `commit` 仅本文件（dream-log 追加 07-22 段 · 健康快检型 + 新 case 净增 1 PASS 记录型）。
+- 10 → 11 ahead commit（新增本 commit · 7-21 段 + 之前 10 个老 dream-log + 本 commit）。
+- **未 push**（按 7-15 / 7-16 / 7-17 / 7-19 / 7-20 / 7-21 同口径：凭证问题未恢复 + MEMORY「重试 2-3 次都不行才让用户介入」+ cron 自动化不主动 retry push；等用户处理凭证后手动 push 11 个 ahead commit）。
+- 风险评估：低（仅 dream-log.md 1 个文件追加，无 case 改动）。
+- **待 push commit 清单（11 个）**：`98e90ee`（7-13/14/15 合并）/ `ab17a22`（7-15 push 失败补记）/ `df938c6`（7-16 段）/ `aa81688`（7-16 push 失败补记）/ `631a05d`（7-17 段）/ `3469439`（7-19 段）/ `c99b99c`（7-20 段）/ `ab2a749`（7-20 段回填 commit hash）/ `3d97cc3`（7-21 段）/ `72c16b9`（7-21 段 ahead 数字修正）+ 本 commit。
+- **额外 push 记录**：commit 后又重试 1 次（第 N+1 次 · 间隔 12s）→ 同样 `Invalid username or token` → 确认凭证问题稳态，**不再重试**。
