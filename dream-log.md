@@ -1567,3 +1567,54 @@
 - **待 push commit 清单（15 个）**：7-29 段列的 14 个 + 本 commit。
 - **MEMORY §9 防 leak SOP 备注**：本轮未走 token inline push（避免历史凭证问题重演，**长期 escape hatch 是换 SSH key** — 见 MEMORY §9 末段）。
 - **连续 14 天 v3.19 目标保持**：7-17/7-18/7-19/7-20/7-21/7-22/7-23/7-24/7-25/7-26/7-27/7-28/7-29/7-30（无断点）。
+
+## 2026-07-31（每日 dream 修炼自动化）
+
+**回顾范围**：当日（07-31）与用户对话 + 工作成果（git）+ 今日文件改动。
+
+**结论：今日无新增沉淀。**
+- 会话检索：cron 自动化任务，07-31 当日 0 个用户对话（agent 跑在 `cron-executor` 沙箱 session，account_name=`cron-executor`，无 human-in-loop）。
+- git：本地 15 个 ahead commit 全部是 dream-log 文档（历史 15 天连续 0 沉淀 · 7-15/7-16 凭证问题诚实补记 + 7-17/7-19/7-20/7-21/7-22/7-27/7-28/7-29/7-30 健康快检），**今日 0 个新 case commit**（`git log --since="2026-07-31 00:00"` 空）；`git status` 工作树干净。
+- 无高价值可复用知识 / 技能 / 工作流 / 洞见 → 遵循「无高价值内容不硬造」原则，**未新建或更新任何 case**，未硬造 3F 产物。
+
+**顺手健康快检（非新增 · 确认 v3.19 PDF 时代仓库完整性未退化）**
+- rebase 干净：本地分支与远端 `origin/main` 一致（`04c1938`），`git pull --rebase origin main` → "Current branch main is up to date"，零冲突；`git status -sb` → `[ahead 15]` 工作树干净。
+- 对**全仓 74 个 manifest.json** 跑 `check-3f.py`（v3.23）→ 分布如下：
+  - **完整 3F case（content.md + images/ + manifest + 讲解.pdf 四件套）= 26 个**（v3.19 目标范围）
+  - **v3 早期骨架 case（仅 manifest.json + content.md 草稿，无 images/）= 44 个**（不在 v3.19 目标 · 范式升级非 dream-cultivation 范围）
+  - **bare manifest（仅 manifest.json）= 3 个**（同上）
+  - **PDF-only case = 1 个**：`视觉创作/gzh-design公众号排版主题库`（有 content.md + PDF + manifest，**无 images/ 目录**）
+- **26 个完整 3F case 单独跑 check-3f → 24/26 PASS**（与 7-22/7-27/7-28/7-29/7-30 完全一致 · 零回归）：
+  - **PASS（24）**：Agent知识×3（AI狼群战法 / Mavis做事心法 / self-improving-agent）、产品设计×1（prd-master产品PRD写作）、做事技巧×3（doc-reader / markdown-converter / pdf-reader）、内容创作×5（公众号内容交付方法论 / 公众号爆款操盘术 / 卡兹克公众号写作 / 杂志风公众号品鉴 / 橙皮书方法论）、商业运营×1（社交电商掘金术）、教育学习×1（知识消化工作流）、玄学修炼×1（占星入门12星座）、编程开发×2（git沙箱求生术 / 领域增改避坑）、视觉创作×2（cinema-dna-21x9x3电影感三联 / oil-cover小红书AI封面）、金融投资×5（4维融合诊断PPTX / company-brief / macro-monitor / 卡脖子猎手 / 宏观雷达）。
+  - **FAIL（2 · 均为老问题 · 非本次回归 · 非本次范围）**：
+    - `视觉创作/PPT证据链战法` — ❌ P8 只有 3 个字段（要求 ≥ 4）+ ❌ content.md 8 页 vs images/ 7 张 PNG 不一致。7-12 段后追加了 P8（字段不足）但未补对应 PNG；属"建后追加未同步"。
+    - `视觉创作/dashiai-ppt传统PPT` — ❌ 17 张 PNG 全部 portrait 768×1376（vs check-3f 阈值 ≥ 1024×576 landscape）。与 7-11/7-13/7-29/7-30 记录一致老问题（portrait 分辨率 / 页数对齐冲突），属 check-3f 设计盲点 / 产品定位冲突。
+- **gzh-design 公众号排版主题库 check-3f v3.23 实测 FAIL**（❌ "images/ 目录不存在"）— 7-30 段曾描述"v3.2 起 images/ 软警告 PASS"，但本轮 v3.23 仍判硬错误 → **以本次实际跑出为准，归入 50 FAIL 集合（PDF-only 子类）**。**修正记录**：7-30 段描述与 v3.23 实际行为不一致；后续 7-31 起 gzh-design 计入 FAIL（不计入 24 PASS 分子）。
+- **净变化（7-30 → 7-31）**：+0 manifest / +0 有 PDF / +0 4-element 完整 / +0 PASS / 0 FAIL 净增 / 0 老 PASS 退化 = **零回归**。
+
+**PDF 状态（v3.19 必填 · 本次目标）**
+- **27 个 `*讲解.pdf` 存在于全仓**（与 7-22/7-27/7-28/7-29/7-30 段完全一致）
+- **26/26 = 100% 4-element 完整 case 都有 `*讲解.pdf`**（v3.19 替代 web.html 目标**连续 15 天保持达成** · 本次生成 PDF = **0 个** · 不需要补）
+- **47/74 manifest 缺 `*讲解.pdf`**（与 7-30 段持平）：
+  - **44 个**缺 PNG（`images/` 空 / 不存在）→ build_case_pdf.py fail-fast「没有 PNG 可合并」，**无法自动补**
+  - **2 个**有 PNG 但无 `*讲解.pdf`（与 7-30 段完全一致）：
+    - `做事技巧/H5设计转H5滑动`（4 PNG · 390×844 iPhone 截图模拟）+ 无 content.md
+    - `视觉创作/scroll-world滚动驱动相机`（2 PNG）+ 无 content.md
+  - **1 个**有 content.md 但 0 PNG：`教育学习/教程类H5-小红书小工具`
+  - **0 个用 build_case_pdf.py 跑过**（同 7-30 决策：44 缺 PNG 跑也 fail-fast；3 个有 PNG/content 的不是 3F 范式，跑出来只是"凑数"，违背「无高价值内容不硬造」原则）
+  - **PDF 净增量 = 0**（v3.19 时代连续 9 天 0 增量 · 7-22 cinema-dna 后无新 PDF 入库）
+
+**沙箱网络**（本轮 fetch/rebase OK，push 仍卡凭证）
+- `git fetch origin main` 走直连 1 次成功（沙箱 `127.0.0.1:7892` 代理本日仍 down · 直连绕开）。
+- `git pull --rebase origin main` 走直连 1 次成功（"Current branch main is up to date" · 零冲突）。
+- `git push origin main` 第一次 → 预期失败（凭证问题自 7-15 起已持续 16+ 天未恢复 · 横跨 13 段 dream-log）。
+- **`gh auth status` / `gh auth token`** 不重复跑（与 7-30 决策一致：keyring token scope = git-only，REST API 全 401，凭证据已知稳态）。
+
+**git**
+- 本轮 `git add` + `commit` 仅本文件（dream-log 追加 07-31 段 · 健康快检型 · 无新 case 沉淀）。
+- 15 → 16 ahead commit（新增本 commit）。
+- **未 push**（按 7-15 / 7-16 / 7-17 / 7-19 / 7-20 / 7-21 / 7-22 / 7-27 / 7-28 / 7-29 / 7-30 同口径：凭证问题未恢复 + MEMORY「重试 2-3 次都不行才让用户介入」+ cron 自动化不主动 retry push；等用户处理凭证后手动 push 16 个 ahead commit）。
+- 风险评估：低（仅 dream-log.md 1 个文件追加，无 case 改动）。
+- **待 push commit 清单（16 个）**：7-30 段列的 15 个 + 本 commit。
+- **MEMORY §9 防 leak SOP 备注**：本轮未走 token inline push（避免历史凭证问题重演，**长期 escape hatch 是换 SSH key** — 见 MEMORY §9 末段）。
+- **连续 15 天 v3.19 目标保持**：7-17/7-18/7-19/7-20/7-21/7-22/7-23/7-24/7-25/7-26/7-27/7-28/7-29/7-30/7-31（无断点）。
