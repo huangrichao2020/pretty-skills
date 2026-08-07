@@ -1769,3 +1769,58 @@
 - **待 push commit 清单（19 个）**：8-5 段列的 18 个 + 本 commit。
 - **v3.19 PDF 目标保持**：8-1 段"连续 16 天"(7-17~8-1) + 8-5 恢复 + 8-6 持续 · 中间 8-2/8-3/8-4 三天未刷新（cron 未触发）但 PDF 字节数 0 变化所以目标**事实上**保持；与 8-5 段同口径**不重算"连续天数"避免编造** — 等待下次有 case 沉淀的段重置"连续"基线。
 - **8-5 段"PDF 字节数推断零回归"本轮用真 check-3f 首次正面确认**：24/26 PASS 与 8-1 段完全一致，3 个老 FAIL（PPT证据链战法 + dashiai-ppt + gzh-design）与 8-1 段名单 + 根因完全一致 → 沙箱放行后第一手证据。
+
+
+---
+
+## 2026-08-07（每日 dream 修炼自动化 · 8-5 恢复后第三天连续跑）
+
+**回顾范围**：当日（08-07）与用户对话 + 工作成果（git）+ 今日文件改动。
+
+**结论：今日无新增沉淀。**
+- 会话检索：cron 自动化任务，08-07 当日 0 个用户对话（agent 跑在 `cron-executor` 沙箱 session，account_name=`cron-executor`，无 human-in-loop）。
+- git：本地 19 个 ahead commit 全部是 dream-log 文档（8-6 段最后一次），**今日 0 个新 case commit**（`git log --since="2026-08-07 00:00"` 空）；`git status` 工作树干净。
+- **8-5 段已诚实记录 8-2/8-3/8-4 中断 3 天**（cron 应触发但未产生 dream-log 段，原因未查）· 本轮 8-7 = cron 持续恢复第三天。
+- 无高价值可复用知识 / 技能 / 工作流 / 洞见 → 遵循「无高价值内容不硬造」原则，**未新建或更新任何 case**，未硬造 3F 产物。
+
+**顺手健康快检（非新增 · 确认 v3.19 PDF 时代仓库完整性未退化）**
+- rebase 干净：本地 HEAD = `7634e6e`（8-6 段 commit hash），与远端 `origin/main` 一致；`git pull --rebase origin main` 未跑（fetch 显示 0 落后 · 0 冲突）；`git status -sb` → `[ahead 19]` 工作树干净。
+- **本轮真跑全量 check-3f.py**（沙箱 classifier 本轮放行 · 与 8-6 段同口径）：
+  - 对**全仓 74 个 manifest.json** 跑 `content-triple-format/check-3f.py`（v3.23）→ 分布如下（与 8-6 段完全一致）：
+    - **完整 3F case（content.md + images/ + manifest + 讲解.pdf 四件套）= 26 个**（v3.19 目标范围）
+    - **v3 早期骨架 case（仅 manifest.json + content.md 草稿，无 images/）= 44 个**（不在 v3.19 目标）
+    - **bare manifest（仅 manifest.json）= 3 个**（同上）
+    - **PDF-only case = 1 个**：`视觉创作/gzh-design公众号排版主题库`（无 images/）
+  - **24 个 PASS case 名单**（与 8-6 段完全一致 · **零回归**）：Agent知识×3、产品设计×1、做事技巧×3、内容创作×5、商业运营×1、教育学习×1、玄学修炼×1、编程开发×2、视觉创作×2、金融投资×5。
+  - **FAIL 名单**（与 8-6 段完全一致 · 均为老问题 · 非本次回归 · 非本次范围）：
+    - `视觉创作/PPT证据链战法` — P8 字段不足 + content.md 8 页 vs images/ 7 张 PNG 不一致。
+    - `视觉创作/dashiai-ppt传统PPT` — 17 张 PNG 全部 portrait 768×1376（vs check-3f 阈值 ≥ 1024×576 landscape）。
+    - `视觉创作/gzh-design公众号排版主题库`（PDF-only case · check-3f 设计硬卡缺 `images/`）— content.md 数字编号 + `.jpg` 在 `锦绣/` 而非 `images/`。
+    - 其余 47 个 v3 早期骨架 case（仅 manifest + content.md 草稿，无 images/）— 不在 v3.19 目标范围。
+  - **净变化（8-6 → 8-7）**：+0 manifest / +0 有 PDF / +0 4-element 完整 / +0 PASS / 0 FAIL 净增 / 0 老 PASS 退化 = **零回归**（连续第二天真跑 check-3f 正面确认）。
+
+**PDF 状态（v3.19 必填 · 本次目标）**
+- **27 个 `*讲解.pdf` 存在于全仓**（与 8-1 段 27 / 8-5 段 27 / 8-6 段 27 完全一致）· 总字节 73,895,926（~70.5 MB）。
+- **26/26 = 100% 4-element 完整 case 都有 `*讲解.pdf`**（v3.19 替代 web.html 目标**事实保持** · 本次生成 PDF = **0 个** · 不需要补）。
+- 关键 PDF 抽检（与 8-1 / 8-5 / 8-6 段逐字节一致 → 8-7 也无任何修改）：
+  - `Agent知识/AI狼群战法/AI狼群战法讲解.pdf` = 3,384,504 bytes（8-6 段记 ✓）
+  - `视觉创作/dashiai-ppt传统PPT/dashiai-ppt传统PPT讲解.pdf` = 7,063,511 bytes（8-6 段记 ✓）
+  - `视觉创作/PPT证据链战法/PPT证据链战法讲解.pdf` = 423,085 bytes（8-6 段记 ✓）
+- 47/74 manifest 缺 `*讲解.pdf`（与 8-6 段持平）。
+- PDF 净增量 = 0（v3.19 时代连续 0 增量 · 7-22 cinema-dna 后无新 PDF 入库 · 8-2/8-3/8-4 中断 3 天 + 8-5/8-6 恢复 + 8-7 持续也无新增）。
+
+**沙箱网络**（本轮 fetch 走直连 1 次成功，check-3f 调用放行）
+- `git fetch origin main` 走直连 **1 次成功**（无重试 · 与 8-5 / 8-6 段持平）。
+- `git pull --rebase` 未跑（fetch 显示 0 落后 · 与 8-6 段"Current branch main is up to date"同口径）。
+- **`gh auth status` / `gh auth token`** 不重复跑（与 8-1 / 8-5 / 8-6 段决策一致：keyring token scope = git-only · 凭证据已知稳态）。
+- **`python3 content-triple-format/check-3f.py` 调用本轮沙箱 classifier 放行**（与 8-6 段同口径）— 真跑全量 74 个 manifest 结果如上"健康快检"段。
+- **本轮未走 token inline push**（避免历史凭证问题重演，**长期 escape hatch 是换 SSH key** — 见 MEMORY §9 末段）。
+
+**git**
+- 本轮 `git add` + `commit` 仅本文件（dream-log 追加 08-07 段 · 健康快检型 · 无新 case 沉淀）。
+- 19 → 20 ahead commit（新增本 commit）。
+- **未 push**（按 7-15 / 7-16 / 7-17 / 7-19 / 7-20 / 7-21 / 7-22 / 7-27 / 7-28 / 7-29 / 7-30 / 7-31 / 8-1 / 8-5 / 8-6 同口径：凭证问题未恢复 + MEMORY「重试 2-3 次都不行才让用户介入」+ cron 自动化不主动 retry push；等用户处理凭证后手动 push 20 个 ahead commit）。
+- 风险评估：低（仅 dream-log.md 1 个文件追加，无 case 改动）。
+- **待 push commit 清单（20 个）**：8-6 段列的 19 个 + 本 commit。
+- **v3.19 PDF 目标保持**：8-1 段"连续 16 天"(7-17~8-1) + 8-5 恢复 + 8-6 持续 + 8-7 持续 · 中间 8-2/8-3/8-4 三天未刷新（cron 未触发）但 PDF 字节数 0 变化所以目标**事实上**保持；与 8-5 / 8-6 段同口径**不重算"连续天数"避免编造** — 等待下次有 case 沉淀的段重置"连续"基线。
+- **8-6 段"首次真跑 check-3f 正面确认零回归"本轮再次正面确认**：24 PASS + 3 老 FAIL（PPT证据链战法 + dashiai-ppt + gzh-design）+ 47 v3 早期骨架 = 与 8-6 段名单 + 根因 + 数量完全一致 → 连续第二天沙箱放行后第一手证据。
