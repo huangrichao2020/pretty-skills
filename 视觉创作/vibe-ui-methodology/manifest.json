@@ -1,0 +1,23 @@
+{
+  "name": "vibe-ui-methodology",
+  "domain": "视觉创作",
+  "title": "vibe-ui-methodology · VibeCoding 视觉设计统一方法论",
+  "visibility": "public",
+  "tags": ["UI设计", "色彩系统", "国风纹样", "Design Token", "60-30-10", "PPT配色", "PDF排版", "新中式", "WorkBuddy Skill"],
+  "contributor": "huangrichao2020",
+  "contributor_github": "huangrichao2020",
+  "original_designer": "才巨智能 VibeCoding 教程系列",
+  "created": "2026-08-12",
+  "last_updated": "2026-08-12",
+  "format": { "content_md": false, "锦绣": false, "presentation_pptx": false, "case_pdf": false },
+  "summary": "HTML/PPT/PDF 三场景 UI 视觉设计统一方法论。含 60-30-10 法则、50-900 色阶、三层 Design Token、4 套国风配色、30 种纹样话术库。21 个配套文件。",
+  "trigger_keywords": ["UI配色", "色彩系统", "国风纹样", "新中式", "PPT配色", "PDF配色", "Design Token", "60-30-10", "纹样生成"],
+  "key_features": [
+    "HTML/PPT/PDF 三场景全覆盖的视觉设计规范",
+    "60-30-10 黄金配色比例 + 50-900 完整色阶",
+    "三层 Design Token 架构",
+    "4 套国风配色主题 + 30 种纹样话术库",
+    "PPT 投影对比度修正 + Hero/Supporting 节奏",
+    "PDF 章首页/跨章节一致性"
+  ]
+}
