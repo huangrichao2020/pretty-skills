@@ -5,6 +5,37 @@
 
 ---
 
+## 2026-08-12（每日 dream 修炼自动化）
+
+**回顾范围**：当日（08-12）与用户对话 + 工作成果（git）+ 今日文件改动。
+
+**沉淀了什么（高价值、非硬造）**
+- 当日唯一 git 提交 `b54cf2c`（20:09）将 `vibe-ui-methodology` WorkBuddy Skill 落库到 pretty-skill（README + SKILL.md + manifest）。这是一套完整的 UI 视觉设计统一方法论（才巨智能 VibeCoding 教程系列提炼），覆盖 HTML/PPT/PDF 三场景：
+  - 三大设计纪律（配色成系统 / 提示词给参数给规则给禁令 / 纹样用 SVG 不用位图）
+  - 60-30-10 黄金比例 + 50-900 色阶 + 三层 Design Token 架构
+  - 4 套国风配色主题（青花/朱砂金/黛蓝金/墨绿金）+ 五步纹样公式 + 30 种话术库
+  - 三场景速查参数 + 深色模式双套语义映射 + WCAG 对比度 + 验收清单 + 视觉红线
+- 方法论本身是高频可复用资产（任何 HTML/CSS/SVG/可视化输出都该先调它），值得沉淀为 3F case；故将 `视觉创作/vibe-ui-methodology/` 由「Skill 骨架」升级为「完整 3F case」。
+
+**新建/更新了哪些 case**
+- 更新 `视觉创作/vibe-ui-methodology/`（`check-3f.py` → **EXIT=0**）：
+  - content.md（7 页 × 8 字段含认知锚点 · `## P0..P6` + ### Shot List）
+  - web.html（含 7 个 `images/pN.png` 的 `<img>` 嵌入可翻页演示）
+  - images/（恰好 7 张 PNG = 页数；本地 Pillow 12.3 + numpy 2.5 离线生成，字体 `/System/Library/Fonts/STHeiti Light.ttc`，未调用在线 AI 出图）
+  - `VibeCoding视觉设计方法论讲解.pdf`（668 KB · 7 页 · 7 个 image object，PIL 由 7 图合并）
+  - 锦绣/（cover-横屏 16:9 · cover-竖屏 9:16 · slides/ 10 张 16:9 · readme.md 融合稿三用）
+  - manifest.json（补 format/page_count=7）+ INDEX.md（vibe 行改为完整形态 · case 计数 14 → 15）
+- 图片：本地 Pillow + numpy 离线生成（渐变底 + 装饰形 + 细噪声 ±8 保唯一色）；base 7 PNG 实测 1280×720·≈1.7MB·唯一色 3774-6148 过真实性检测（≥800）。
+
+**3F 校验结果**
+- 新 case 跑 `content-triple-format/check-3f.py` v3.23 → **EXIT=0**（F1 7 页字段合规 + 认知锚点 7/7 + Shot List 存在 / F3 PDF 合规含 7 image object / images/ 7 PNG = 页数 / 一致性 OK / 图片真实性 7 张均过 / manifest 合规 / 锦绣 4 形态齐全）。
+- 软警告（不阻断）：P1-P6 各 8 字段、P7 段（Shot List 尾段被计为伪页 10 字段）、presentation.pptx 缺失（v3.2 可选）—— 与仓内其他 v3.23 case 表现一致。
+
+**git**
+- 本次 `git add` + `commit` 到**本地仓**（新 3F 产物 + manifest + INDEX + dream-log）；**未 push**（push 到公开上游需用户明确确认）。
+
+---
+
 ## 2026-07-13（每日 dream 修炼自动化）
 
 **回顾范围**：当日（07-13）与用户对话 + 工作成果（git）+ 今日文件改动。

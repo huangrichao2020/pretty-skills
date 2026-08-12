@@ -9,8 +9,15 @@
   "original_designer": "才巨智能 VibeCoding 教程系列",
   "created": "2026-08-12",
   "last_updated": "2026-08-12",
-  "format": { "content_md": false, "锦绣": false, "presentation_pptx": false, "case_pdf": false },
-  "summary": "HTML/PPT/PDF 三场景 UI 视觉设计统一方法论。含 60-30-10 法则、50-900 色阶、三层 Design Token、4 套国风配色、30 种纹样话术库。21 个配套文件。",
+  "format": {
+    "content_md": "content.md",
+    "case_pdf": "VibeCoding视觉设计方法论讲解.pdf",
+    "web_html": "web.html",
+    "锦绣": true,
+    "presentation_pptx": false
+  },
+  "page_count": 7,
+  "summary": "HTML/PPT/PDF 三场景 UI 视觉设计统一方法论（3F Content 完整 case）。含 60-30-10 法则、50-900 色阶、三层 Design Token、4 套国风配色、30 种纹样话术库；content.md 7 页 + web.html 演示版 + 讲解.pdf + 锦绣四形态。",
   "trigger_keywords": ["UI配色", "色彩系统", "国风纹样", "新中式", "PPT配色", "PDF配色", "Design Token", "60-30-10", "纹样生成"],
   "key_features": [
     "HTML/PPT/PDF 三场景全覆盖的视觉设计规范",
