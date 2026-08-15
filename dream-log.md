@@ -5,6 +5,30 @@
 
 ---
 
+## 2026-08-15（每日 dream 修炼自动化）
+
+**回顾范围**：当日（08-15）与用户对话 + 工作成果（git）+ 今日文件改动 + 仓外旁证（mcp.json / MEMORY.md / skills/）。
+
+**沉淀了什么**
+- 今日（08-15）无新增高价值可复用知识 / 技能 / 工作流 / 洞见。
+- 证据链（四重交叉验证，沿用历次「git + 文件系统 + 仓外 mtime + 会话检索」先例）：
+  - `git log --since 2026-08-15` = 空；HEAD 仍 `e94bd80`（08-14 23:00）；`git status` 干净（无未提交改动）。
+  - 仓内 `find -newermt 2026-08-14 23:00`（排除 .git/.workbuddy/dream-log 自身）= 仅 `.git` 自身，无任何新文件改动。
+  - 仓外旁证：`mcp.json` mtime 仍 2026-07-30 12:57、`~/.workbuddy/MEMORY.md` mtime 仍 2026-07-30 14:38、`~/.workbuddy/skills/` 与 `pretty-skill/.workbuddy/skills/` 均无 08-15 改动；无工具安装/配置等可复用动作。
+  - `conversation_search`（2026-08-15）= 0 条与本仓相关对话。
+
+**结论：今日无新增沉淀。** 遵循「无高价值内容不硬造」原则，未新建或更新任何 case、未硬造 3F 产物。
+
+**3F 健康快检（本跑实测，非新增）**
+- 全仓 54 个含 `manifest.json` 的 case 重跑 `content-triple-format/check-3f.py` v3.23（Pillow 12.3.0 可用）→ **24 PASS / 30 FAIL**，与 08-14 基线逐项一致、**无回归**。
+- 30 FAIL 仍为达尔文自迭代骨架池（缺 images/，设计上不完整）+ `视觉创作/dashiai-ppt传统PPT`（portrait 768×1376 vs landscape ≥1024×576 的 check-3f 设计盲点）。
+- `视觉创作/vibe-ui-methodology/`（08-12 升级 case）本次实测 EXIT=0，归属在 24 PASS 内。
+
+**git**
+- 仅本文件（dream-log）追加记录；无 case 变更，无 push（用户未授权）。
+
+---
+
 ## 2026-08-14（每日 dream 修炼自动化）
 
 **回顾范围**：08-13 ~ 08-14 窗口，与用户对话 + 工作成果（git）+ 今日文件改动 + 仓外旁证（mcp.json / MEMORY.md / skills/）。
