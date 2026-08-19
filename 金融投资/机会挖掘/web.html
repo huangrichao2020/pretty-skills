@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>机会挖掘 · 微信级股市问答</title>
+<style>
+  :root{ --gold:#f4c430; --cyan:#38c8dc; --bg:#0b1226; --panel:#141d3a; }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:#eaf0ff;font-family:"PingFang SC","Microsoft YaHei",sans-serif;}
+  header{padding:18px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #25304f;}
+  header h1{font-size:20px;margin:0;color:var(--gold);letter-spacing:2px;}
+  header span{color:#96a2be;font-size:13px;}
+  .stage{max-width:980px;margin:24px auto;padding:0 16px;}
+  .slide{display:none;background:var(--panel);border-radius:14px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.4);}
+  .slide.active{display:block;}
+  .slide img{width:100%;display:block;}
+  .caption{padding:10px 16px;font-size:13px;color:#96a2be;}
+  nav{display:flex;gap:12px;justify-content:center;margin:18px 0 40px;}
+  nav button{background:#1d2a4f;color:#eaf0ff;border:1px solid #2f3f66;padding:8px 18px;border-radius:8px;cursor:pointer;font-size:14px;}
+  nav button:hover{background:#27386a;}
+  .dots{text-align:center;margin-bottom:30px;}
+  .dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#2f3f66;margin:0 4px;cursor:pointer;}
+  .dot.on{background:var(--gold);}
+  footer{text-align:center;color:#5e6c8f;font-size:12px;padding:20px;}
+</style>
+</head>
+<body>
+<header>
+  <h1>机会挖掘 · 微信级股市问答</h1>
+  <span>idea-trade-qa · v0.3.0 · 2026-08-19</span>
+</header>
+
+<div class="stage">
+  <div class="slide active"><img src="images/p0.png"><div class="caption">P0 · 概览与定位</div></div>
+  <div class="slide"><img src="images/p1.png"><div class="caption">P1 · 4 段式输出范式（v0.3 排版）</div></div>
+  <div class="slide"><img src="images/p2.png"><div class="caption">P2 · 三通道数据获取</div></div>
+  <div class="slide"><img src="images/p3.png"><div class="caption">P3 · 接盘防御 5 铁律</div></div>
+  <div class="slide"><img src="images/p4.png"><div class="caption">P4 · 鱼身定位</div></div>
+  <div class="slide"><img src="images/p5.png"><div class="caption">P5 · 龙头矩阵 + 情绪温度</div></div>
+  <div class="slide"><img src="images/p6.png"><div class="caption">P6 · 9 类场景 + 暴跌日实战验证</div></div>
+
+  <nav>
+    <button onclick="go(-1)">← 上一页</button>
+    <button onclick="go(1)">下一页 →</button>
+  </nav>
+  <div class="dots" id="dots"></div>
+</div>
+
+<footer>非投资建议 · 数据驱动 · 高准确率 · 微信 1-2 屏输出</footer>
+
+<script>
+  var i=0, s=document.querySelectorAll('.slide'), d=document.getElementById('dots');
+  s.forEach(function(_,k){var e=document.createElement('span');e.className='dot';e.onclick=function(){show(k)};d.appendChild(e);});
+  function show(n){i=(n+s.length)%s.length;s.forEach(function(el,k){el.classList.toggle('active',k===i)});document.querySelectorAll('.dot').forEach(function(el,k){el.classList.toggle('on',k===i)});}
+  function go(n){show(i+n);}
+  show(0);
+  document.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')go(-1);if(e.key==='ArrowRight')go(1);});
+</script>
+</body>
+</html>

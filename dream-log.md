@@ -5,6 +5,37 @@
 
 ---
 
+## 2026-08-19（每日 dream 修炼自动化）
+
+**回顾范围**：当日（08-19）与用户对话 + 工作成果（仓外 skill/记忆 mtime）+ 今日文件改动 + 仓内 git。
+
+**沉淀了什么（高价值、非硬造）**
+- 当日高价值工作 = 超超 2026-08-19 把 **`idea-trade-qa`（中文名「机会挖掘」）正式注册为微信助理顶层核心技能**，并完成 v0.3.0 排版规范落地 + **暴跌日 8/19 实盘验证（判断全准）**。这是一套把 idea-to-trade v1.8 方法论（鱼身定位/接盘防御/龙头矩阵/情绪温度/左侧挖掘）工具化的微信 1-2 屏、数据驱动、高准确率盘中问答体系。
+- 三重硬证据佐证为当天真实新增（沿用 07-22/07-30「文件 mtime + 记忆可独立佐证」先例）：
+  - `~/.workbuddy/skills/idea-trade-qa/` 目录 mtime **18:38-18:44**（08-19），`idea_trade_qa.py`(22:06) / SKILL.md / README.md / 5 份 methodology / 9 份 scenarios 全部 08-19 写入。
+  - `~/.workbuddy/MEMORY.md` mtime **22:07**（08-19），新增「机会挖掘 2026-08-19 注册为核心技能」整段（含 9 场景 / 5 速查表 / v0.3.0 排版规范 / 暴跌日验证 / 6 个关键 bug 修复 / NeoData `\n` 踩坑）。
+  - 用户 2026-08-19 拍板：「微信助理一定要以这个为核心」。
+- 依 08-12 `vibe-ui-methodology` 先例（同日注册的 WorkBuddy Skill 升级为完整 3F case），将 `金融投资/机会挖掘/` 由方法论沉淀为完整 3F case。
+
+**新建/更新了哪些 case**
+- 新建 `金融投资/机会挖掘/`（`content-triple-format/check-3f.py` v3.23 → **EXIT=0**）：
+  - content.md（7 页 × 7 字段含认知锚点 + Shot List）
+  - web.html（含 7 个 `images/pN.png` 的 `<img>` 可翻页演示）
+  - images/（恰好 7 张 PNG = 页数；本地 Pillow 12.3 + numpy 2.5 离线生成，字体 `/System/Library/Fonts/STHeiti Light.ttc`，渐变+噪声±9+装饰形；唯一色 4432-6666 ≫800，未调用在线 AI 出图）
+  - `机会挖掘讲解.pdf`（700 KB · 7 页 · 7 个 image object，PIL 由 7 图合并）
+  - 锦绣/（cover-横屏 16:9 · cover-竖屏 3:4 · slides/ 10 张 16:9 · readme.md 融合稿三用）
+  - manifest.json（domain=金融投资 · visibility=public · page_count=7）
+- `INDEX.md`：case 清单加 1 行 + 计数 **15 → 16**（页脚「最后更新」同步 08-19）。
+
+**3F 校验结果**
+- 新 case 跑 `content-triple-format/check-3f.py` v3.23 → **EXIT=0**（F1 7 页字段合规 + 认知锚点 7/7 + Shot List 存在 / F3 PDF 合规含 7 image object / images/ 7 PNG = 页数 / 一致性 OK / 图片真实性 7 张均过 / manifest 合规 / 锦绣 4 形态齐全）。
+- 软警告（不阻断）：presentation.pptx 缺失（v3.2 可选）—— 与仓内其它 v3.23 case 一致。
+
+**git**
+- 本次 `git add` + `commit` 到**本地仓**（新 3F 产物 + manifest + INDEX + dream-log）；**未 push**（push 到公开上游需用户明确确认）。
+
+---
+
 ## 2026-08-18（每日 dream 修炼自动化）
 
 **回顾范围**：当日（08-18）与用户对话 + 工作成果（git）+ 今日文件改动 + 仓外旁证（mcp.json / MEMORY.md / skills/）。

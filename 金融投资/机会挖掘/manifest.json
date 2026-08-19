@@ -1,0 +1,19 @@
+{
+  "name": "机会挖掘",
+  "domain": "金融投资",
+  "title": "机会挖掘 · 微信级股市问答（idea-trade-qa · v0.3.0）",
+  "visibility": "public",
+  "tags": ["A股", "美股", "港股", "微信问答", "接盘防御", "鱼身定位", "龙头矩阵", "情绪温度", "4段式输出", "idea-trade-qa"],
+  "contributor": "huangrichao2020",
+  "contributor_github": "huangrichao2020",
+  "created": "2026-08-19",
+  "last_updated": "2026-08-19",
+  "format": {
+    "content_md": "content.md",
+    "web_html": "web.html",
+    "锦绣": true,
+    "presentation_pptx": false
+  },
+  "page_count": 7,
+  "summary": "把 idea-to-trade v1.8 方法论（鱼身定位/接盘防御/龙头矩阵/情绪温度/左侧挖掘）工具化成微信 1-2 屏、数据驱动、高准确率的盘中即时问答助手。含 9 类场景模板、5 方法论速查表、4 段式输出范式（判断/依据/动作/风险 + v0.3 排版规范）、三通道数据获取（NeoData/westockdata/WebSearch）。2026-08-19 暴跌日实盘验证判断全准。超超拍板其为微信助理核心技能。"
+}
