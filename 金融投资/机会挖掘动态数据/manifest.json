@@ -1,0 +1,19 @@
+{
+  "name": "机会挖掘动态数据",
+  "domain": "金融投资",
+  "title": "机会挖掘动态数据 · 微信级股市问答数据引擎（idea-trade-qa · v0.4.0）",
+  "visibility": "public",
+  "tags": ["A股", "美股", "港股", "微信问答", "NeoData", "真数据", "动态生成", "bug修复", "接盘防御", "鱼身定位", "idea-trade-qa"],
+  "contributor": "huangrichao2020",
+  "contributor_github": "huangrichao2020",
+  "created": "2026-08-20",
+  "last_updated": "2026-08-20",
+  "format": {
+    "content_md": "content.md",
+    "web_html": "web.html",
+    "锦绣": true,
+    "presentation_pptx": false
+  },
+  "page_count": 7,
+  "summary": "把 idea-trade-qa 从「硬编码模板」升级为「NeoData 真数据动态组装」的盘中问答引擎。v0.4.0（2026-08-20）核心：emit_intraday_section 真数据化 + collect_intraday_data 联动采集（板块涨幅/涨停股/板块资金 TOP）+ parse_sector_ranking/parse_limit_up_stocks 两个 markdown 表解析器 + 6 处数据可信度 bug 修复（market_index/down_count/up_ratio/sentiment_temp/fund_flow_sectors/场景识别）+ NeoData 返回字面 \\n 的「先 replace 再 split」铁律。并融合 08-20 的 v0.3.1 排版精修、微信输出三要求与「禁止技术性元解释」。"
+}

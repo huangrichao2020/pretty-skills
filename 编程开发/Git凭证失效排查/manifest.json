@@ -1,0 +1,19 @@
+{
+  "name": "Git凭证失效排查",
+  "domain": "编程开发",
+  "title": "Git 凭证失效排查 · env token 抢戏诊断 SOP（GitHub HTTPS 401）",
+  "visibility": "public",
+  "tags": ["git", "GitHub", "凭证", "GITHUB_TOKEN", "env抢戏", "keyring", "gh auth", "git-pull-safe", "调试"],
+  "contributor": "huangrichao2020",
+  "contributor_github": "huangrichao2020",
+  "created": "2026-08-20",
+  "last_updated": "2026-08-20",
+  "format": {
+    "content_md": "content.md",
+    "web_html": "web.html",
+    "锦绣": true,
+    "presentation_pptx": false
+  },
+  "page_count": 7,
+  "summary": "git 走 HTTPS 报 Authentication failed，但 gh auth status 显示 keyring 正常——根因是 shell 里常驻一个「失效却 active」的 GITHUB_TOKEN 环境变量，git 凭证解析顺序 env > keyring，失效 env token 顶掉正常 keyring 凭证。本文把 2026-08-20 踩出的诊断与修复 SOP 沉淀：① 临时 env -u GITHUB_TOKEN GH_TOKEN GITHUB_ACCESS_TOKEN git ... ② 长期建 git-pull-safe 包装脚本（unset 再 exec git）③ 不要做（别 gh auth login 重登 / 别改 remote URL / 别反复重试）④ 30 秒诊断套路（git 401 → gh status → keyring OK+git fail = env 抢戏）。与 NeoData token、GitHub PAT 三套独立体系。"
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Git 凭证失效排查 · env token 抢戏诊断</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0d0d18; font-family: "PingFang SC", "Microsoft YaHei", sans-serif; color: #e8edf7; }
+  .deck { max-width: 960px; margin: 0 auto; padding: 24px; }
+  .slide { background: #16162c; border-radius: 16px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 8px 30px rgba(0,0,0,.5); }
+  .slide img { width: 100%; display: block; }
+  .cap { padding: 10px 16px; color: #96a2be; font-size: 13px; }
+  h1 { text-align: center; margin: 28px 0 8px; color: #38c8dc; font-size: 26px; }
+  .sub { text-align: center; color: #8aa0c8; margin-bottom: 24px; font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="deck">
+  <h1>Git 凭证失效排查</h1>
+  <div class="sub">env token 抢戏诊断 SOP · 2026-08-20</div>
+
+  <div class="slide"><img src="images/p0.png"><div class="cap">P0 · 概览与定位</div></div>
+  <div class="slide"><img src="images/p1.png"><div class="cap">P1 · 症状与误诊</div></div>
+  <div class="slide"><img src="images/p2.png"><div class="cap">P2 · 根因 env 抢戏</div></div>
+  <div class="slide"><img src="images/p3.png"><div class="cap">P3 · 解法1 临时 env -u</div></div>
+  <div class="slide"><img src="images/p4.png"><div class="cap">P4 · 解法2 长期 git-pull-safe</div></div>
+  <div class="slide"><img src="images/p5.png"><div class="cap">P5 · 不要做</div></div>
+  <div class="slide"><img src="images/p6.png"><div class="cap">P6 · 诊断套路 + 收束</div></div>
+</div>
+</body>
+</html>

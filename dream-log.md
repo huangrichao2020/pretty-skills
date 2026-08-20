@@ -5,6 +5,35 @@
 
 ---
 
+## 2026-08-20（每日 dream 修炼自动化）
+
+**回顾范围**：当日（08-20）与用户对话 + 工作成果（仓外 skill/记忆 mtime）+ 今日文件改动 + 仓内 git。
+
+**沉淀了什么（高价值、非硬造）**
+- 当日高价值工作 = 超超 2026-08-20 把 **idea-trade-qa 从 v0.3.0 推到 v0.4.0（真数据动态生成）**，并完成 **NeoData token 12h 刷新 SOP 实战** 与 **Git 凭证失效（env 抢戏）排查**。三件事均有 `~/.workbuddy/skills/idea-trade-qa/` mtime **22:21** + `~/.workbuddy/MEMORY.md` mtime **18:53** + `.neodata_token` mtime **11:46** 三重硬证据佐证（沿用 07-22/07-30「文件 mtime + 记忆可独立佐证」先例），非硬造。
+- **v0.4.0 数据引擎**：emit_intraday_section 改读真 `sector_leaders`/`limit_up_stocks`；新增 `collect_intraday_data()` 联动采集（板块涨幅 TOP + 涨停股 TOP + 板块资金 TOP）；新增 `parse_sector_ranking`/`parse_limit_up_stocks` 解析 NeoData markdown 表；6 处数据可信度 bug 修复（market_index 2026.0 / down_count 5→5069 / up_ratio 0.76→0.08 / sentiment_temp 55 / fund_flow_sectors [] / 场景识别）；NeoData 返回字面 `\n`（反斜杠+n）的「先 `replace("\\n","\n")` 再 split」铁律（一票否决级）。
+- **NeoData token SOP**：12h 过期 → skill 走模板降级 → `connect_cloud_service` 拿 tempToken(24h) → `query.py --save-token` 写 `.neodata_token`(权限 600) → 重跑验证真数据。
+- **Git 凭证**：git HTTPS 401 但 `gh auth status` 正常 = 常驻失效 `GITHUB_TOKEN`(env) 抢戏覆盖 keyring；解法 `env -u`(临时) / `git-pull-safe`(长期)；别 `gh auth login` / 别改 remote URL。
+- 上述三件融合/补充了 08-20 的 **v0.3.1 排版精修 + 微信输出铁律（一屏/不展示计算/inline code/圆数字）+ 禁止技术性元解释**。
+
+**新建/更新了哪些 case**
+- 新建 `金融投资/机会挖掘动态数据/`（check-3f → **EXIT=0**）：content.md(7页×字段+认知锚点+Shot List) + web.html(7 `<img>`) + images/(7 PNG=页数·Pillow12.3+numpy2.5 离线 STHeiti Light.ttc·唯一色过真实性检测) + 机会挖掘动态数据讲解.pdf(12MB·7 image object) + 锦绣/(横屏+竖屏+slides×10+readme 融合稿) + manifest。
+- 新建 `金融投资/NeoData令牌刷新/`（check-3f → **EXIT=0**）：同结构；讲解.pdf 12MB。
+- 新建 `编程开发/Git凭证失效排查/`（check-3f → **EXIT=0**）：同结构；讲解.pdf 11.7MB。
+- `INDEX.md`：case 清单 +3 行 + 计数 **16 → 19**（页脚「最后更新」同步 08-20）。
+
+**3F 校验结果**
+- 3 个新 case 均跑 `content-triple-format/check-3f.py` v3.23 → **全部 EXIT=0**（F1 7 页字段合规 + 认知锚点 7/7 + Shot List；F3 PDF 含 7 image object；images/ 7 PNG = 页数；一致性 OK；图片真实性 7 张均过；manifest 合规；锦绣 4 形态齐全）。
+- 软警告（不阻断）：presentation.pptx 缺失（v3.2 可选）—— 与仓内其它 case 一致。
+- 全仓健康快检：含本次新增 **28 PASS / 30 FAIL**（30 FAIL 仍为达尔文骨架池 + dashiai-ppt portrait 设计盲点），无新回归。
+
+**git**
+- 本次 `git add` + `commit` 到**本地仓**（3 新 case + INDEX + dream-log）；**未 push**（push 到公开上游需用户明确确认）。
+
+**备注**：今日另有多条 08-20 内容已分别融入或记入 MEMORY，本次未单独建 case（signal 低于前三者，且部分属工具上线/部署细则），遵循「无高价值不硬造」：① 微信排版三要求、禁止技术性元解释 → 已融入「机会挖掘动态数据」case；② profit-high-open-tracker 上线（自定义情绪指数）→ 属工具上线记录；③ `rsync --delete` 误删运行时数据 → 属部署运维细则（已记 MEMORY，若用户要求可补建 case）。
+
+---
+
 ## 2026-08-19（每日 dream 修炼自动化）
 
 **回顾范围**：当日（08-19）与用户对话 + 工作成果（仓外 skill/记忆 mtime）+ 今日文件改动 + 仓内 git。

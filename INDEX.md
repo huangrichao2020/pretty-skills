@@ -47,11 +47,14 @@
 | 金融投资 | [`宏观雷达`](./金融投资/宏观雷达/) | **public** | A股, 宏观, 早报 | content.md + xxx讲解.pdf + 锦绣 |
 | 金融投资 | [`macro-monitor`](./金融投资/macro-monitor/) | **public** | A股, 宏观, 经济数据, CPI, PPI, 数据监控 | content.md + xxx讲解.pdf + 锦绣 |
 | 金融投资 | [`机会挖掘`](./金融投资/机会挖掘/) | **public** | A股, 美股, 港股, 微信问答, 接盘防御, 鱼身定位, 龙头矩阵, 情绪温度, 4段式输出, idea-trade-qa | content.md + 机会挖掘讲解.pdf + 锦绣 |
+| 金融投资 | [`机会挖掘动态数据`](./金融投资/机会挖掘动态数据/) | **public** | A股, 美股, 港股, 微信问答, NeoData, 真数据, 动态生成, bug修复, idea-trade-qa | content.md + 机会挖掘动态数据讲解.pdf + 锦绣 |
+| 金融投资 | [`NeoData令牌刷新`](./金融投资/NeoData令牌刷新/) | **public** | NeoData, token刷新, 金融数据, 鉴权, 运维, 机会挖掘, connect_cloud_service, 降级 | content.md + NeoData令牌刷新讲解.pdf + 锦绣 |
 | 内容创作 | [`橙皮书方法论`](./内容创作/橙皮书方法论/) | **public** | 橙皮书, 方法论, 写作 | content.md + xxx讲解.pdf + 锦绣 |
 | 内容创作 | [`公众号爆款操盘术`](./内容创作/公众号爆款操盘术/) | **public** | 公众号, 写作, 钩子链, 爆款 | content.md + xxx讲解.pdf + 锦绣 |
 | 内容创作 | [`杂志风公众号品鉴`](./内容创作/杂志风公众号品鉴/) | **public** | 公众号, 排版, 叙事, 配图, 杂志风, AI味 | content.md + xxx讲解.pdf + 8 AI 出图 |
 | 编程开发 | [`git沙箱求生术`](./编程开发/git沙箱求生术/) | **public** | git, GitHub, SSH, HTTPS, fetch, 沙箱, 协作避坑 | content.md + xxx讲解.pdf + 锦绣 |
 | 编程开发 | [`领域增改避坑`](./编程开发/领域增改避坑/) | **public** | pretty-skill, PRESET_DOMAINS, check-3f, 中文化, 维护避坑 | content.md + xxx讲解.pdf + 锦绣 |
+| 编程开发 | [`Git凭证失效排查`](./编程开发/Git凭证失效排查/) | **public** | git, GitHub, 凭证, GITHUB_TOKEN, env抢戏, keyring, gh auth, git-pull-safe, 调试 | content.md + Git凭证失效排查讲解.pdf + 锦绣 |
 | 玄学修炼 | [`占星入门12星座`](./玄学修炼/占星入门12星座/) | **public** | 占星, 12星座, 元素, 模式 | content.md + xxx讲解.pdf + 9 AI 出图 |
 | 视觉创作 | [`dashiai-ppt传统PPT`](./视觉创作/dashiai-ppt传统PPT/) | **public** | PPT, 可编辑PPTX, 汇报材料, 图表 | content.md + README.md |
 | 视觉创作 | [`PPT证据链战法`](./视觉创作/PPT证据链战法/) | **public** | PPT, AI生图, CyberPPT, 证据链, dashiai-ppt, 视觉创作, 三段式, 可编辑PPTX | content.md + xxx讲解.pdf + 锦绣 |
@@ -65,15 +68,13 @@
 | 内容创作 | [`self-media-script-自媒体口播稿`](./内容创作/self-media-script-自媒体口播稿/) | **public** | 自媒体, 口播, 口播稿, 抖音, 小红书, B站, 公众号, 视频号, 封面, 配图, 情感, Agent, 交易, self-media, video-script, social-media | content.md + manifest.json |
 | 橙皮书 | [`orange-book-5步流水线-调研规划写作三审三校成书`](./橙皮书/orange-book-5步流水线-调研规划写作三审三校成书/) | **public** | 橙皮书, orange-book, 做书, 扫盲, 领域入门, 5 阶段流水线, 三审三校, 事实核查, PDF, DOCX, EPUB, 教程, 指南, 手册, 5 阶段, 5 道门 | content.md + manifest.json |
 
-| 金融投资 | [`机会挖掘`](./金融投资/机会挖掘/) | **public** | A股, 美股, 港股, 微信问答, 接盘防御, 鱼身定位, 龙头矩阵, 情绪温度, 4段式输出, idea-trade-qa | content.md + 机会挖掘讲解.pdf + 锦绣 |
-
-> **25 个 case 全部默认 public** —— 提 PR 共享。
+> **28 个 case 全部默认 public** —— 提 PR 共享。
 
 > **本批新增 7 case（2026-07-17）**：pretty-skills 16 领域空域从 3 个（游戏玩家/情感/橙皮书）降到 1 个（游戏玩家）。
 
 > **2026-08-11 README 同步**：故事写作/README.md 补列 writing-storycraft-写作剧情推演 case（修复 2026-07-17 沉淀批次中 INDEX 有但 README 漏列的不一致）。
 
-> **2026-08-14 每日 dream 修炼 rebase**：b54cf2c 本地未推送的 vibe-ui-methodology 案例并入（视觉创作领域补位至 PPT证据链战法 之后）+ c2c03b4 升级为 3F case（content.md + 讲解.pdf + 锦绣）+ a0c960e 补登 金融投资/机会挖掘 3F case。
+> **2026-08-14 每日 dream 修炼 rebase**：b54cf2c 本地未推送的 vibe-ui-methodology 案例并入（视觉创作领域补位至 PPT证据链战法 之后）+ c2c03b4 升级为 3F case（content.md + 讲解.pdf + 锦绣）+ a0c960e 补登 金融投资/机会挖掘 3F case + 1960726 三项 08-20 沉淀（机会挖掘动态数据/NeoData令牌刷新/Git凭证失效排查）。
 
 ---
 
@@ -115,4 +116,4 @@ def load_pretty_skill(root="/path/to/pretty-skills"):
 
 ---
 
-<sub>最后更新：2026-08-19 · 25 个 case 全部 public（vibe-ui-methodology 升级 3F + 机会挖掘 3F 新增并入，2026-07-17 7 个 case 补登，回滚 group-portrait-群像戏 + 群像文字游戏模板 两个 case 仍为本地私有）</sub>
+<sub>最后更新：2026-08-20 · 28 个 case 全部 public（vibe-ui-methodology 升级 3F + 机会挖掘 3F 新增 + 08-20 沉淀三项 · 19→28，2026-07-17 7 个 case 补登，回滚 group-portrait-群像戏 + 群像文字游戏模板 两个 case 仍为本地私有）</sub>

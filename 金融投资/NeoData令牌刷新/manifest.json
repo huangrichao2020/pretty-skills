@@ -1,0 +1,19 @@
+{
+  "name": "NeoData令牌刷新",
+  "domain": "金融投资",
+  "title": "NeoData 令牌刷新 · 金融数据管道鉴权运维 SOP（12h 过期）",
+  "visibility": "public",
+  "tags": ["NeoData", "token刷新", "金融数据", "鉴权", "运维", "机会挖掘", "connect_cloud_service", "降级"],
+  "contributor": "huangrichao2020",
+  "contributor_github": "huangrichao2020",
+  "created": "2026-08-20",
+  "last_updated": "2026-08-20",
+  "format": {
+    "content_md": "content.md",
+    "web_html": "web.html",
+    "锦绣": true,
+    "presentation_pptx": false
+  },
+  "page_count": 7,
+  "summary": "NeoData 金融搜索服务鉴权 token 12 小时过期，失效时依赖它的 skill（机会挖掘等）走「模板降级」、输出假数据。本文把 2026-08-20 实战踩出的 token 刷新 SOP 沉淀为可复用运维流程：① 调 connect_cloud_service 拿 tempToken（24h 有效）② 用 query.py --save-token 写进 .neodata_token 缓存（权限 600）③ 重跑 skill 确认真数据恢复。含失效信号判定（401 但 WebSearch 绿灯=token 过期）、自动化建议（cron 每 11h / 启动 probe）与踩坑（别用 gh auth login、别把 token 提交 git、与 GitHub PAT 独立）。"
+}
