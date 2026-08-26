@@ -1890,3 +1890,57 @@
 - **v3.19 PDF 目标保持**：8-7 段"连续第三天" + 8-25 恢复 · 中间 8-8 ~ 8-24 断档 17 天（cron 未触发）但 PDF 字节数 0 变化所以目标**事实上**保持；本段不重算"连续天数"避免编造 — 等待下次有 case 沉淀的段重置"连续"基线。
 - **8-7 段"连续第三天真跑 check-3f 正面确认零回归"本轮再次正面确认（断档 18 天后）**：24 PASS + 2 老 FAIL（PPT证据链战法 + dashiai-ppt）+ 47 v3 早期骨架 / PDF-only = 与 8-7 段名单 + 根因 + 数量 + PDF 字节数**完全一致** → 沙箱放行后第一手证据，零回归。
 - **cron 异常观察（非本轮 fix 范围 · 仅记录）**：8-7 → 8-25 18 天仅触发 1 次（8-25 本次），相对 7-17 ~ 8-7 期间"每日触发"频次明显异常。根因未查（daemon / sandbox / cron config / network 都有可能）。按"不主动推销 cron"原则，本段不发起自检 / 不弹 ask_user 提醒用户 — 仅在 dream-log 留下诚实记录。
+## 2026-08-26（每日 dream 修炼自动化 · 8-25 恢复后第 2 天 · origin 0 个新 commit · 21 ahead 全部是 dream-log 文档）
+
+**回顾范围**：当日（08-26）与用户对话 + 工作成果（git）+ 今日文件改动 + 8-25 → 8-26 期间 origin 远端累积 commit。
+
+**结论：今日无新增沉淀。**
+- 会话检索：cron 自动化任务，08-26 当日 0 个用户对话（agent 跑在 `cron-executor` 沙箱 session，account_name=`cron-executor`，无 human-in-loop）。
+- git：本地 21 个 ahead commit 全部是 dream-log 文档（8-25 段最后一次推送前累计），**今日 0 个新 case commit**；`git status` 工作树干净（fetch 之后）。
+- **origin 累积 0 个新 commit**：本轮 `git fetch origin main` 后 `git log origin/main..HEAD` 与 fetch 前一致 → origin 24h 内无人 push，**零净增 origin 累积**。
+- 无高价值可复用知识 / 技能 / 工作流 / 洞见 → 遵循「无高价值内容不硬造」原则，**未新建或更新任何 case**，未硬造 3F 产物。
+- **断档续观察**：8-25 → 8-26 cron 自动恢复触发（连续 2 天）· 较 8-7 → 8-25 断档 18 天的"8-25 唯一一次触发"形态明显改善 → 但样本量仍小（n=2），不下"cron 已稳定恢复"结论，留待后续段观察。
+
+**顺手健康快检（非新增 · 确认 v3.19 PDF 时代仓库完整性未退化）**
+- rebase 干净：本地 HEAD = `42b2a3b`（8-25 段 commit），与远端 `origin/main` 距离 = 21 ahead（无新 origin commit 可整合）；`git pull --rebase origin main` → "Current branch main is up to date"（零冲突）；`git status -sb` → `[ahead 21]` 工作树干净。
+- **本轮真跑全量 check-3f.py**（沙箱 classifier 本轮放行 · 与 8-6 / 8-7 / 8-25 段同口径）：
+  - 对**全仓 74 个 manifest.json** 跑 `content-triple-format/check-3f.py`（v3.23）→ 分布如下（与 8-7 / 8-25 段完全一致）：
+    - **完整 3F case（content.md + images/ + manifest + 讲解.pdf 四件套）= 26 个**（v3.19 目标范围）
+    - **PDF-only case（manifest + content + PDF，无 images/）= 1 个**：`视觉创作/gzh-design公众号排版主题库`
+    - **v3 早期骨架 case（仅 manifest.json + content.md 草稿，无 images/）= 44 个**（不在 v3.19 目标）
+    - **bare manifest + images（无 content.md）= 2 个**：`做事技巧/H5设计转H5滑动` + `视觉创作/scroll-world滚动驱动相机`
+    - **bare manifest only = 1 个**：`教育学习/教程类H5-小红书小工具`
+  - **24 个 PASS case 名单**（与 8-7 / 8-25 段**逐 case 完全一致** · **零回归**）：Agent知识×3（AI狼群战法 / Mavis做事心法 / self-improving-agent）、产品设计×1（prd-master产品PRD写作）、做事技巧×3（doc-reader / markdown-converter / pdf-reader）、内容创作×5（公众号内容交付方法论 / 公众号爆款操盘术 / 卡兹克公众号写作 / 杂志风公众号品鉴 / 橙皮书方法论）、商业运营×1（社交电商掘金术）、教育学习×1（知识消化工作流）、玄学修炼×1（占星入门12星座）、编程开发×2（git沙箱求生术 / 领域增改避坑）、视觉创作×2（oil-cover小红书AI封面 / cinema-dna-21x9x3电影感三联）、金融投资×5（4维融合诊断PPTX / company-brief / macro-monitor / 卡脖子猎手 / 宏观雷达）。
+  - **FAIL 名单**（与 8-7 / 8-25 段**完全一致** · 均为老问题 · 非本次回归 · 非本次范围）：
+    - `视觉创作/PPT证据链战法` — P8 字段不足（3 个，要求 ≥ 4）+ content.md 8 页 vs images/ 7 张 PNG 不一致。
+    - `视觉创作/dashiai-ppt传统PPT` — 17 张 PNG 全部 portrait 768×1376（vs check-3f 阈值 ≥ 1024×576 landscape）+ content.md 10 页 vs images/ 17 张 PNG 不一致。
+    - 其余 48 个 v3 早期骨架 / bare manifest / PDF-only case — 不在 v3.19 目标范围。
+  - **净变化（8-25 → 8-26）**：+0 manifest / +0 有 PDF / +0 4-element 完整 / +0 PASS / 0 FAIL 净增 / 0 老 PASS 退化 = **零回归**（连续第二天真跑 check-3f 正面确认 · 与 8-25 同口径）。
+
+**PDF 状态（v3.19 必填 · 本次目标）**
+- **27 个 `*讲解.pdf` 存在于全仓**（与 8-1 / 8-5 / 8-6 / 8-7 / 8-25 段 27 完全一致）· 总字节 **73,895,926**（~70.5 MB · 字节级完全一致）。
+- **27/27 = 100% 4-element 完整 + PDF-only case 都有 `*讲解.pdf`**（v3.19 替代 web.html 目标**事实保持** · 本次生成 PDF = **0 个** · 不需要补）。
+- 关键 PDF 抽检（与 8-1 / 8-5 / 8-6 / 8-7 / 8-25 段逐字节一致 → 8-26 也无任何修改）：
+  - `Agent知识/AI狼群战法/AI狼群战法讲解.pdf` = 3,384,504 bytes · md5=`cdcb56880d92939fd8901553e87f441d`（8-25 段记 ✓）
+  - `视觉创作/dashiai-ppt传统PPT/dashiai-ppt传统PPT讲解.pdf` = 7,063,511 bytes · md5=`a3b5304e9a19d842219b1fc8f44f52e0`（8-25 段记 ✓）
+  - `视觉创作/PPT证据链战法/PPT证据链战法讲解.pdf` = 423,085 bytes · md5=`7777a164ebf8c1e1002570872298a4fc`（8-25 段记 ✓）
+  - `视觉创作/cinema-dna-21x9x3电影感三联/cinema-dna-21x9x3电影感三联讲解.pdf` = 683,316 bytes · md5=`345f0939e5f5bd6783f80758fdb8f06e`（新增抽检 · 7-22 cinema-dna 入库以来未变）
+- 47/74 manifest 缺 `*讲解.pdf`（与 8-7 / 8-25 段持平）。
+- PDF 净增量 = 0（v3.19 时代连续 0 增量 · 7-22 cinema-dna 后无新 PDF 入库 · 8-25 恢复也无新增 · 8-26 仍无新增）。
+
+**沙箱网络**（本轮 fetch 走直连 1 次成功，rebase 一次过，check-3f 调用放行）
+- `git fetch origin main` 走直连 **1 次成功**（无重试 · 与 8-5 / 8-6 / 8-7 / 8-25 段持平）。
+- `git pull --rebase` 走直连 1 次成功（origin 无新 commit · "Current branch main is up to date" · 零冲突）。
+- **`gh auth status` / `gh auth token`** 不重复跑（与 8-1 / 8-5 / 8-6 / 8-7 / 8-25 段决策一致：keyring token scope = git-only · 凭证据已知稳态）。
+- **`python3 content-triple-format/check-3f.py` 调用本轮沙箱 classifier 放行**（与 8-6 / 8-7 / 8-25 段同口径）— 真跑全量 74 个 manifest 结果如上"健康快检"段。
+- **本轮未走 token inline push**（避免历史凭证问题重演，**长期 escape hatch 是换 SSH key** — 见 MEMORY §9 末段）。
+
+**git**
+- 本轮 `git add` + `commit` 仅本文件（dream-log 追加 08-26 段 · 健康快检型 · 无新 case 沉淀）。
+- 21 → 22 ahead commit（新增本 commit）。
+- **未 push**（按 7-15 / 7-16 / 7-17 / 7-19 / 7-20 / 7-21 / 7-22 / 7-27 / 7-28 / 7-29 / 7-30 / 7-31 / 8-1 / 8-5 / 8-6 / 8-7 / 8-25 同口径：凭证问题未恢复 + MEMORY「重试 2-3 次都不行才让用户介入」+ cron 自动化不主动 retry push；等用户处理凭证后手动 push 22 个 ahead commit）。
+- 风险评估：低（仅 dream-log.md 1 个文件追加，无 case 改动）。
+- **待 push commit 清单（22 个）**：8-7 段列的 20 个 + 8-25 段 1 个 + 本 commit。
+- **v3.19 PDF 目标保持**：8-7 段"连续第三天" + 8-25 恢复 · 中间 8-8 ~ 8-24 断档 17 天（cron 未触发）但 PDF 字节数 0 变化所以目标**事实上**保持；8-26 是 8-25 之后连续第 2 天（无新 case 沉淀）· 仍待"有 case 沉淀的段"重置"连续"基线，本段维持 8-25 不重算口径。
+- **8-25 段"再次正面确认零回归（断档 18 天后）"本轮第三度正面确认**：24 PASS + 2 老 FAIL（PPT证据链战法 + dashiai-ppt）+ 48 v3 早期骨架 / PDF-only / bare manifest = 与 8-7 / 8-25 段名单 + 根因 + 数量 + PDF 字节数 + 关键 PDF md5**完全一致** → 连续 2 天真跑 check-3f 零回归。
+- **cron 异常观察（非本轮 fix 范围 · 仅记录）**：8-25 → 8-26 cron 连续 2 天触发（vs 8-7 → 8-25 18 天仅 1 次）· 频次明显改善 · 但样本量仍小（n=2）· 根因未查。按"不主动推销 cron"原则，本段不发起自检 / 不弹 ask_user 提醒用户 — 仅在 dream-log 留下诚实记录，等待后续段验证 cron 稳定性。
