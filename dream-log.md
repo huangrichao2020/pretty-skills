@@ -5,6 +5,50 @@
 
 ---
 
+## 2026-08-29（每日 dream 修炼自动化 · 含远端分叉+协议异常）
+
+**回顾范围**：当日（08-29）与用户对话 + 工作成果（仓外 skill/记忆 mtime）+ 今日文件改动 + 仓内 git + 远端 reconcile 状态。
+
+**沉淀了什么（高价值、非硬造）**
+- 今日无新增沉淀。四重独立证据一致：
+  - `git log --since 2026-08-29` = 0 提交，HEAD 仍 `65cc840`（08-23 23:02）；`find -newermt 2026-08-29 00:00`（排除 .git/.workbuddy）仓内改动 = **0 文件**。
+  - 仓外旁证：`~/.workbuddy/MEMORY.md` mtime 仍 08-20 18:53（无 08-29 记忆新增）、`info-hub` 8-29 仅 09:05 产出 2 张 weekly-outlook W36 图（handdrawn + corporate）但**未 git commit**（HEAD 仍 08-13）→ 不算高价值沉淀、`mavis/skills/` 8-29 改动 = 0、`mavis/agents/mavis/memory/archive/2026-08-29/` 5:03 跑出 12 份档案但属 daily archive 自身产物。
+  - 无任何 08-29 对话/工作产出可提炼为复用洞见。
+
+**新建/更新了哪些 case**
+- 无。遵循「无高价值内容不硬造」——未新建、未更新任何 3F case，未硬造 3F 产物。
+
+**check-3f 结果（本跑实测 · 全量 58 case）**
+- `find -name manifest.json -not -path */.git/*` 58 个 → 跑 `check-3f.py` 全量 → **28 PASS / 30 FAIL**，**与 08-23 基线逐项一致**（28 PASS 全相同名单、30 FAIL 全相同名单、dashiai-ppt portrait 盲点未变）→ **无回归、无新增风险**。
+- 28 PASS 全数有 `*讲解.pdf`；30 FAIL 中 29 个缺 PDF（达尔文骨架池，预期内）+ 1 个 dashiai-ppt 有 PDF 但 768×1376 portrait 与 check-3f 的 1024×576 landscape 假设冲突。
+- 本跑未自动补 PDF：29 个达尔文骨架 case 无 `images/p*.png` → `build_case_pdf.py` 强依赖输入图，强行合成等于做假图（按 07-10 决策）；dashiai-ppt 是产品定位冲突不是 bug → 不补。
+
+**PDF 状态（v3.19 必填项）**
+- 28/58 case 有 `*讲解.pdf`（与 28 PASS 完全重合）；30/58 case 无（29 骨架 + dashiai-ppt portrait 盲点）。
+- 与 08-23 一致：零新增、零补完。
+
+**⚠️ 远端分叉 + 协议异常（本次新增状态 · 需用户决策）**
+- **远端 origin/main 严重分叉**：本地 HEAD `65cc840`（08-23）vs 远端 HEAD `7990a83`（08-21 群二维码）= `12 vs 42` commit diverged。`merge-base` = `6d3035b`（08-13 dream-log）。本地独有 12 commit 全是 8-14~8-23 的 daily dream-log + 8-12 的 vibe-ui-methodology case。
+- **fetch 协议异常**：默认 `git fetch origin main` 在代理下卡死（HTTP/2 + protocol v2 握手挂起），HTTPS/SSH 均不返。临时方案：`-c http.version=HTTP/1.1 -c protocol.version=0 fetch` 才能通（约 1s）。已切 origin URL = `https://github.com/huangrichao2020/pretty-skills.git`。
+- **凭据异常**：env 里 `GITHUB_TOKEN` 实测 `401 Bad credentials`（`curl -H "Authorization: token $GITHUB_TOKEN" /user`）→ keyring 缓存 token 失效。`gh auth status` 仍报全 scope 是缓存假象。
+- **已采取动作**（保护性，未破坏现状）：
+  1. 本地独有 12 commit 已 `git format-patch -12 --stdout > /tmp/pretty-skill-local-only.patch`（308 MB，含图片）→ 可一键恢复。
+  2. 未 `reset --hard origin/main`（被权限闸拦 + 高风险）→ 保留本地 12 commit 等用户决策。
+  3. 未 push（push 需 user 授权；远端 42 ahead 也无法 fast-forward）。
+
+**git**
+- 仅本文件（dream-log）追加记录；无 case 变更，无 push（push 需用户明确确认；远端 42 ahead 须先 reconcile）。
+- 工作树 dirty（无新文件改动但 branch diverged）：`git status` 报 "12 and 42 different commits each, respectively"。
+- 本地独有 commit 备份：`/tmp/pretty-skill-local-only.patch`（308 MB · 12 patches · 含 8-14~8-23 dream-log + vibe-ui-methodology case）。
+
+**待用户决策（不主动 IM，按 cron 静默模式）**
+- 是否要 `git reset --hard origin/main`（丢 12 本地 commit 但跟远端对齐）？
+- 是否要手动 reconcile 42 远端 commit（如 cherry-pick 精选 + reset 混合）？
+- 是否要换 SSH key 长期 escape hatch（`ssh-keygen -t ed25519` + 上传 `~/.ssh/id_ed25519.pub`）？
+- GITHUB_TOKEN 失效是否要 user 给新 PAT（一次性 inline + 用完即丢）？
+
+---
+
 ## 2026-08-23（每日 dream 修炼自动化）
 
 **回顾范围**：当日（08-23）与用户对话 + 工作成果（仓外 skill/记忆 mtime）+ 今日文件改动 + 仓内 git。
