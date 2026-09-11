@@ -1,0 +1,112 @@
+{
+  "name": "huashu-book-pdf-skill",
+  "display_name": "橙皮书工具链",
+  "domain": "橙皮书",
+  "title": "橙皮书工具链 · 5 阶段流水线的可落地工具包（scripts + templates + references）",
+  "subtitle": "通用化版 · 占位符替换作者信息 · 30 分钟搭一本书的项目骨架",
+  "visibility": "public",
+  "tags": [
+    "橙皮书",
+    "orange-book",
+    "工具链",
+    "toolchain",
+    "5阶段流水线",
+    "PDF",
+    "DOCX",
+    "EPUB",
+    "templates",
+    "scripts",
+    "设计系统",
+    "占位符",
+    "通用化",
+    "可复用"
+  ],
+  "contributor": "Mavis",
+  "contributor_github": "huangrichao2020",
+  "created": "2026-09-11",
+  "last_updated": "2026-09-11",
+  "format": {
+    "skill_md": "SKILL.md",
+    "readme": "README.md",
+    "references_dir": "references/",
+    "scripts_dir": "scripts/",
+    "templates_dir": "templates/",
+    "fragments_dir": "templates/fragments/",
+    "placeholder_config": "placeholder-config.json",
+    "content_md": null,
+    "锦绣": false,
+    "presentation_pptx": false,
+    "case_pdf": null,
+    "is_3f_content_case": false,
+    "is_toolchain_package": true
+  },
+  "file_count": 16,
+  "page_count": null,
+  "summary": "橙皮书方法论的工具链落地包。跟橙皮书/orange-book-5步流水线-调研规划写作三审三校成书/ 方法论 case 互补：方法论讲'怎么做'，本工具包给'直接跑'的代码。包含 4 个 references（design-system/cover-system/fact-check-sop/style-guide）、2 个 scripts（init-project.sh + render-placeholders.py）、4 个 templates（styles.css + build.js + build-pdf.js + update.sh）、2 个 fragments 模板（封面/尾页）、placeholder-config.json（一次性填入个人真实信息）。按隐私偏好通用化：所有花叔真实信息（公众号/GitHub/社媒/代表作）替换为占位符 {作者名}/{公众号名}/{B站UID} 等，新建项目时跑 render-placeholders.py 批量替换即可使用。",
+  "key_features": [
+    "5 阶段流水线 SOP（调研→规划→写作→审校→构建）",
+    "30 分钟搭一本书的项目骨架（init-project.sh）",
+    "多 Agent 并行写作 + 4 遍审校流水线",
+    "事实核查独立 WebSearch（反信息茧房）",
+    "一次生成 PDF / DOCX / EPUB 三种产物",
+    "日期版本号 vYYMMDD + build 号",
+    "占位符通用化（任何作者可填自己的信息直接用）",
+    "企鹅三段式封面规范（AI 一步生成 + 3 版候选）"
+  ],
+  "use_cases": [
+    "用户说'做一本 X 的书'",
+    "用户说'快速搞懂 X 领域'",
+    "用户说'用橙皮书方法出 PDF/DOCX/EPUB'",
+    "用户说'给团队做培训资料'",
+    "用户说'出版社交稿（DOCX 流水线）'",
+    "通用化模板：任何想出书的人填自己的信息就能用"
+  ],
+  "triggers": [
+    "做一本 X",
+    "做橙皮书",
+    "做 PDF 手册",
+    "做 EPUB",
+    "做 DOCX 交稿",
+    "5 阶段流水线",
+    "三审三校",
+    "事实核查",
+    "出书",
+    "通用化出书模板"
+  ],
+  "input_minimum": [
+    "目标领域（书的主题）",
+    "目标读者画像",
+    "作者真实信息（填到 placeholder-config.json）"
+  ],
+  "input_optional": [
+    "副标题 / 封面设计方向",
+    "章节粒度（大章 / 小节）",
+    "出版渠道（PDF 免费 / DOCX 出版社 / EPUB 电子版）"
+  ],
+  "related_skills": [
+    "橙皮书/orange-book-5步流水线-调研规划写作三审三校成书/（方法论讲解型 case · 互补）",
+    "knowhub/domains/orange-book/（原始 31 文件方法论沉淀）"
+  ],
+  "validation_history": [
+    {
+      "date": "2026-09-11",
+      "type": "通用化整理",
+      "verdict": "pass",
+      "notes": "从 ~/.qclaw/workspace-op-d6a82881-.../skills/huashu-book-pdf/ 通用化整理：把花叔真实信息（公众号「花叔」/ GitHub alchaincyf / huasheng.ai / 9 本技术书 / 6.2k followers / 小猫补光灯等）全部替换为占位符 {作者名}/{公众号名}/{B站UID} 等。方法论 5 阶段 + 4 遍审校 + 事实核查机制完整保留。模板层（styles.css / build.js / build-pdf.js / update.sh）原样保留，CSS 变量和构建逻辑未改。"
+    }
+  ],
+  "red_lines": [
+    "不复述未授权完整作品",
+    "不写未经验证的事实（事实核查必须 WebSearch 查一手）",
+    "不强行给领域下'终极结论'",
+    "不贬低竞品（工具对比必须客观）",
+    "不跳过审校直接构建"
+  ],
+  "default_settings": {
+    "时长": "30-60 天 / 1 本橙皮书",
+    "团队": "6-10 调研 agent + 多写作 agent + 5 审校 agent 并行",
+    "输出": "PDF / DOCX / EPUB 3 套",
+    "5 阶段": "调研 30% / 规划 10% / 写作 30% / 审校 20% / 构建 10%",
+    "5 道门": "并发审校 / 第 4 道门独立 WebSearch"
+  }
+}
