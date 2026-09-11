@@ -181,31 +181,50 @@ def main():
     df_spot = df_spot[df_spot['涨跌幅'] < PRICE_CHANGE_LIMIT]
     print(f"   涨幅 ≤ 7% 过滤后: {len(df_spot)} 只")
 
-    # 3. 逐只套 7 条件
-    print(f"\n🔍 逐只套 7 条件...")
+    # 2.5 缩范围到前 200 只（按涨跌幅升序，优先温和上涨的）
+    # 避免遍历 5000+ 只（限流 + 1+ 小时跑不完）
+    df_spot = df_spot.sort_values('涨跌幅', ascending=False).head(200)
+    print(f"   缩到涨跌幅前 200 只: {len(df_spot)} 只")
+
+    # 3. 逐只套 7 条件（带 retry on RST）
+    print(f"\n🔍 逐只套 7 条件（带 retry）...")
     candidates = []
     total = len(df_spot)
+    fail_count = 0
     for i, (_, stock) in enumerate(df_spot.iterrows(), 1):
-        if i % 50 == 0:
-            print(f"   进度: {i}/{total}")
-        passed, data = check_7_conditions(stock)
-        if passed:
-            candidates.append({
-                '代码': stock['代码'],
-                '名称': stock['名称'],
-                '行业': stock.get('行业', 'N/A'),
-                '涨跌幅': stock['涨跌幅'],
-                '最新价': stock.get('最新价', 0),
-                '量比': stock.get('量比', 0),
-                '换手率': stock.get('换手率', 0),
-                '流通市值': stock.get('流通市值', 0),
-                'chip_前日': data['chip']['chip_2days_ago'],
-                'chip_昨日': data['chip']['chip_yesterday'],
-                'chip_今日': data['chip']['chip_today'],
-                '昨日量比': data['vol_data']['yesterday_ratio'],
-            })
-            # 限流保护
-            time.sleep(0.5)
+        if i % 25 == 0:
+            print(f"   进度: {i}/{total} (候选 {len(candidates)} · 失败 {fail_count})")
+        # 3 次重试
+        passed = False
+        for attempt in range(3):
+            try:
+                passed, data = check_7_conditions(stock)
+                if passed:
+                    candidates.append({
+                        '代码': stock['代码'],
+                        '名称': stock['名称'],
+                        '行业': stock.get('行业', 'N/A'),
+                        '涨跌幅': stock['涨跌幅'],
+                        '最新价': stock.get('最新价', 0),
+                        '量比': stock.get('量比', 0),
+                        '换手率': stock.get('换手率', 0),
+                        '流通市值': stock.get('流通市值', 0),
+                        'chip_前日': data['chip']['chip_2days_ago'],
+                        'chip_昨日': data['chip']['chip_yesterday'],
+                        'chip_今日': data['chip']['chip_today'],
+                        '昨日量比': data['vol_data']['yesterday_ratio'],
+                    })
+                break
+            except Exception as e:
+                if 'RemoteDisconnected' in str(e) or 'ConnectionError' in str(e):
+                    fail_count += 1
+                    time.sleep(5)  # RST 后等 5s 再试
+                    continue
+                else:
+                    # 其他错误直接跳过
+                    break
+        # 限流保护
+        time.sleep(0.5)
 
     print(f"\n   ✅ 7 条件全部满足: {len(candidates)} 只")
 
