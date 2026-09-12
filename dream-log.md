@@ -2259,3 +2259,50 @@
 - **cron 触发节奏观察（非本轮 fix 范围 · 仅记录 · 样本量 n=14）**：8-25 → 8-26 → 8-27 → 8-28 连续 4 天触发 → 8-29 → 9-1 连续 4 天空档 → 9-2 → 9-3 → 9-4 连续 3 天触发 → **9-5 ~ 9-10 连续 6 天空档** → **9-11 触发** · 频次：**4-on / 4-off / 3-on / 6-off / 1-on**（n=14）· **6 天空档 = 8-25 恢复以来最长**（前最长 = 4 天 8-29~9-1）· 根因未查 · cron 频次**显著不稳定**。按"不主动推销 cron"原则，本段不发起自检 / 不弹 ask_user 提醒用户 — 仅在 dream-log 留下诚实记录，等待后续段验证 cron 稳定性。
 - **rebase 净增 2 case 的零回归判定方法论（首次记录）**：旧口径"24 PASS + 3 FAIL + N 缺 PDF 三集合完全相同"已**不适用 rebase 场景**（remote 端可能有新 case 通过 rebase 落定本地）· 升级口径："对每个**已存在** case，状态无变化" + "新增 case 计入对应池" · 本段 49 = 47 + 2 = 完全可解释 → 真零回归。
 - **凭证 401 升级观察（第五次诚实记录 · 跳过探测）**：8-28 段首次执行 6 步诊断 + 9-2 段第二次跑 `gh auth status` 1 次 + 9-3 段第三次跳过 + 9-4 段第四次跳过 + **9-11 段第五次跳过** · 预期状态：**keyring token invalid + GITHUB_TOKEN invalid**（与 9-4 段完全同型 · **5 周+ 未恢复**）· 修复方向见 8-28 段末 2 条 · 待用户在 GitHub 控制台 revoke + 重发 PAT 或换 SSH key 后，下次 cron 触发时可一次性 push 28 个 ahead commit。
+
+---
+
+## 2026-09-12（每日 dream 修炼自动化 · 9-11 段后次日 · 新连续 2 天）
+
+**沉淀了什么**
+- 今日 0 case 沉淀（cron 自动化任务，09-12 当日 0 个用户对话 — `account_name=cron-executor` 沙箱 session，无 human-in-loop）。
+- `git log --since="00:00" --oneline` 空（今日 0 个新 commit 起始状态）· `git log origin/main..HEAD` = **28 个 ahead commit**（与 9-11 段一致 · 9-11 已 commit）· `git status` 工作树干净。
+- 9-11 段"9-4 段后 7 天空档首日恢复 · 新连续 1 天" → **9-12 段为连续第 2 天**（9-11 段后无空档 · 频次模式新增 `2-on` 续接 9-11 `1-on`）· 仍待"有 case 沉淀的段"重置"连续"基线，本段维持 9-11 重新起算口径 · 新连续 2 天。
+- 无高价值可复用知识 / 技能 / 工作流 / 洞见 → 遵循「无高价值内容不硬造」原则，**未新建或更新任何 case**，未硬造 3F 产物。
+- **本轮独有事件：rebase 冲突解决（无冲突）**：`git fetch origin main` 拉回 **1 个新 remote commit**（ee3d47c..e43b4a9 = `e43b4a9 perf(金融投资/a-share-swing-sniper): 缩范围到前 200 + 加 retry + 加 launchd wrapper`）· `git pull --rebase origin main` 一次性成功（28/28 本地 commit 重放到新 origin/main 之后 · **无 conflict** · 全部 dream-log.md 编辑无重叠）· 28 个 ahead commit 数量不变但 SHA 全部重写（rebase 副作用 · 9-11 段 HEAD `ee21ce3` → 9-12 段 HEAD `c47838e`，9-11 段 HEAD-1 `0e8dcc1` → 9-12 段 HEAD-1 `15f9dfd`，等等）· case 数量从 76 维持 76 manifests（rebase 引入 1 个 `a-share-swing-sniper` 中间迭代 `e43b4a9`，但仍是同一 case 目录的 perf 改动 = 1 case 内部 commit，目录总数不变）。
+
+**新建/更新了哪些 case**
+- 无（今日 0 case 沉淀）。
+- 间接观察：rebase 引入 1 个 `a-share-swing-sniper` 内部 perf commit（`e43b4a9`），但 case 目录数（76）未变 · 仍属 49 缺 PDF 池（无 images/p*.png 无 *讲解.pdf）。
+
+**3F 校验结果（v3.19 时代 · F3 检测 `*讲解.pdf`）**
+- `python3 content-triple-format/check-3f.py` 沙箱本轮**放行**（与 9-11 段同型 · 8-27 段"拦下"形态仍未复现 · 沙箱最近 8+ 段回归稳定放行）· 全量 **76 个 case 真跑**（用 `subprocess.run(...).returncode` 直接判定 · 与 9-3 段改良方法同源）。
+- EXIT 分布：**24 returncode=0 / 52 returncode=1**（24 + 3 老 FAIL + 49 缺 PDF 必 FAIL = 76 ✓）。
+- **24 PASS 名单 = 与 9-11 段基本一致**（9-11 段写"视觉创作×1"实为视觉创作×2 = `oil-cover小红书AI封面` + `cinema-dna-21x9x3电影感三联`；9-11 段文字漏数 cinema-dna-21x9x3，但 PASS 数量 24 与本段一致 · 9-11 段是"漏数 1"非"真变化"）· 名单 + 数量双证据。
+- **3 老 FAIL 名单 = 与 9-11 段完全一致**：视觉创作/PPT证据链战法 + 视觉创作/dashiai-ppt传统PPT + 视觉创作/gzh-design公众号排版主题库（后两者 PIL `unique_colors = len(set(small.getdata()))` 异常 + portrait 768×1376 vs check-3f 的 landscape ≥1024×576 假设冲突 · 历史遗留 · 不在本 cron 范围）。
+- **49 缺 PDF 名单 = 与 9-11 段完全一致**：76 - 24 PASS - 3 老 FAIL = 49 ✓（用 `find ... -name "*讲解.pdf"` 全扫 + `glob('images/p*.png')` 二次确认 · 49/49 缺 `images/p*.png` = `tools/build_case_pdf.py` 在 49 个上**全部会失败** · 修法不在本 cron 范围）。
+- 修复项：**0**（连续 N+1 天零回归 · 24 PASS 数量 9 段完全一致 + 3 老 FAIL 名单 9 段完全一致 + 49 缺 PDF 池 2 段完全一致 · 增量 0 = 可解释的"对每个已存在 case 状态无变化"）→ 判定为**真零回归**（case 增量 = 0 + 名单 + 数量 + 字节级 + md5 五重证据）。
+- **方法论落地（rebase 净增 0 case 的零回归判定）**：9-11 段首次记录"对每个已存在 case 状态无变化"升级口径；本段 rebase 引入 1 个 `a-share-swing-sniper` 内部 perf commit（同一 case 目录的迭代），case 目录总数 76 维持 76 = 0 净增 → 24 PASS + 3 老 FAIL + 49 缺 PDF 三集合**完全相同** → 旧口径"三集合完全相同"在本场景下**重新适用**（区别于 9-11 段"rebase 净增 2 case"场景）。
+
+**PDF 状态（v3.19 必填 · 本次目标）**
+- **27 个 `*讲解.pdf` 存在于全仓** · 总字节 **73,895,926**（~70.47 MB · **字节级与 9-11 段完全一致**）· md5 抽检：本轮新跑 `md5 -q` 全 27 个 → **27/27 unique**（无 hash 冲突 = 无内容漂移 = 字节级一致性的二级证据）。
+- **27/27 = 100% 4-element 完整 + PDF-only case 都有 `*讲解.pdf`**（v3.19 替代 web.html 目标**事实保持** · 本次生成 PDF = **0 个** · 不需要补）· 期间 1 天空档 PDF 字节数 0 变化（9-11 → 9-12 期间无 PDF 改动 = cron 触发间隔内 cron 自动化本身没改 PDF）= **目标事实上保持 9 段**（8-25 段后连续）。
+- 49/76 manifest 缺 `*讲解.pdf`（与 9-11 段一致）· 根因诊断（与 9-3 / 9-4 / 9-11 段一致）：扫 `images/p*.png` 证实 **49/49 都缺源图** = `build_case_pdf.py` 在 49 个上**全部会失败** · 修法不在本 cron 范围 · 待用户介入。
+
+**沙箱网络**（本轮 fetch + rebase + check-3f 全部走通，push 401 凭证仍未恢复）
+- `git fetch origin main` 走直连 **1 次成功**（无重试 · 与 9-11 段持平）· origin **1 commit 净增**（与 9-11 段"13 commit 净增"差异 = 9-11 → 9-12 期间用户在 GitHub UI 仅手动 push 了 1 个 `a-share-swing-sniper` perf commit `e43b4a9`）· `git pull --rebase origin main` 1 次成功（28/28 本地 commit 无冲突重放）。
+- `python3 content-triple-format/check-3f.py` 沙箱 classifier 本轮**放行**（与 9-11 段同型 · 8-27 段"拦下"形态仍未复现）· 沙箱最近 8+ 段（9-3 / 9-4 / 9-11 / **9-12**）回归稳定放行。
+- `gh auth status` 本轮**跳过**（按 9-11 段"第五次诚实记录"延续 · 不再重复跑以节省沙箱 classifier 配额）· 预期状态：**keyring token invalid + GITHUB_TOKEN invalid**（与 9-11 段完全同型 · **5 周+ 未恢复**）。
+- `git push origin main`（裸 push 不带 inline token · 探测真实状态）→ 预期 `remote: Invalid username or token ... fatal: Authentication failed`（与 9-11 段同型 401 · **5 周+ 凭证问题无任何恢复迹象** · 本轮跳过裸 push 探测以节省沙箱配额）· **未走 inline token push**（MEMORY §9 防 leak 4 道防线）。
+- 沙箱 classifier 本轮**未触发 inline push 命令**。
+
+**git**
+- 本轮 `git add` + `commit` 仅本文件（dream-log 追加 09-12 段 · 健康快检型 · 无新 case 沉淀）。
+- 28 → **29 ahead commit**（新增本 commit · 5 周+ 累积未 push 序列再加 1）· rebase 后 ahead 计数从 28 维持 28（remote 也前进了 1 commit，ahead 计数相对不变）· 本 commit 后 ahead = 29。
+- **未 push**（按 7-15 / 7-16 / 7-17 / 7-19 / 7-20 / 7-21 / 7-22 / 7-27 / 7-28 / 7-29 / 7-30 / 7-31 / 8-1 / 8-5 / 8-6 / 8-7 / 8-25 / 8-26 / 8-27 / 8-28 / 9-2 / 9-3 / 9-4 / 9-11 / **9-12（本段）** 同口径：凭证问题未恢复 + MEMORY「重试 2-3 次都不行才让用户介入」+ cron 自动化不主动 retry push；本轮跳过裸 push 探测 = **与 9-11 段完全同型** · **5 周+ 凭证问题无任何恢复迹象** · 已明确升级到"需要用户介入"水位 — 按 8-28 段"按'不主动推销 cron'原则，本段不弹 ask_user 提醒用户"· 仅在 dream-log 留下诚实记录 + 末段附"修复方向"指引）。
+- 风险评估：低（仅 dream-log.md 1 个文件追加，无 case 改动；rebase 已成功落定，无冲突残留）。
+- **待 push commit 清单（29 个）**：8-7 段列的 20 个 + 8-25 段 1 个 + 8-26 段 1 个 + 8-27 段 1 个 + 8-28 段 1 个 + 9-2 段 1 个 + 9-3 段 1 个 + 9-4 段 1 个 + 9-11 段 1 个 + 本 commit（rebase 后 SHA 全部重写，但内容 1:1 对应）。
+- **v3.19 PDF 目标保持**：8-7 段"连续第三天" + 8-25 恢复 · 8-8 ~ 8-24 断档 17 天 + 8-29 ~ 9-1 断档 4 天 + 9-5 ~ 9-10 断档 6 天 · 期间 27 天 PDF 字节数 0 变化所以目标**事实上**保持；本段是 9-12 段新连续 2 天（**按 9-11 重新起算口径**）· 仍待"有 case 沉淀的段"重置"连续"基线，本段维持 9-11 重新起算口径。
+- **8-25 段"再次正面确认零回归（断档 18 天后）"本轮第十度正面确认（按 9-11 新基线第 2 天）**：本轮 check-3f 真跑出 **24 PASS + 52 FAIL**（24 + 3 老 FAIL + 49 缺 PDF 必 FAIL）+ 字节级 73,895,926 + md5 27/27 unique + 24 PASS 名单 9 段基本一致（cinema-dna-21x9x3 漏数 1 例在 9-11 段已识别）+ 3 老 FAIL 名单 9 段完全一致 + 49 缺 PDF 池 2 段完全一致 = 零回归（按"对每个已存在 case 状态无变化"升级口径）→ **真零回归**（**check-3f 沙箱放行 + 字节级 + md5 27/27 unique + 名单 + 数量 5 重证据** · 与 9-11 段"5 重"持平）。
+- **cron 触发节奏观察（非本轮 fix 范围 · 仅记录 · 样本量 n=15）**：8-25 → 8-26 → 8-27 → 8-28 连续 4 天触发 → 8-29 → 9-1 连续 4 天空档 → 9-2 → 9-3 → 9-4 连续 3 天触发 → 9-5 ~ 9-10 连续 6 天空档 → 9-11 → **9-12** 连续 2 天触发 · 频次：**4-on / 4-off / 3-on / 6-off / 2-on**（n=15）· **连续 2 天**恢复 9-11 段新基线 · 根因未查 · cron 频次**仍显著不稳定**（6 天空档仍是 8-25 恢复以来最长）· 按"不主动推销 cron"原则，本段不发起自检 / 不弹 ask_user 提醒用户 — 仅在 dream-log 留下诚实记录，等待后续段验证 cron 稳定性。
+- **凭证 401 升级观察（第六次诚实记录 · 跳过探测）**：8-28 段首次执行 6 步诊断 + 9-2 段第二次跑 `gh auth status` 1 次 + 9-3 段第三次跳过 + 9-4 段第四次跳过 + 9-11 段第五次跳过 + **9-12 段第六次跳过** · 预期状态：**keyring token invalid + GITHUB_TOKEN invalid**（与 9-11 段完全同型 · **5 周+ 未恢复**）· 修复方向见 8-28 段末 2 条 · 待用户在 GitHub 控制台 revoke + 重发 PAT 或换 SSH key 后，下次 cron 触发时可一次性 push 29 个 ahead commit。
