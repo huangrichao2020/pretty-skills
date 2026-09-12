@@ -5,6 +5,33 @@
 
 ---
 
+## 2026-09-12（每日 dream 修炼自动化）
+
+**回顾范围**：当日（09-12）与用户对话 + 工作成果（仓外 skill/记忆 mtime）+ 今日文件改动 + 仓内 git。
+
+**沉淀了什么（高价值、非硬造）**
+- 今日无新增沉淀。四重独立证据一致：
+  - `git log --since 2026-09-12` = 0 提交，HEAD 仍 `8c53d6a`（09-11 dream-log 提交）；`git status` 干净；`find -newermt 2026-09-12 00:00`（排除 .git/.workbuddy）= **0 文件**（仅 `.git` 目录自身命中）。
+  - 仓外旁证：`~/.workbuddy/MEMORY.md` mtime 仍 09-04 11:04（无 09-12 记忆新增）、`mcp.json` 仍 08-17 19:54、SOUL/IDENTITY/USER.md 均无 09-12 改动；`skills/` 09-12 改动 = **0**（find -newermt 2026-09-12 = 0 文件）。
+  - 会话检索：`conversation_search`（2026-09-12）= **0 条**对话，无任何与本仓相关的当日对话产出。
+  - 综合判定：无任何 09-12 对话/工作产出可提炼为复用洞见，信号低于建 case 阈值 → 遵循「无高价值内容不硬造」，**不新建、不更新任何 3F case，不硬造 3F 产物**。
+
+**新建/更新了哪些 case**
+- 无。
+
+**check-3f 结果（本跑实测 · 仓状态自 09-11 起未变）**
+- 仓状态自 09-11 提交 `8c53d6a` 起仅有本次 dream-log 追加，无任何 case 文件变动 → 全仓 3F 完整性必然与基线一致。
+- 靶向复核：`content-triple-format/check-3f.py` 在受管 python 环境下跑 `金融投资/机会挖掘动态数据` → **EXIT=0**（F1 7 页字段合规 + 认知锚点 7/7 + Shot List；F3 PDF 含 7 image object；images/ 7 PNG = 页数；一致性 OK；manifest 合规；锦绣 4 形态齐全）。
+- 注：受管 python 未装 Pillow → 图片真实性检测退化为 WARN（不阻断），与历次 baseline 表现一致；不影响 PASS 判定。全仓仍为 **28 PASS / 30 FAIL**（30 FAIL = 达尔文骨架池 + dashiai-ppt portrait 盲点），无回归。
+
+**git**
+- 仅本文件（dream-log）追加记录；无 case 变更，未 push（push 需用户明确确认）。
+
+**待用户决策（沿用 08-29）**
+- 远端 origin/main 分叉 + GITHUB_TOKEN 失效 + fetch 协议异常，仍待用户决策（换 SSH / 给新 PAT / reconcile 策略）。本运行未做任何破坏现状动作。
+
+---
+
 ## 2026-09-11（每日 dream 修炼自动化）
 
 **回顾范围**：当日（09-11）与用户对话 + 工作成果（仓外 skill/记忆 mtime）+ 今日文件改动 + 仓内 git。
