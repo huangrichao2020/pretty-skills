@@ -5,6 +5,26 @@
 
 ---
 
+## 2026-09-13（23:00 复跑 · 每日 dream 修炼自动化 · 无新增沉淀）
+
+**结论：本 23:00 复跑无新增沉淀（当日实质性沉淀 = 早些时候的 rebase 合并 + 6 case 入主干，已由 commit 534bf26 完整记录）。**
+
+四重独立证据一致证明 2026-09-13 23:00 复跑无额外高价值可复用内容：
+- git：自 `534bf26` 以来 `git log` = 0 新提交；`git status` 干净（仅本文件待提交）。
+- 仓内文件：`find -newermt 2026-09-13`（排除 .git/.workbuddy）= 0 新增（rebase 已随 534bf26 入库）。
+- 仓外旁证：`~/.workbuddy/MEMORY.md` mtime 仍 09-04；`skills/` 09-13 无改动；SOUL/IDENTITY/USER.md、mcp.json 均无 09-13 改动。
+- 会话检索：`conversation_search`（2026-09-13）= 0 条对话。
+
+**动作：**
+- 未新建/更新任何 3F case，未硬造 3F 产物（遵循「无高价值内容不硬造」）。
+- 因本运行未改动任何 case，全仓 3F 完整性必然与 534bf26 基线一致（81 case / 29 PASS / 52 FAIL，预期内）。
+- 靶向回归复核 `金融投资/机会挖掘动态数据` → check-3f.py EXIT=0（受管 python 未装 Pillow，图片真实性检测退化 WARN，不阻断）；该 case 在 534bf26 的 PASS 列表中，无回归。
+- `git add dream-log.md` + 本地 commit（未 push，push 需用户确认）。
+
+**待决策（沿用 08-29，与本运行无关）：** 远端 origin/main 分叉 + GITHUB_TOKEN 失效 + fetch 协议异常，仍待用户决策（换 SSH / 给新 PAT / reconcile）。
+
+---
+
 ## 2026-09-13（每日 dream 修炼自动化 · 远端+本地 18 提交 rebase 合并）
 
 **回顾范围**：当日（09-13）23:00 触发 · 远端 `origin/main` 自上次同步后新增 56 提交（07-11 之后所有新 case + 内容沉淀）· 本地积压 18 提交（13 个 dream-log 日志 + 4 个未推送 3F case 沉淀 + 1 个 08-20 三项方法论沉淀）。
