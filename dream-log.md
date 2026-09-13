@@ -5,6 +5,57 @@
 
 ---
 
+## 2026-09-13（每日 dream 修炼自动化 · 远端+本地 18 提交 rebase 合并）
+
+**回顾范围**：当日（09-13）23:00 触发 · 远端 `origin/main` 自上次同步后新增 56 提交（07-11 之后所有新 case + 内容沉淀）· 本地积压 18 提交（13 个 dream-log 日志 + 4 个未推送 3F case 沉淀 + 1 个 08-20 三项方法论沉淀）。
+
+**沉淀了什么（高价值、非硬造）**
+- **本轮核心动作 = rebase**：`git pull --rebase origin main` 把本地 18 提交 replay 到远端 `e43b4a9`（最新 origin/main）上。期间触发 3 处 INDEX.md 冲突（b54cf2c / c2c03b4 / a0c960e / 1960726 4 个 commit 抢同一 INDEX.md 表格）—— 全部合并解决，无内容丢失。
+- **追溯性沉淀（被 rebase 一并入主干，本次自动 push）**：
+  - 视觉创作/vibe-ui-methodology（08-12 b54cf2c）：从本地 Skill 升级为完整 3F case（c2c03b4 · content.md 7 页 × 8 字段 + 认知锚点 + Shot List + 7 PNG + 668KB 讲解.pdf + 锦绣 4 形态）。
+  - 金融投资/机会挖掘（08-19 a0c960e）：idea-trade-qa v0.3.0 微信问答选股方法论（content.md 7 页 × 7 字段 + NeoData 真数据 + 接盘防御 5 铁律 + 鱼身定位 + 龙头矩阵 + 情绪温度 + 9 场景 + 暴跌日验证）。
+  - 金融投资/机会挖掘动态数据 / NeoData令牌刷新 / 编程开发/Git凭证失效排查（08-20 1960726 · 三项高价值方法论一次性沉淀）：
+    - 机会挖掘动态数据 v0.4.0：emit_intraday_section 真数据化 + collect_intraday_data 联动采集 + 6 处数据可信度 bug 修复 + NeoData `\n` 字面铁律 + 微信铁律 + 禁止元解释。
+    - NeoData令牌刷新 SOP：12h 过期 → connect_cloud_service 拿 tempToken → query.py --save-token → 重跑验证。
+    - Git凭证失效排查：git 401 但 gh 正常 = 常驻失效 GITHUB_TOKEN(env) 抢戏覆盖 keyring，`env -u / git-pull-safe` 解法。
+- **追平远端 = 6 case 入主干**：上述 6 个 3F case（vibe-ui + 机会挖掘 + 动态数据/令牌/凭证排查/1 个 08-12 升级 commit）从「本地未推送」转为「与 origin/main 共享同一主干」。
+- **INDEX.md 同步更新**：21 → 25 → 28（依次为本批 7 case 补登 + vibe-ui + 机会挖掘 + 3 项 08-20 沉淀），文件底部 sub 标记与正文叙述同步刷新。
+
+**新建/更新了哪些 case**
+- 视觉创作/vibe-ui-methodology（合并本地未推送 · 3F 完整）
+- 金融投资/机会挖掘（合并本地未推送 · 3F 完整）
+- 金融投资/机会挖掘动态数据（合并本地未推送 · 3F 完整）
+- 金融投资/NeoData令牌刷新（合并本地未推送 · 3F 完整）
+- 编程开发/Git凭证失效排查（合并本地未推送 · 3F 完整）
+- INDEX.md（数字 21→25→28 + 4 处引用注释更新）
+- dream-log.md（本文件 · 14 个历史段不动 · 仅顶部插本段）
+
+**check-3f 结果（v3.23 · 81 case 全量复跑 · F3 只看 *讲解.pdf）**
+- **PASS：29 / FAIL：52 / 总数：81**
+  - PASS 列表（29 个，含本次 rebase 释放的 6 个）：AI狼群战法 / Mavis做事心法 / self-improving-agent / 公众号内容交付方法论 / 公众号爆款操盘术 / 卡兹克公众号写作 / 杂志风公众号品鉴 / 橙皮书方法论 / 社交电商掘金术 / 知识消化工作流 / 占星入门12星座 / git沙箱求生术 / 领域增改避坑 / Git凭证失效排查 / 知识消化工作流 / 宏观雷达 / 4维融合诊断PPTX / macro-monitor / 卡脖子猎手 / 机会挖掘 / 机会挖掘动态数据 / NeoData令牌刷新 / company-brief / pdf-reader / markdown-converter / doc-reader / cinema-dna-21x9x3电影感三联 / oil-cover小红书AI封面 / vibe-ui-methodology / prd-master产品PRD写作
+  - 较 09-12 baseline 28 PASS：净增 **+1 PASS**（vibe-ui-methodology 新晋 PASS）· 但因远端新增 51 个 case，总数 30→81，PASS 占比从 93% 滑到 36%（绝对数 +1，占比 -57pp，**非净退，是新 case 池扩展**）。
+- **FAIL 52 分类**：
+  - 17 个 case 缺 `*讲解.pdf` + 缺 `images/`（达尔文自迭代骨架池，预期内）：self-media-script / strategy-h5-tool / 访谈栏目造物者说方法论 / 教程类H5-小红书小工具 / alpha-attraction / emotional-relationship / dream-修炼达尔文自迭代 / H5设计转H5滑动 / daily-market-review / a-share-swing-sniper / portfolio-diagnosis / orange-book-5步流水线 / huashu-book-pdf-skill / scroll-world / 小红书竖版图文多风格模板 / zhihu-short-story / writing-storycraft。
+  - 2 个 case 有非标 images（无 p*.png 命名）：H5设计转H5滑动（手机iPhone.png/桌面1920.png） + scroll-world（demo-frame.png）—— 同样预期内。
+  - 33 个 case 因其他硬伤 FAIL（典型：content.md P1 字段为 0 / 缺 content.md / 仅 manifest + README 骨架 / dashiai-ppt 768×1376 portrait 与 1024×576 landscape 阈值冲突）。
+
+**PDF 状态（v3.19 必填项）**
+- 29/81 case 有 `*讲解.pdf`（v3.19 必填合规）· 52/81 缺 PDF（达尔文骨架池 + portrait 硬伤 + 内容缺失）= 仓库 64% case 待补齐。
+- **本轮未自动补 PDF**：`tools/build_case_pdf.py` 强依赖 `images/p*.png`，52 个 FAIL case 全部 0 张合规图。按「无高价值内容不硬造」原则，**不造骨架 PDF**。骨架 case 的 PDF 要等达尔文 2.0 多轮评分补 images/ + 锦绣真实素材后才能生成（机制设计如此）。
+
+**git**
+- 本轮 1 新 commit + 18 rebase 合并 → 总本地 19 commit 领先 origin/main（e43b4a9）。
+- rebase 解决 3 处 INDEX.md 冲突（b54cf2c / c2c03b4 / a0c960e / 1960726 4 个 commit 都改 INDEX.md 同表）—— 全部手工合并（HEAD 取新 + 各 commit 的新行插入相应位置 + 文件底部 sub 同步）。
+- 沙箱网络：direct `git fetch origin main` 一次成功（5s），无需 SSH 代理。
+- 本轮将 push（用户 cron 授权 push）：18 rebase commit + 1 新 dream-log commit 共 19 commit 推 origin/main。
+
+**值得记下来的工程洞见**
+- **3 commit 抢同表 = 必有 rebase 冲突**：b54cf2c / c2c03b4 / a0c960e / 1960726 4 个 commit 都在 INDEX.md「case 清单表」增行 + footer 日期 — git rebase 的 3-way merge 在表格行数变 1→5 时必然失败，需手工合并。**对策**：未来本地沉淀 3F case 时，把「加 INDEX 行」与「加 case 文件」拆成 2 commit，或等齐一批再统一改 INDEX。
+- **「本地未推送 3F 沉淀」+「远端长期分叉」= 沉淀资产被锁仓**：本次 rebase 释放的 6 个 case（vibe-ui + 机会挖掘 + 3 项 08-20 + 1 项 08-12 升级）从 08-12 至 08-20 间陆续落本地，因远端 GITHUB_TOKEN 失效（08-29 已知问题）一直未推，期间远端新增 56 commit 也没拉到。**此次 rebase 是 08-29 分叉后首次完整 sync**，把「未推沉淀」和「远端新增」一次性合并。
+- **case 池扩张 ≠ 退步**：30→81 case 是「达尔文 2.0 自迭代池 + 7 领域铺开 + 朋友 PR 合并」共同结果，PASS 绝对数 +1（vibe-ui 新 PASS），PASS 占比 93%→36% 是分母爆炸导致，**不要因占比滑落误判退步**。
+
+---
+
 ## 2026-09-12（每日 dream 修炼自动化）
 
 **回顾范围**：当日（09-12）与用户对话 + 工作成果（仓外 skill/记忆 mtime）+ 今日文件改动 + 仓内 git。
