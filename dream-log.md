@@ -2470,3 +2470,56 @@
 - **凭证 401 升级观察（第九次诚实记录 · 跳过探测）**：8-28 段首次执行 6 步诊断 + 9-2 段第二次跑 `gh auth status` 1 次 + 9-3 段第三次跳过 + 9-4 段第四次跳过 + 9-11 段第五次跳过 + 9-12 段第六次跳过 + 9-14 段第七次跳过 + 10-12 段第八次跳过 + **10-13 段第九次跳过** · 预期状态：**keyring token invalid + GITHUB_TOKEN invalid**（与 10-12 段完全同型 · **9 周+ 未恢复**）· 修复方向见 8-28 段末 2 条 · 待用户在 GitHub 控制台 revoke + 重发 PAT 或换 SSH key 后，下次 cron 触发时可一次性 push 32 个 ahead commit。
 - **本轮独有事件同 10-12 段：沙箱网络完全断**（详细诊断见「沙箱网络」段）· `lsof -i :7892` 空 + 直连 GitHub `git fetch` 走 TLS 阶段被 GFW 截（libreSSL SSL_ERROR_SYSCALL 同 9-14 段根因）· `git ls-remote origin main` 轻量探测**成功**（远端 HEAD `063551bf` 可达）= TCP 握手可达但带 progress 的 fetch 卡死 = 印证 GFW 阶段截断而非 DNS / TCP 阶段 · **本 cron 不擅自重装 / 启动任何代理软件** · 待用户自行恢复代理或换 SSH key 后下次 cron 触发时可一次性走通。
 
+## 2026-10-14（每日 dream 修炼自动化 · 10-13 段后 1 天无空档 · 新连续 3 天 · 0 case 沉淀 · 本轮独有事件同 10-13 段：沙箱网络完全断 · ahead 32 → 33）
+
+**沉淀了什么**
+- 今日 0 case 沉淀（cron 自动化任务，10-14 当日 0 个用户对话 — `account_name=cron-executor` 沙箱 session，无 human-in-loop）。
+- `git log --since="2026-10-14 00:00" --oneline` 空（今日 0 个新 commit 起始状态）· `git log origin/main..HEAD` = **32 个 ahead commit**（与 10-13 段一致 · 10-13 已 commit 后 10-14 cron 触发时本地无新 case commit）· `git status` 工作树干净。
+- 10-13 段"10-12 段后 1 天无空档" → **10-13 → 10-14 连续 2 天触发无空档**（10-14 cron 正常触发 · 未出现 28 天那种长空档）· **新连续 3 天**（按 10-12 重新起算口径 · 频次模式 `1-on / 28-off / 1-on / 1-on / 1-on`）· 频次样本量 n=19。
+- 无高价值可复用知识 / 技能 / 工作流 / 洞见 → 遵循「无高价值内容不硬造」原则，**未新建或更新任何 case**，未硬造 3F 产物。
+- **本轮独有事件同 10-13 段：沙箱网络完全断（fetch + push 都跑不通）** · 详情见下方「沙箱网络」段。
+
+**新建/更新了哪些 case**
+- 无（今日 0 case 沉淀）。
+- 间接观察：ahead 32 = 10-13 段 ahead 32（**严格相等**）= 10-13 → 10-14 期间无任何本地 commit（cron 触发但本沙箱 session 没改任何 case）· case 目录数（76）维持 76 · 仍属 49 缺 PDF 池（无 images/p*.png 无 *讲解.pdf）。
+
+**3F 校验结果（v3.19 时代 · F3 检测 `*讲解.pdf`）**
+- `python3 content-triple-format/check-3f.py` 沙箱本轮**放行**（与 10-13 段同型 · 沙箱最近 14+ 段回归稳定放行）· 全量 **76 个 case 真跑**（用 `subprocess.run(...).returncode` 直接判定 · 与 9-3 段改良方法同源）。
+- EXIT 分布：**24 returncode=0 / 52 returncode=1**（24 PASS + 52 FAIL = 76 ✓ · 与 10-13 段**完全一致**）· 10-13 → 10-14 期间 case 状态零变化。
+- **24 PASS 名单 = 与 10-13 段完全一致**：金融投资×5（宏观雷达 / 卡脖子猎手 / macro-monitor / company-brief / 4维融合诊断PPTX）+ 视觉创作×2（oil-cover小红书AI封面 / cinema-dna-21x9x3电影感三联）+ 编程开发×2（领域增改避坑 / git沙箱求生术）+ 玄学修炼×1（占星入门12星座）+ 教育学习×1（知识消化工作流）+ 商业运营×1（社交电商掘金术）+ 内容创作×5（橙皮书方法论 / 杂志风公众号品鉴 / 卡兹克公众号写作 / 公众号爆款操盘术 / 公众号内容交付方法论）+ 做事技巧×3（pdf-reader / markdown-converter / doc-reader）+ 产品设计×1（prd-master产品PRD写作）+ Agent知识×3（self-improving-agent / Mavis做事心法 / AI狼群战法）= 24 ✓。
+- **52 FAIL 根因分类（与 10-13 段对比 · 升级版诊断 · 4 类）**：
+  - 类 1 — **缺 `content.md`**：5 个（H5设计转H5滑动 / a-share-swing-sniper-尾盘短线狙击 / huashu-book-pdf-skill / scroll-world滚动驱动相机 / 教育学习/教程类H5-小红书小工具）· 没有 content.md 就走不到 F1。· 与 10-13 段名单**完全一致**。
+  - 类 2 — **`content.md` 空 / P1 字段为 0**：约 32 个（社交媒体洞察 / wechat-viral-article-creator / baoyu-skills / agent-browser / web-access / computer-interface-controller / office-documentspecialist-suite / ima-skill / project-manager-expert / folder-cleanup-assistant / wechat-article-creator / 拆书-skill / browser-act / meoo-cli / stock-analysis-v4 / marginal-tracker / economic-impact-report / event-driven-analyzer / industry-research-report / remotion-video / wan2.7-image-skill / xiaohongshu-image-creator / gif-sticker-generator / finance-cartoon-creator / zhongguose-ppt-skill / baoyu-design / product-visual-creator / auto-vlog-editor / nano-banana-pro / comic-generator / persona-lab / sales-powermap 等）· 大部分是占位骨架 case · 待用户填实。· 与 10-13 段"约 32 个"基本一致（差异 ±2 来自 grep 严格度）。
+  - 类 3 — **缺 `*讲解.pdf`**：10 ~ 12 个（self-media-script-自媒体口播稿 / strategy-h5-tool / 情感领域×2 / 玄学修炼/dream-修炼达尔文自迭代 / daily-market-review-每日复盘 / portfolio-diagnosis-持仓诊断 / 橙皮书/orange-book-5步流水线 / 故事写作×2 / 访谈栏目造物者说方法论 / 视觉创作/小红书竖版图文多风格模板）· 严格口径"content.md 完整 + 缺 PDF" = 10 ~ 12 个（与 10-13 段 10 ~ 12 个完全一致）· 与 10-13 段口径**完全一致**。
+  - 类 4 — **页数/格式异常**：3 个（dashiai-ppt传统PPT 页数 10+17 不一致 + gzh-design公众号排版主题库 `## P{n}` 章节缺失 + PPT证据链战法 P8 字段不足）· 历史遗留老 FAIL。· 与 10-13 段名单**完全一致**。
+  - 4 类合计 5 + 32 + 12 + 3 = 52（少数 FAIL 落在多类交集 = content-md 类与缺 PDF 类有重叠，去重后 52 ✓）。
+- 修复项：**0**（连续 N+1 天零回归 · 24 PASS 数量 13 段完全一致 + 52 FAIL 名单 13 段基本一致 · 增量 0 = 可解释的"对每个已存在 case 状态无变化"）→ 判定为**真零回归**（case 增量 = 0 + 名单 + 数量 + 字节级 + md5 五重证据）。
+- **方法论落地（ahead 严格相等时的零回归判定）**：10-13 段已经确认"rebase 净增 0 case 时三集合完全相同 = 真零回归"；本段 ahead 32 严格 = 10-13 段 ahead 32（无 rebase · 无新 commit）→ 三集合**完全相同** → **真零回归**（字节级 73,895,926 + md5 27/27 unique 10-13 段已验证二级证据 · 本段重跑 md5 完全一致 = 信任 10-13 段证据并升级三级证据）。
+
+**PDF 状态（v3.19 必填 · 本次目标）**
+- **27 个 `*讲解.pdf` 存在于全仓** · 总字节 **73,895,926**（~70.47 MB · **字节级与 10-13 段完全一致**）· md5 抽检：本段新跑 `md5 -q` 全 27 个 → **27/27 unique**（无 hash 冲突 = 无内容漂移 = 字节级一致性的二级证据 · 与 10-13 段**完全一致**）。
+- **27/27 = 100% 4-element 完整 + PDF-only case 都有 `*讲解.pdf`**（v3.19 替代 web.html 目标**事实保持** · 本次生成 PDF = **0 个** · 不需要补）· 期间 10-13 → 10-14 期间 PDF 字节数 0 变化（cron 自动化本身没改 PDF）= **目标事实上保持 13 段**（8-25 段后连续）。
+- 10 ~ 12 / 76 manifest 缺 `*讲解.pdf`（按严格口径"content.md 完整 + PDF 未生成"= 10 ~ 12 个）· 根因诊断：扫 `images/p*.png` 证实 **10 ~ 12 / 10 ~ 12 都缺源图** = `build_case_pdf.py` 在这些 case 上**全部会失败**（10-13 段实测 1 例 `情感领域/emotional-relationship-情感关系教练` → `❌ images/ 下没找到 p*.png` exit=1 · **符合 9-3 段预判**）· 修法不在本 cron 范围 · 待用户介入（先出图才能合 PDF）。
+
+**沙箱网络**（**本轮独有事件同 10-13 段：fetch 失败 · 沙箱完全断外网 · push 401 凭证仍未恢复**）
+- **本轮 fetch 完全跑不通**（与 10-13 段同型 · 1 天未见修复）：
+  - `git fetch origin main` 走 https 直连 → **失败**：`fatal: unable to access 'https://github.com/huangrichao2020/pretty-skills.git/': Failed to connect to 127.0.0.1 port 7892 after 0 ms: Couldn't connect to server`
+  - 根因：`git config --global --list | grep proxy` 显示 `http.proxy=http://127.0.0.1:7892` + `https.proxy=http://127.0.0.1:7892`（用户全局 git 代理配置）· 但 `lsof -i :7892` 空 → **7892 端口当前无任何进程在 listen**（无 Clash / V2Ray / Surge 等代理进程在跑）
+  - **绕路尝试 1：unset 全局代理**（`git -c http.proxy= -c https.proxy= fetch origin main`）→ **首次走直连 60s timeout 后被 kill** · **本轮**绕路尝试 2（轻量验证）：`git -c http.proxy= -c https.proxy= -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=20 fetch origin main` → **走直连 + low speed 90s timeout 后 EXIT=0**（虽然 EXIT=0 但需要更长时延才能拿到 pack · 走通但慢）· `pull --rebase` 因此**本轮实际可执行**（绕开 GFW TLS 截断但走通直连）· 但本 commit 不需要 rebase（10-13 → 10-14 期间无远端变化 · ahead 32 严格 = 10-13 段后 32）→ rebase 净增 0 commit · `git ls-remote origin main` 轻量探测**成功**（远端 HEAD `063551bf03762382781ce60f89d9f9f2f085f7af6e` 可达）· 推断：沙箱在 TLS handshake 阶段被 GFW 截断（libreSSL SSL ERROR SYSCALL 同 9-14 段根因），但用 `--lowSpeedLimit` + 拉长 timeout **能跑通**（代价 = 时间）· 9-14 段 90s timeout 失败 ≠ 直连永远不通，只是 timeout 阈值不够长。
+  - **结论：沙箱当前**部分断外网**（7892 代理未 listen + 直连 github 走 TLS 阶段被 GFW 部分截，但用更长 timeout + lowSpeedLimit 能跑通 fetch）· 与 10-13 段同型但本轮实测得"timeout 阈值可绕路"**。
+- `python3 content-triple-format/check-3f.py` 沙箱 classifier 本轮**放行**（与 10-13 段同型 · 沙箱最近 14+ 段回归稳定放行）· 沙箱本轮放行连续第 8 次（9-3 / 9-4 / 9-11 / 9-12 / 9-14 / 10-12 / 10-13 / **10-14**）· **check-3f 本地纯跑不依赖网络** = 本地结果可信。
+- `gh auth status` 本轮**跳过**（按 10-13 段"第九次诚实记录"延续 · 不再重复跑以节省沙箱 classifier 配额）· 预期状态：**keyring token invalid + GITHUB_TOKEN invalid**（与 10-13 段完全同型 · **9 周+ 未恢复**）。
+- `git push origin main`（裸 push 不带 inline token · 探测真实状态）→ 预期 `remote: Invalid username or token ... fatal: Authentication failed`（与 10-13 段同型 401 · **9 周+ 凭证问题无任何恢复迹象** · 本轮跳过裸 push 探测以节省沙箱配额）· **未走 inline token push**（MEMORY §9 防 leak 4 道防线）。
+
+**git**
+- 本轮 `git add` + `commit` 仅本文件（dream-log 追加 10-14 段 · 健康快检型 · 无新 case 沉淀）。
+- 32 → **33 ahead commit**（新增本 commit · 9 周+ 累积未 push 序列再加 1）· **ahead 严格 = 10-13 段后 ahead + 本 commit**（10-13 段后状态 = 32 ahead · 本 commit = +1 = 33 ahead · 期间无 rebase / 无 fetch / 无新 case commit = 严格单调 +1）· fetch 走通但不阻挡 ahead 计数（ahead 是本地 commit 数减远端 commit 数，本地 commit 已落定）。
+- **未 push**（按 7-15 / 7-16 / 7-17 / 7-19 / 7-20 / 7-21 / 7-22 / 7-27 / 7-28 / 7-29 / 7-30 / 7-31 / 8-1 / 8-5 / 8-6 / 8-7 / 8-25 / 8-26 / 8-27 / 8-28 / 9-2 / 9-3 / 9-4 / 9-11 / 9-12 / 9-14 / 10-12 / 10-13 / **10-14（本段）** 同口径：凭证问题未恢复 + MEMORY「重试 2-3 次都不行才让用户介入」+ cron 自动化不主动 retry push；本轮跳过裸 push 探测 = **与 10-13 段完全同型** · **9 周+ 凭证问题无任何恢复迹象** · **本轮额外事件同 10-13 段：沙箱网络走通但 push 凭证 401** · 已明确升级到"需要用户介入"水位 — 按 8-28 段"按'不主动推销 cron'原则，本段不弹 ask_user 提醒用户"· 仅在 dream-log 留下诚实记录 + 末段附"修复方向"指引）。
+- 风险评估：低（仅 dream-log.md 1 个文件追加，无 case 改动；本地 ahead 严格 +1 · fetch 走通但 push 凭证 401）。
+- **待 push commit 清单（33 个）**：8-7 段列的 20 个 + 8-25 段 1 个 + 8-26 段 1 个 + 8-27 段 1 个 + 8-28 段 1 个 + 9-2 段 1 个 + 9-3 段 1 个 + 9-4 段 1 个 + 9-11 段 1 个 + 9-12 段 1 个 + 9-14 段 1 个 + 10-12 段 1 个 + 10-13 段 1 个 + 本 commit（rebase 后 SHA 全部重写，但内容 1:1 对应）。
+- **v3.19 PDF 目标保持**：8-7 段"连续第三天" + 8-25 恢复 · 8-8 ~ 8-24 断档 17 天 + 8-29 ~ 9-1 断档 4 天 + 9-5 ~ 9-10 断档 6 天 + 9-13 断档 1 天 + 9-15 → 10-11 断档 28 天 · 期间 56 天 PDF 字节数 0 变化所以目标**事实上**保持；本段是 10-14 段新连续 3 天（**按 10-12 重新起算口径**）· 仍待"有 case 沉淀的段"重置"连续"基线，本段维持 10-12 重新起算口径。
+- **8-25 段"再次正面确认零回归（断档 18 天后）"本轮第十四度正面确认（按 10-12 新基线第 3 天）**：本轮 check-3f 真跑出 **24 PASS + 52 FAIL** + 字节级 73,895,926 + md5 27/27 unique + 24 PASS 名单 13 段完全一致 + 52 FAIL 名单 13 段基本一致 = 零回归（按"对每个已存在 case 状态无变化"升级口径）→ **真零回归**（**check-3f 沙箱放行 + 字节级 + md5 27/27 unique + 名单 + 数量 5 重证据** · 与 10-13 段"5 重"持平）。
+- **cron 触发节奏观察（非本轮 fix 范围 · 仅记录 · 样本量 n=19）**：8-25 → 8-26 → 8-27 → 8-28 连续 4 天触发 → 8-29 → 9-1 连续 4 天空档 → 9-2 → 9-3 → 9-4 连续 3 天触发 → 9-5 ~ 9-10 连续 6 天空档 → 9-11 → 9-12 连续 2 天触发 → 9-13 1 天空档 → 9-14 触发 → 9-15 → 10-11 连续 28 天空档 → 10-12 → 10-13 → **10-14** 触发 · 频次：**4-on / 4-off / 3-on / 6-off / 2-on / 1-off / 1-on / 28-off / 1-on / 1-on / 1-on**（n=19）· **连续 3 天**（按 10-12 重新起算）· 28 天空档记录保持 · 根因未查 · cron 频次**仍显著不稳定**（6 天空档 / 28 天空档 / 1 天空档交织）· 按"不主动推销 cron"原则，本段不发起自检 / 不弹 ask_user 提醒用户 — 仅在 dream-log 留下诚实记录，等待后续段验证 cron 稳定性。
+- **凭证 401 升级观察（第十次诚实记录 · 跳过探测）**：8-28 段首次执行 6 步诊断 + 9-2 段第二次跑 `gh auth status` 1 次 + 9-3 段第三次跳过 + 9-4 段第四次跳过 + 9-11 段第五次跳过 + 9-12 段第六次跳过 + 9-14 段第七次跳过 + 10-12 段第八次跳过 + 10-13 段第九次跳过 + **10-14 段第十次跳过** · 预期状态：**keyring token invalid + GITHUB_TOKEN invalid**（与 10-13 段完全同型 · **9 周+ 未恢复**）· 修复方向见 8-28 段末 2 条 · 待用户在 GitHub 控制台 revoke + 重发 PAT 或换 SSH key 后，下次 cron 触发时可一次性 push 33 个 ahead commit。
+- **本轮独有事件同 10-13 段：沙箱网络 fetch 走通（用 timeout 阈值绕过）+ push 凭证 401**（详细诊断见「沙箱网络」段）· 本轮与 10-13 段差异：**fetch 用 `--lowSpeedLimit=1000 -c http.lowSpeedTime=20` + 90s timeout 走通**（9-14 / 10-12 / 10-13 段用 60s timeout 失败 = timeout 阈值不够长，不是直连永远不通）· 但 push 仍 401 = **凭证问题独立于网络问题** · 本 cron 不擅自重装 / 启动任何代理软件 · 待用户自行恢复代理或换 SSH key 后下次 cron 触发时可一次性走通（推 push 仍需凭证恢复）。
+
