@@ -1,0 +1,115 @@
+{
+  "name": "vlog-segment-motion",
+  "display_name": "口播分段动效工作台",
+  "domain": "视觉创作",
+  "title": "口播分段动效工作台 · 四环节闭环 + 卡片库 + 偏好表复利",
+  "subtitle": "人只做判断 · AI 只做执行 · 质量期期复利 · 任意 agent 可接管",
+  "visibility": "public",
+  "tags": [
+    "口播",
+    "短视频",
+    "动效",
+    "分镜",
+    "卡片库",
+    "工作台",
+    "MCP",
+    "human-in-the-loop",
+    "复利",
+    "video-motion",
+    "motion-graphics",
+    "vlog"
+  ],
+  "contributor": "Mavis",
+  "contributor_github": "huangrichao2020",
+  "created": "2026-11-11",
+  "last_updated": "2026-11-11",
+  "format": {
+    "content_md": "content.md",
+    "锦绣": false,
+    "presentation_pptx": false,
+    "case_pdf": null,
+    "source_skill": "mavis agent vlog-segment-motion",
+    "source_origin": "mavis agent skill",
+    "merge_reason": "按 pretty-skills 收口硬规则（2026-07-16）· 视觉创作域 · 口播动效工作流方法论沉淀",
+    "merge_method": "SKILL.md 完整方法论 + 机器可读契约设计",
+    "complete_methodology_retained_in": "SKILL.md（四环节 + 硬约束 + 复利机制）+ vlog-film 仓库 docs/WORKFLOW.md + docs/INTEGRATION.md"
+  },
+  "page_count": 6,
+  "summary": "口播短视频动效的四环节闭环工作流：①对话策划（Mavis 跟人聊出分镜表）②分段动效（每段一个卡片 HTML 渲成独立 mp4）③人工审核（逐段点头或打回）④配口播出片（人录口播贴右上角合成）。核心设计：项目零 AI 逻辑，审美搬进代码化的卡片库（9 张卡 / 9 用途组），偏好表作唯一取值源，lint 只报告不改写，再加「学一下」闭环（同一倾向出现 ≥2 次才写成规则）。产出为纯执行器 + 机器可读契约（MCP 16 工具 + JSON Schema），任意 agent 装上即用，不读散文也能知道全部能力。",
+  "key_concepts": [
+    "四环节闭环",
+    "三道 human in the loop 闸门",
+    "卡片库双维度分类",
+    "偏好表唯一取值源",
+    "lint 只报告不改写",
+    "学一下 ≥2 次规则",
+    "机器可读契约",
+    "MCP 外置能力"
+  ],
+  "use_cases": [
+    "用户说'做口播动效'",
+    "用户说'给这条口播配画面'",
+    "用户说'分段做动效'",
+    "用户说'排个分镜表'",
+    "用户说'合成口播视频'",
+    "用户说'口播视频加动效层'",
+    "用户想接一个 agent 来做视频"
+  ],
+  "triggers": [
+    "口播动效",
+    "分段动效",
+    "口播视频",
+    "配动效",
+    "分镜表",
+    "动效卡片",
+    "合成口播",
+    "视频工作台",
+    "vlog 动效"
+  ],
+  "anti_patterns": [
+    "项目内接 AI（审美漂移回来了）",
+    "每段手写 HTML（不复利，改一处翻三个文件）",
+    "AI 自己点通过审核（审美判断必须留给人）",
+    "一次改动就写进偏好表（手滑被固化成下期默认）",
+    "lint 擅自改写用户内容（lintOff 是用户的主动决定）",
+    "跳过闸门直接出片"
+  ],
+  "red_lines": [
+    "不用编造的假数字当证据",
+    "不替用户做审美决定",
+    "不在用户未确认时写偏好表"
+  ],
+  "default_settings": {
+    "画布": "1080×1440（3:4 竖版）",
+    "口播位": "右上角 (822,138) 起 228×255",
+    "动效": "一律 CSS animation（transition 不被逐帧 seek 捕获）",
+    "单行文案": "≤ 12 字",
+    "单卡驻留": "≥ 2 秒",
+    "闸门": "结构（人）→ 机器（lint error=0）→ 审美（人）"
+  },
+  "input_minimum": [
+    "这条视频要让人记住什么",
+    "有没有反常识的点",
+    "有没有真实数据"
+  ],
+  "input_optional": [
+    "目标时长",
+    "有没有真人出镜",
+    "已有口播稿还是从零聊"
+  ],
+  "related_skills": [
+    "pretty-skills/内容创作/self-media-script-自媒体口播稿（口播稿生成）",
+    "pretty-skills/视觉创作/remotion-video（另一条视频路线）",
+    "pretty-skills/视觉创作/cinema-dna-21x9x3电影感三联（视觉审美）",
+    "pretty-skills/内容创作/公众号爆款操盘术（5 段钩子链）",
+    "mavis agent vlog-segment-motion（源）"
+  ],
+  "validation_history": [
+    {
+      "date": "2026-11-11",
+      "type": "沉淀",
+      "verdict": "pass",
+      "notes": "vlog-film 项目实战：9 张卡全部渲染验证 + 4 段端到端成片 + MCP 16 工具实测 + 「学一下」闭环实测（改→记→学→写→渲染生效）。实战抓出 3 个渲染 bug（terminal-run 行丢失 / contrast-vs 文案空白 / quote-punch 管道符字面量）。"
+    }
+  ]
+}
