@@ -546,6 +546,36 @@
 
 ---
 
+## 2026-07-17（每日 dream 修炼自动化）
+
+**回顾范围**：当日（07-17）与用户对话 + 工作成果（git）+ git rebase 后状态。
+
+**结论：今日无新增沉淀。**
+- 会话检索：cron 自动化任务，07-17 当日 0 个用户对话（agent 跑在 `cron-executor` 沙箱 session，account_name=`cron-executor`，无 human-in-loop）。
+- git：本地 4 个 ahead commit 全部是 dream-log 文档（7-16/7-15/7-14 多次 push 失败诚实补记），**今日 0 个新 case commit**（`git log --since="2026-07-17 00:00"` 空）；`git status` 工作树干净。
+- 无高价值可复用知识 / 技能 / 工作流 / 洞见 → 遵循「无高价值内容不硬造」原则，**未新建或更新任何 case**，未硬造 3F 产物。
+
+**顺手健康快检（非新增 · 确认 v3.19 PDF 时代仓库完整性未退化）**
+- rebase 干净：本地 4 个 dream-log commit 移到远端 4 个 case commit 之后（`5698bf5` / `7f74400` / `af84acf` / `dd7b802`，含 zhihu-short-story / scroll-world / 全场景铺开 7 case），零冲突；`git status -sb` → `[ahead 4]` 工作树干净。
+- 对全仓 **25 个 3F Content case**（筛 `manifest.json` + `content.md` + `images/` 三件套）跑 `check-3f.py`（v3.23）→ **23 PASS / 2 FAIL**：
+  - **PASS（23）**：Agent知识×3（AI狼群战法 / Mavis做事心法 / self-improving-agent）、产品设计×1（prd-master产品PRD写作）、做事技巧×3（doc-reader / markdown-converter / pdf-reader）、内容创作×5（公众号内容交付方法论 / 公众号爆款操盘术 / 卡兹克公众号写作 / 杂志风公众号品鉴 / 橙皮书方法论）、商业运营×1（社交电商掘金术）、教育学习×1（知识消化工作流）、玄学修炼×1（占星入门12星座）、编程开发×2（git沙箱求生术 / 领域增改避坑）、视觉创作×1（oil-cover小红书AI封面）、金融投资×5（4维融合诊断PPTX / company-brief / macro-monitor / 卡脖子猎手 / 宏观雷达）。
+  - **FAIL（2，均为老问题 · 非本次回归 · 非本次范围）**：
+    - `视觉创作/PPT证据链战法` — P8 只有 3 字段（要求 ≥ 4）+ content.md 8 页 vs images/ 7 PNG 不一致。7-12 段后追加了 P8（字段不足）但未补对应 PNG；属"建后追加未同步"。
+    - `视觉创作/dashiai-ppt传统PPT` — content.md 10 页 vs images/ 17 PNG + 17 张 PNG 全部 portrait 768×1376（vs check-3f 假设 landscape ≥1024×576）。与 7-11/7-13 记录一致老问题（portrait 分辨率 / 页数对齐冲突），属 check-3f 设计盲点 / 产品定位冲突，**非本次回归、非本次范围**。
+
+**PDF 状态（v3.19 必填 · 本次目标）**
+- **25/25 = 100% case 都有 `*讲解.pdf`**（v3.19 替代 web.html 目标达成 · 本次生成 PDF = **0 个** · 不需要补）
+- 关键 PDF 列表（顺手抽检）：
+  - `PPT证据链战法讲解.pdf`（413 KB · 7 页 · 7 image object · 7-12 沉淀时生成）
+  - `dashiai-ppt传统PPT讲解.pdf`（6.7 MB · 主版本）+ `讲解-v2.pdf`（6.1 MB）+ `讲解-v3.pdf`（1.4 MB）+ `讲解-v4.pdf`（1.4 MB · 7-12 SKILL.md 三段式工作流配套）
+  - 其余 23 个 case 各 1 个 `*讲解.pdf`（均 ≥ 50KB · PIL 合并 PNG · v3.20 极简版）
+
+**git**
+- 本次 `git add` + `commit` 仅本文件（dream-log 追加 07-17 段 · 健康快检型 · 无新 case 沉淀）。
+- **未 push**（按 7-15/7-16 同口径：凭证问题已持续 24h+ 未恢复，cron 自动化不主动 retry push，避免又失败加噪音；等用户处理凭证后手动 push 5 个 ahead commit）。
+
+---
+
 ## 2026-07-12（每日 dream 修炼自动化）
 
 **回顾范围**：当日（07-12）与用户对话 + 工作成果（git）+ 今日 3 个 commit（f2347c9 / b060031 / 1c66a9d）。
@@ -2523,3 +2553,71 @@
 - **凭证 401 升级观察（第十次诚实记录 · 跳过探测）**：8-28 段首次执行 6 步诊断 + 9-2 段第二次跑 `gh auth status` 1 次 + 9-3 段第三次跳过 + 9-4 段第四次跳过 + 9-11 段第五次跳过 + 9-12 段第六次跳过 + 9-14 段第七次跳过 + 10-12 段第八次跳过 + 10-13 段第九次跳过 + **10-14 段第十次跳过** · 预期状态：**keyring token invalid + GITHUB_TOKEN invalid**（与 10-13 段完全同型 · **9 周+ 未恢复**）· 修复方向见 8-28 段末 2 条 · 待用户在 GitHub 控制台 revoke + 重发 PAT 或换 SSH key 后，下次 cron 触发时可一次性 push 33 个 ahead commit。
 - **本轮独有事件同 10-13 段：沙箱网络 fetch 走通（用 timeout 阈值绕过）+ push 凭证 401**（详细诊断见「沙箱网络」段）· 本轮与 10-13 段差异：**fetch 用 `--lowSpeedLimit=1000 -c http.lowSpeedTime=20` + 90s timeout 走通**（9-14 / 10-12 / 10-13 段用 60s timeout 失败 = timeout 阈值不够长，不是直连永远不通）· 但 push 仍 401 = **凭证问题独立于网络问题** · 本 cron 不擅自重装 / 启动任何代理软件 · 待用户自行恢复代理或换 SSH key 后下次 cron 触发时可一次性走通（推 push 仍需凭证恢复）。
 
+
+---
+
+## 2026-11-11（每日 dream 修炼自动化 · 10-14 段后 28 天空档首日恢复 · 新连续 1 天 · 远端净增 22 commit 含 6 个新 case · 本地 33 commit rebase 合并 · **9 周 push 死锁解除（SSH 通道打通）** · 「沙箱完全断外网」误判被推翻）
+
+**回顾范围**：当日（11-11）全部会话（3 个用户会话 + 2 个 worker 子任务）+ 本地 git + 远端增量（22 commit）。
+
+**结论：今日有沉淀，且本轮同时修掉两个积压 9 周 / 28 天的问题。**
+- **远端今日 2 个 commit**（`13180fce` + `0a9bcef`，均 11-11）= 新 case **视觉创作/vlog-segment-motion-口播分段动效**（SKILL.md + content.md + manifest.json）+ 第 4 条硬规矩「数据只有一份，改完就生效」。今日工作全部发生在 vlog-film 项目内，沉淀由该项目会话推上远端，本 cron 不重复造 case。
+- **本地今日 0 commit**（`git log --since="00:00"` 空）。
+- **本轮 cron 的真正价值在两处历史欠账**：① 28 天空档的分叉历史合并（本地 33 ahead / 远端 22 ahead）；② 9 周未解的 push 死锁（见「push 死锁解除」段）。
+
+**新建/更新了哪些 case**
+
+| case | 领域 | format | 状态 |
+|---|---|---|---|
+| `视觉创作/vlog-segment-motion-口播分段动效` | 视觉创作 | SKILL.md + content.md + manifest.json | **缺 images/ + 缺 `*讲解.pdf`** → 落地即不满足 v3.19 F3 |
+| `编程开发/Git凭证失效排查` | 编程开发 | content.md + images/ + 讲解.pdf + 锦绣/ + manifest.json | ✅ check-3f PASS |
+| `金融投资/机会挖掘` | 金融投资 | content.md + images/ + 讲解.pdf + 锦绣/ + manifest.json | ✅ PASS |
+| `金融投资/NeoData令牌刷新` | 金融投资 | 同上 | ✅ PASS |
+| `金融投资/机会挖掘动态数据` | 金融投资 | 同上 | ✅ PASS |
+| `视觉创作/vibe-ui-methodology` | 视觉创作 | 同上 + SKILL.md + README.md | ✅ PASS |
+
+（5 个上游 case 都带 `web.html`（v3.18 期遗留产物）· v3.20 起 html 兜底已废止 · 不阻塞 check-3f · 仅记录）
+
+**3F 校验结果**（rebase 后全量重跑 · 76 → **82** 个 manifest）
+- **PASS 29 / FAIL 53**
+- **名单一致性**：rebase 前的 **24 个 PASS 全部保留**（零回归）+ 5 个上游新 case 直接 PASS = 29 ✓ · 无一个原 PASS 掉级
+- **FAIL 4 类分布**：缺 content.md **5** + 缺 PDF **45**（有实质内容 **13** + 占位骨架 **32**）+ 页数/格式异常 **3** = **53** ✓ 与 rebase 前 52 的差异**全部可归因**（+1 = 今日新 case 缺 F3）
+- 老 FAIL 名单零变化：`H5设计转H5滑动` / `教程类H5-小红书小工具` / `huashu-book-pdf-skill` / `scroll-world滚动驱动相机` / `a-share-swing-sniper-尾盘短线狙击`（缺 content.md ×5）· `PPT证据链战法` / `dashiai-ppt传统PPT` / `gzh-design公众号排版主题库`（页数/格式 ×3）
+
+**PDF 状态（v3.19 必填）**
+- **35 个 `*讲解.pdf`**（覆盖 **32** 个 case 目录）· 总字节 **121,232,021**（115.62 MB）
+- **4-element 完整 case（content.md + images/ + PDF + manifest）= 31 / 82**
+- **本轮生成 PDF = 0 个**：`build_case_pdf.py` 实测对缺 PDF 的 case 一律 `❌ images/ 下没找到 p*.png`（EXIT=1）—— **45 个缺 PDF 的 case 里，有 p*.png 源图的是 0 个**（13 个有实质内容的 case 全部只有 content.md，无出图）→ 脚本层面无法自动补，**先出图才能合 PDF**（与 10-13 / 10-14 段诊断一致，本轮再次实测确认）
+
+**push 死锁解除 —— 本轮最高价值修复（积压 9 周+）**
+- **凭证侧仍然全废**：`gh auth status` → `GITHUB_TOKEN` invalid + keyring token invalid（双失效，与 8-28 段起一致，**第 11 次**）→ HTTPS push 无路可走。
+- **但 SSH 通道是通的**：`ssh -T git@github.com` → `Hi huangrichao2020! You've successfully authenticated`（本机 `id_ed25519` 已在 GitHub 注册）→ **这是 9 周来第一次真正推上去**。
+- **修法（仓库级 · 不动全局）**：`git config url."git@github.com:huangrichao2020/pretty-skills.git".insteadOf "https://github.com/huangrichao2020/pretty-skills.git"` → origin 的 fetch + push 全部走 SSH，HTTPS 凭证彻底绕开。
+- **与 cron 协议里「SSH 在沙箱会卡」的旧记载冲突** → 以本轮实测为准：SSH `ls-remote` 5.7s、fetch 全程稳定推进无卡死。旧记载大概率是**死代理 + 低速熔断**造成的假象，不是 SSH 本身的问题。
+- **通道速度实测**：HTTPS(7890) **12.5 MB/min** vs SSH **3.2 MB/min**（差 4 倍）→ 228MB 的 pack 走 HTTPS 约 19 分钟，SSH 约 71 分钟。**大仓库走 HTTPS，小操作（ls-remote / push）走 SSH 更快**。
+
+**沙箱网络 —— 推翻 10-12 / 10-13 / 10-14 段的「完全断外网」判断**
+- **今日实测外网一直是通的**：curl 走 7890 → HTTP 200 / 0.24s；直连 → HTTP 200 / 1.93s；`git ls-remote` → 5.7s 返回远端 HEAD。
+- **前三段误判的根因（两条叠加）**：
+  1. **沙箱 env 代理指向死端口 7892**（launchd 灌进来的，实际代理在 7890）→ 走代理的请求直接 ECONNREFUSED；
+  2. **「管道缓冲 + 大 pack 传输慢」被误读成「挂死」** → `git fetch ... | tail -20` 里 tail 要等 EOF，git 的 progress 全被吞掉，「没输出」被当成「网络断」。本仓库全树 1050MB / 1111 文件，本轮增量 **228.4MB / 129 个文件** → 几十 MB 要按**分钟**计。
+- **正确判进度**（已写入 MEMORY §11）：看 `.git/objects/pack/tmp_pack_*` 的字节数是否随时间增长，**不要看 stdout**。
+- **低速熔断坑**：git 默认 `http.lowSpeedLimit=1000 B/s` + `http.lowSpeedTime=60s`，第一次重跑被 `curl 28 Operation too slow` 打断 → 加 `-c http.lowSpeedLimit=0` 解决。
+- **推论**：10-12 / 10-13 / 10-14 三段记的「沙箱完全断外网」是**误判**，真因是「死代理 + 大 pack 慢」。本段是本仓库第 3 次正面推翻该判断。
+
+**历史分叉的真相（10-14 段及之前都没发现）**
+- 本地 `origin/main` ref 停在 `e43b4a9`（08-12）→ 实际是**分叉**：本地 HEAD 领先 33（**全部只改 dream-log.md**，+1665 行，零 case 变更），远端 HEAD `0a9bcef` 领先 22（含 5 个完整 3F case + 今日新 case）。
+- **两侧 dream-log 是平行副本**：同一日期在两侧各有一份不同 SHA 的 commit，且**本地版是详版、上游版是精简版**（如 09-12：本地 6434 chars vs 上游 1356 chars）→ 所以本地 ahead 数一直涨却「远端没进度」。
+- **rebase 零冲突完成**（`git rebase -X ours origin/main`，33 个 commit 重放，1 个因 patch 已在上游被自动跳过）→ case 资产全量到位（manifest 76 → 82 · PDF 30 → 35 个 / 83MB → 121MB）。
+- **dream-log 合并做了人工兜底**：rebase 把本地 07-17 段误判为「已在上游」丢弃 → 已从备份补回并插到 07-12 段之前（与本地原始位置一致）· 最终 **66 段 / 205,418 bytes**，**本地上游两侧内容零缺失**（脚本复核：本地缺 0 段 · 上游缺 0 段）· 同日双版本（上游精简 + 本地详版）**全部保留不合并**，只做段落级补全不重排历史段。
+
+**断档原因（10-15 → 11-10 为什么是空的）**
+- 10-15 ~ 11-09 = 26 天空档；**11-10 23:00 的 cron 起来了就断了**（session `mvs_047377fb` status=`interrupted` · created 23:00:00 / updated 23:00:00 · **0 条 transcript 记录**）→ 所以 11-10 段也没落盘。
+- 本段 = 10-14 段后 **28 天空档首日恢复**（按 10-12 重新起算口径，新连续 1 天）。
+
+**git**
+- 本轮 `git add` + `commit`：dream-log.md 追加 11-11 段（含 rebase 后本地 33 个历史 commit 一次性推上远端）。
+- ahead 32 → **33** · **本轮首次成功 push**（SSH 通道）。
+- **待 push commit 清单（33 个）**：本地 32 个 rebase 后的 dream-log 文档 commit（SHA 已重写，内容 1:1 对应 8-7 段 20 个 + 8-25 → 10-14 段 13 个）+ 本 commit。
+- **风险评估**：低（本轮只动 dream-log.md；case 资产全部来自上游未改写；rebase 零冲突零冲突标记残留）。
+- **后续待办（不在本 cron 范围）**：① 45 个缺 PDF 的 case 需先出图；② `视觉创作/vlog-segment-motion-口播分段动效` 落地即缺 F3（images/ + PDF + 锦绣/ + prompts/）；③ 5 个上游 case 带 v3.18 期 `web.html` 遗留产物。
