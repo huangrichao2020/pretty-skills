@@ -2593,6 +2593,19 @@
 - **凭证侧仍然全废**：`gh auth status` → `GITHUB_TOKEN` invalid + keyring token invalid（双失效，与 8-28 段起一致，**第 11 次**）→ HTTPS push 无路可走。
 - **但 SSH 通道是通的**：`ssh -T git@github.com` → `Hi huangrichao2020! You've successfully authenticated`（本机 `id_ed25519` 已在 GitHub 注册）→ **这是 9 周来第一次真正推上去**。
 - **修法（仓库级 · 不动全局）**：`git config url."git@github.com:huangrichao2020/pretty-skills.git".insteadOf "https://github.com/huangrichao2020/pretty-skills.git"` → origin 的 fetch + push 全部走 SSH，HTTPS 凭证彻底绕开。
+
+**⚠️ push 首次尝试被 GitHub Push Protection 拦截 —— 拦出的是真密钥（本轮第二个高价值发现）**
+- **第一次 push 报 `GH013: Repository rule violations`** → 检出 **GitHub Personal Access Token** 藏在 `dream-log.md` 的 07-15 段（行 1061）与 07-16 段（行 1160），共 **3 个 commit** 中招。
+- **根因**：07-15 / 07-16 两段为了「诚实记录 push 失败」，把 `gh auth git-credential` 返回的 token 前缀（`ghp_5GOoGl…`）**原样写进了 dream-log** → 而 dream-log 是公开仓库的文件。
+- **远端是否已泄露 → 没有**：核查 `origin/main` 全部可达 commit，**PAT 命中 0** · 这段历史**从未上过远端**（上游的 dream-log 根本没有 07-15 / 07-16 两段）→ **Push Protection 恰好拦在第一次落地之前**，无实际泄露。
+- **修法（保留 33 个每日 commit 粒度的历史重写）**：
+  1. `git filter-branch --index-filter` 只重写 `dream-log.md` 一个 blob（把 PAT 替换成 `ghp_REDACTED_TOKEN`，非密钥形态），**只作用于 `origin/main..HEAD` 的 33 个 commit**（上游 commit 一个没碰）→ **33 个每日 commit 的粒度全部保留**；
+  2. 逐 commit 复扫：**33/33 全部已脱敏**；
+  3. 删 `refs/original/refs/heads/main` 备份引用 + `reflog expire --all` + `git gc --prune=now` → 含密钥的旧对象从本地彻底清除（.git 1.3G → 1.0G）；
+  4. 复扫全部可达 commit：**PAT 命中 0** · 远端 `raw` 拉回校验：**PAT 0 / 占位符 2**。
+- **push 复验**：`0a9bcef..7eee03f  main -> main` · **PUSH_EXIT=0** · 本地远端 `0 ahead / 0 behind` · **9 周来第一次真正推上去**。
+- **给用户的行动项**：该 PAT 本身已失效（`gh auth status` 双 token invalid），但**它曾以明文进过本地仓库历史** → 建议在 GitHub 控制台 **revoke 该 token 并重发新 PAT**（新 PAT 别再写进任何会进仓库的文件）。
+- **通用教训**：**「为了诚实记录失败而写日志」最容易把凭证写进日志** —— 日志里描述 token 一律用**前缀 + 省略**（`ghp_5GOo…`），**绝不写完整串**；GitHub PAT / AWS AK / sk- 系列都是 push protection 会硬拦的对象。
 - **与 cron 协议里「SSH 在沙箱会卡」的旧记载冲突** → 以本轮实测为准：SSH `ls-remote` 5.7s、fetch 全程稳定推进无卡死。旧记载大概率是**死代理 + 低速熔断**造成的假象，不是 SSH 本身的问题。
 - **通道速度实测**：HTTPS(7890) **12.5 MB/min** vs SSH **3.2 MB/min**（差 4 倍）→ 228MB 的 pack 走 HTTPS 约 19 分钟，SSH 约 71 分钟。**大仓库走 HTTPS，小操作（ls-remote / push）走 SSH 更快**。
 
