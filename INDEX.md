@@ -62,6 +62,7 @@
 | 视觉创作 | [`PPT证据链战法`](./视觉创作/PPT证据链战法/) | **public** | PPT, AI生图, CyberPPT, 证据链, dashiai-ppt, 视觉创作, 三段式, 可编辑PPTX | content.md + xxx讲解.pdf + 锦绣 |
 | 视觉创作 | [`vibe-ui-methodology`](./视觉创作/vibe-ui-methodology/) | **public** | UI设计, 色彩系统, 国风纹样, Design Token, 60-30-10, PPT配色, PDF排版, 新中式, WorkBuddy Skill | content.md + VibeCoding视觉设计方法论讲解.pdf + 锦绣 |
 | 视觉创作 | [`vlog-segment-motion-口播分段动效`](./视觉创作/vlog-segment-motion-口播分段动效/) | **public** | 口播, 短视频, 动效, 分镜, 卡片库, 工作台, MCP, human-in-the-loop, 复利 | content.md + manifest.json + SKILL.md |
+| 视觉创作 | [`背景乐选曲术`](./视觉创作/背景乐选曲术/) | **public** | 短视频, 配乐, BGM, 选曲, 音色画像, 无缝循环, LUFS, 谱质心, 频段, 节拍网格, 混音, 版权 | content.md + 背景乐选曲术讲解.pdf + 锦绣 + 8 AI 出图 |
 | 故事写作 | [`zhihu-short-story-知乎风短篇`](./故事写作/zhihu-short-story-知乎风短篇/) | **public** | 短篇, 知乎, 盐选, 反转, 钩子, 八拍结构, 言情, 古言, 权谋, 悬疑, 爽文 | content.md + manifest.json |
 | 故事写作 | [`writing-storycraft-写作剧情推演`](./故事写作/writing-storycraft-写作剧情推演/) | **public** | 写作, 剧情, 故事, writing, storycraft, 住相, 钩子, 潜台词, 反套路, 章节审计, 平台写作, 寓言, 高考作文, 江湖叙事, 真实经历, 剧情推演 | content.md + manifest.json |
 | 情感领域 | [`emotional-relationship-情感关系教练`](./情感领域/emotional-relationship-情感关系教练/) | **public** | 情感, 关系, 情感教练, emotional-relationship, 关系层级, 信号识别, 他心通, 体面表达, 吸引, 阶段, 依恋, alpha, boundary, intimacy | content.md + manifest.json |

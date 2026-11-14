@@ -1,0 +1,20 @@
+{
+  "name": "背景乐选曲术",
+  "domain": "视觉创作",
+  "title": "背景乐选曲术 · 用音色画像选曲、造无缝循环、把人声放在最上面",
+  "visibility": "public",
+  "tags": ["短视频", "配乐", "BGM", "选曲", "音色画像", "无缝循环", "LUFS", "谱质心", "频段", "节拍网格", "混音", "版权", "vlog-film"],
+  "contributor": "huangrichao2020",
+  "contributor_github": "huangrichao2020",
+  "created": "2026-11-14",
+  "last_updated": "2026-11-14",
+  "format": {
+    "content_md": "content.md",
+    "case_pdf": "背景乐选曲术讲解.pdf",
+    "web_html": false,
+    "锦绣": true,
+    "presentation_pptx": false
+  },
+  "page_count": 8,
+  "summary": "短视频配乐「不靠耳朵靠尺子」的完整方法论。真实来源：vlog-film 项目 BGM 模块从零落地（2026-11-14）。起点是一个死结——参考片的配乐是作者用 Suno 现场生成的一次性产物，世界上不存在「同一首」可以去找，且本机四条 AI 音乐生成通路实测全灭（MiniMax /v1/music_generation 返回 2153「no longer available to new users」· Suno 无 key 且 api.suno.com 本机不通 · Mureka 无 key · ChatCut 需账号 + 积分）。破局思路是把「找同一首」降维成「找同一类」：先量参考片的音色画像（BPM 125–128 · integrated −12.8 LUFS / LRA 3.6 LU / true peak −2.3 dBFS · 谱质心 592 Hz · 频段能量 69/21/4.7/1.7/3.3%），再用四个客观指标去机读曲库（incompetech pieces.json · 1443 首 · 带 bpm/genre/feel/instruments）打分排序，入选 Lobby Time 129.2 BPM / 178 Hz / 73-24-2-0-0、Vibe Ace 129.2 / 178 / 78-19-3-0-0、Inspired 120.2 / 226 / 76-15-9-0-0、Airport Lounge 129.2 / 196 / 64-34-2-0-0，并把「谱质心 178 Hz vs 参考片 592 Hz」这个偏差如实标出而不硬凑。无缝循环同样不靠听：demucs 抽 no_vocals 轨（122 秒音频 · M2 Pro CPU 仅 9 秒）→ 按 128.4 BPM 的节拍网格（1 小节 1.869 s）在 RMS 变异系数 < 0.20 的稳定区切 12 小节（22.43 s）→ 尾部 2 s 与头部等长交叉淡化 → RMS 归一到 0.113 + tanh 软限幅（peak 0.856），验收线是「循环点一阶差分 ≤ 全曲均值」（实测接缝 0.0102 vs 均值 0.0107）。三个真踩过的坑同样记录在案：分离不等于干净（27 段人声 → 仍剩 5 段残留，须先验证参考区间 vocals 能量占比仅 1.8% 才敢抠 loop）、代理会截断大文件（必须走 Range 分块下载）、版权不能含糊（从朋友视频分离的 ref_bgm_loop.mp3 仅限自用，公开发布须换成 CC BY 4.0 并署名）。最终产出：7 个可复跑脚本 + 一套 3 步接进任何短视频项目的 BGM 模块，混音参数固定为 −20 dB / 淡入 1 s / 淡出 2.5 s。"
+}
