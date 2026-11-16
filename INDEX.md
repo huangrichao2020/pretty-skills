@@ -57,6 +57,7 @@
 | 编程开发 | [`Git凭证失效排查`](./编程开发/Git凭证失效排查/) | **public** | git, GitHub, 凭证, GITHUB_TOKEN, env抢戏, keyring, gh auth, git-pull-safe, 调试 | content.md + Git凭证失效排查讲解.pdf + 锦绣 |
 | 编程开发 | [`静默故障排查术`](./编程开发/静默故障排查术/) | **public** | 定时任务, cron, 静默故障, 数据管线, chmod, 锚定, 阈值, 保鲜, 自动化 | content.md + 静默故障排查术讲解.pdf + 锦绣 + 8 AI 出图 |
 | 编程开发 | [`输出锁死鉴别术`](./编程开发/输出锁死鉴别术/) | **public** | 流水线, 静态池, 锁死, 候选池, trace, 对照量, 筛选器, 发现器 | content.md + 输出锁死鉴别术讲解.pdf + 锦绣 + 8 AI 出图 |
+| 编程开发 | [`接口可信度鉴别术`](./编程开发/接口可信度鉴别术/) | **public** | 第三方接口, 语义哨兵, 限流, 假数据, 增量去重, 水位线, 已消费集合, 降级缓存, A/B评测, 边界声明 | content.md + 接口可信度鉴别术讲解.pdf + 锦绣 + 8 AI 出图 |
 | 玄学修炼 | [`占星入门12星座`](./玄学修炼/占星入门12星座/) | **public** | 占星, 12星座, 元素, 模式 | content.md + xxx讲解.pdf + 9 AI 出图 |
 | 视觉创作 | [`dashiai-ppt传统PPT`](./视觉创作/dashiai-ppt传统PPT/) | **public** | PPT, 可编辑PPTX, 汇报材料, 图表 | content.md + README.md |
 | 视觉创作 | [`PPT证据链战法`](./视觉创作/PPT证据链战法/) | **public** | PPT, AI生图, CyberPPT, 证据链, dashiai-ppt, 视觉创作, 三段式, 可编辑PPTX | content.md + xxx讲解.pdf + 锦绣 |
