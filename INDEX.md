@@ -58,6 +58,7 @@
 | 编程开发 | [`静默故障排查术`](./编程开发/静默故障排查术/) | **public** | 定时任务, cron, 静默故障, 数据管线, chmod, 锚定, 阈值, 保鲜, 自动化 | content.md + 静默故障排查术讲解.pdf + 锦绣 + 8 AI 出图 |
 | 编程开发 | [`输出锁死鉴别术`](./编程开发/输出锁死鉴别术/) | **public** | 流水线, 静态池, 锁死, 候选池, trace, 对照量, 筛选器, 发现器 | content.md + 输出锁死鉴别术讲解.pdf + 锦绣 + 8 AI 出图 |
 | 编程开发 | [`接口可信度鉴别术`](./编程开发/接口可信度鉴别术/) | **public** | 第三方接口, 语义哨兵, 限流, 假数据, 增量去重, 水位线, 已消费集合, 降级缓存, A/B评测, 边界声明 | content.md + 接口可信度鉴别术讲解.pdf + 锦绣 + 8 AI 出图 |
+| 编程开发 | [`技能注入瘦身术`](./编程开发/技能注入瘦身术/) | **public** | Agent运行时, token优化, 上下文预算, 技能目录, listed false, frontmatter, 隐藏技能, 零破坏, 可回滚, 软链拓扑, 真实会话验证, systemPrompt | content.md + 技能注入瘦身术讲解.pdf + 锦绣 + 8 AI 出图 |
 | 玄学修炼 | [`占星入门12星座`](./玄学修炼/占星入门12星座/) | **public** | 占星, 12星座, 元素, 模式 | content.md + xxx讲解.pdf + 9 AI 出图 |
 | 视觉创作 | [`dashiai-ppt传统PPT`](./视觉创作/dashiai-ppt传统PPT/) | **public** | PPT, 可编辑PPTX, 汇报材料, 图表 | content.md + README.md |
 | 视觉创作 | [`PPT证据链战法`](./视觉创作/PPT证据链战法/) | **public** | PPT, AI生图, CyberPPT, 证据链, dashiai-ppt, 视觉创作, 三段式, 可编辑PPTX | content.md + xxx讲解.pdf + 锦绣 |
@@ -73,7 +74,7 @@
 | 内容创作 | [`self-media-script-自媒体口播稿`](./内容创作/self-media-script-自媒体口播稿/) | **public** | 自媒体, 口播, 口播稿, 抖音, 小红书, B站, 公众号, 视频号, 封面, 配图, 情感, Agent, 交易, self-media, video-script, social-media | content.md + manifest.json |
 | 橙皮书 | [`orange-book-5步流水线-调研规划写作三审三校成书`](./橙皮书/orange-book-5步流水线-调研规划写作三审三校成书/) | **public** | 橙皮书, orange-book, 做书, 扫盲, 领域入门, 5 阶段流水线, 三审三校, 事实核查, PDF, DOCX, EPUB, 教程, 指南, 手册, 5 阶段, 5 道门 | content.md + manifest.json |
 
-> **28 个 case 全部默认 public** —— 提 PR 共享。
+> **87 个 case 全部 public** —— 提 PR 共享。（⚠️ 本表「所有 case 清单」当前只列 **34 行**，仍有 **53 个 public case 未入表** —— agent 靠本文件 1 秒定位会漏；2026-11-21 记录为待补 backlog）
 
 > **本批新增 7 case（2026-07-17）**：pretty-skills 16 领域空域从 3 个（游戏玩家/情感/橙皮书）降到 1 个（游戏玩家）。
 
@@ -121,4 +122,4 @@ def load_pretty_skill(root="/path/to/pretty-skills"):
 
 ---
 
-<sub>最后更新：2026-08-20 · 28 个 case 全部 public（vibe-ui-methodology 升级 3F + 机会挖掘 3F 新增 + 08-20 沉淀三项 · 19→28，2026-07-17 7 个 case 补登，回滚 group-portrait-群像戏 + 群像文字游戏模板 两个 case 仍为本地私有）</sub>
+<sub>最后更新：2026-11-21 · 新增 `技能注入瘦身术`（编程开发 · Agent 运行时 token 注入治理 · 8 页 + 8 AI 出图 + PDF + 锦绣）· 仓库 public case 实测 **87 个**（本表清单 34 行 · **53 个待补入表** · 计数口径已于 11-21 从过期的「28 个」纠正）</sub>

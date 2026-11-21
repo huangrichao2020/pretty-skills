@@ -1,0 +1,20 @@
+{
+  "name": "技能注入瘦身术",
+  "domain": "编程开发",
+  "title": "技能注入瘦身术 · 让每轮少烧 72% 的固定 token",
+  "visibility": "public",
+  "tags": ["Agent运行时", "token优化", "上下文预算", "技能目录", "listed false", "frontmatter", "隐藏技能", "filterInjectableRegistrySkills", "零破坏", "可回滚", "软链拓扑", "真实会话验证", "systemPrompt"],
+  "contributor": "huangrichao2020",
+  "contributor_github": "huangrichao2020",
+  "created": "2026-11-21",
+  "last_updated": "2026-11-21",
+  "format": {
+    "content_md": "content.md",
+    "case_pdf": "技能注入瘦身术讲解.pdf",
+    "web_html": false,
+    "锦绣": true,
+    "presentation_pptx": false
+  },
+  "page_count": 8,
+  "summary": "Agent 运行时每轮固定注入成本的诊断与治理手册。真实来源：Mavis 运行时 token 注入治理实战（2026-11-20 · 5 次真实验证子会话）。核心起点是一个反直觉的事实——每轮对话开头都有一笔与任务无关的固定开销：运行时往系统提示里塞一份技能目录（每轮可调用的工具清单）和一份记忆全文（Agent 长期笔记），不管你今天问什么都要付一遍。实测基线：每轮固定注入 29,152 tokens、技能目录 356 条、记忆全文 83,309 字节，且 356 条技能描述里有 348 条被预算截断到短于 20 字符（有效描述占比仅 2%）——浪费的不只是 token，还有让工具选择变模糊的注意力。治理的真正难点不在「删」而在「找对开关」，因为有两个被文档写着的字段运行时根本不读：假开关一 · .ignore 文件（源码里确有 loadSkills + ignore 包逻辑，但那是 Pi 兼容层代码，MCode 走 externalSkillRoot 另一条路径，对外部技能根不读 ignore 文件，实测开/关两次真实会话 catalog 完全相同——360 条 / 17,364 字节，连字节数都没动）；假开关二 · disable-model-invocation: true（文档表格白纸黑字写着「skill is hidden from system prompt」，但 MCode 的 frontmatter 解析器不读这个字段，加了照样出现在目录里）。共同教训：文档 ≠ 实现，兼容层 ≠ 执行路径；先花 10 分钟定位运行时真正读的那一行再动手。唯一被真正读取的机制是 frontmatter 的 listed: false（过滤链 filterInjectableRegistrySkills → .filter((entry) => entry.frontmatter.listed !== false）——加一行，该技能从每轮注入的目录消失，但语义是「隐藏 ≠ 卸载」，仍可 skill({name}) 按名加载。批量前必做单点验证：拿 1 个技能加 listed: false + 留 1 个对照项，起真实新会话确认只消失一条而不是整目录崩了（实测 hta-agent-architecture-auditor-agent 加了消失、对照 agent-reach 仍在）；并先做软链拓扑盘点，因为 ~/.agents/skills 多数条目是软链（指向 ~/dsh-skills 或 ~/.claude/skills），改软链会改到实体，需用 readlink / realpath 找到真实文件。本篇最大的反直觉陷阱是「越剪越胖」：剪完后条目 356 → 249（-107），但 catalog 块字节反而 17,364 → 19,220（+1,856）——因为 catalog 有 5,000 token 硬预算（min(contextWindow × 2%, 5000)，不可配），装不下先截断描述再省略条目，剪掉的条目腾出的预算让原本被截断到只剩几个字符的描述显示完整，有效描述占比 2% → 99%（短于 20 字符的条目 348 → 2）。因此判断成败必须看条目数与有效描述占比，不能看字节数；同理调 contextWindow 是无效杠杆（2% × 512,000 = 10,240 > 5,000，已顶硬上限）。真正省下大头的是记忆瘦身——常驻只留跨任务都可能触发的热规则，专项实战迁到 topic 文件按需加载，83,309 B → 11,270 B（-86%）。零破坏是敢动手的前提：215 个技能只加 frontmatter 一行、正文一字未删仍可按名加载；记忆迁移必须 46/46 条正文逐字节命中（83,057 B → 83,057 B，差 0，差 1 字节都要查清）；合规池 19 个 knowhub 先迁到原生 user 根（~/.minimax/skills/）再关外部根，零误伤；改前落盘三份备份（frontmatter 原文件 / 记忆原文 / 软链拓扑清单）并写好、实测过 ROLLBACK.sh；且改动在下一个会话生效，绝不能在同一轮里既改又验。验证方法论只认真实会话：起真实新会话取 llm-call.json 读 systemPrompt 字段、正则提 <available_skills> 块数条目，模拟器会骗人（它跟要治理的运行时不是同一套代码）；解析坑是条目名必须用 ^- ([^\\s]+): 提取，用 [^:]+ 会把 lark:lark-approval 这类带前缀的名字截断导致计数虚高；且必须同时量三个数（条目总数 / 描述短于 20 字符的条目数 / 记忆文件字节），单看一个都片面。最终账单（真实会话实测非估算）：每轮固定注入 29,152 → 8,039 tokens，省 21,113（-72.4%），100 轮会话省 211 万 tokens、1000 轮省 2,110 万。收束为五步落地卡：量（真实新会话读 systemPrompt 记基线）→ 定位（在过滤链找真正被读取的那一行）→ 单点验证（1 实验 + 1 对照）→ 批量 + 备份（逐字节对账差 0、合规池先迁原生根）→ 复验 + 回滚（复测三个数、实测 ROLLBACK.sh、下个会话才生效）；三个验收标准是条目数降了 / 有效描述占比升了 / 记忆字节降了，字节数不要求降。"
+}
