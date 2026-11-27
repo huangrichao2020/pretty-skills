@@ -60,6 +60,7 @@
 | 编程开发 | [`接口可信度鉴别术`](./编程开发/接口可信度鉴别术/) | **public** | 第三方接口, 语义哨兵, 限流, 假数据, 增量去重, 水位线, 已消费集合, 降级缓存, A/B评测, 边界声明 | content.md + 接口可信度鉴别术讲解.pdf + 锦绣 + 8 AI 出图 |
 | 编程开发 | [`技能注入瘦身术`](./编程开发/技能注入瘦身术/) | **public** | Agent运行时, token优化, 上下文预算, 技能目录, listed false, frontmatter, 隐藏技能, 零破坏, 可回滚, 软链拓扑, 真实会话验证, systemPrompt | content.md + 技能注入瘦身术讲解.pdf + 锦绣 + 8 AI 出图 |
 | 编程开发 | [`快照对比鉴别术`](./编程开发/快照对比鉴别术/) | **public** | 自动巡检, 快照对比, 统计口径, 假故障鉴别, 字节对账, 回归检测, tail截断, 静默错误, 零破坏, 只读排查, pipeline | content.md + 快照对比鉴别术讲解.pdf + 锦绣 + 8 AI 出图 |
+| 编程开发 | [`统计丢件鉴别术`](./编程开发/统计丢件鉴别术/) | **public** | 自动巡检, 统计口径, 丢件鉴别, 枚举陷阱, glob通配, 假绿故障, 零结果陷阱, 期望值对账, 双路枚举, 静默错误, 零破坏, 只读排查, pipeline | content.md + 统计丢件鉴别术讲解.pdf + 锦绣 + 8 AI 出图 |
 | 玄学修炼 | [`占星入门12星座`](./玄学修炼/占星入门12星座/) | **public** | 占星, 12星座, 元素, 模式 | content.md + xxx讲解.pdf + 9 AI 出图 |
 | 视觉创作 | [`dashiai-ppt传统PPT`](./视觉创作/dashiai-ppt传统PPT/) | **public** | PPT, 可编辑PPTX, 汇报材料, 图表 | content.md + README.md |
 | 视觉创作 | [`PPT证据链战法`](./视觉创作/PPT证据链战法/) | **public** | PPT, AI生图, CyberPPT, 证据链, dashiai-ppt, 视觉创作, 三段式, 可编辑PPTX | content.md + xxx讲解.pdf + 锦绣 |
@@ -75,7 +76,7 @@
 | 内容创作 | [`self-media-script-自媒体口播稿`](./内容创作/self-media-script-自媒体口播稿/) | **public** | 自媒体, 口播, 口播稿, 抖音, 小红书, B站, 公众号, 视频号, 封面, 配图, 情感, Agent, 交易, self-media, video-script, social-media | content.md + manifest.json |
 | 橙皮书 | [`orange-book-5步流水线-调研规划写作三审三校成书`](./橙皮书/orange-book-5步流水线-调研规划写作三审三校成书/) | **public** | 橙皮书, orange-book, 做书, 扫盲, 领域入门, 5 阶段流水线, 三审三校, 事实核查, PDF, DOCX, EPUB, 教程, 指南, 手册, 5 阶段, 5 道门 | content.md + manifest.json |
 
-> **87 个 case 全部 public** —— 提 PR 共享。（⚠️ 本表「所有 case 清单」当前只列 **34 行**，仍有 **53 个 public case 未入表** —— agent 靠本文件 1 秒定位会漏；2026-11-21 记录为待补 backlog）
+> **89 个 case 全部 public** —— 提 PR 共享。（⚠️ 本表「所有 case 清单」当前只列 **37 行**，仍有 **52 个 public case 未入表** —— agent 靠本文件 1 秒定位会漏；2026-11-21 记录为待补 backlog · 2026-11-27 实测校正行数口径）
 
 > **本批新增 7 case（2026-07-17）**：pretty-skills 16 领域空域从 3 个（游戏玩家/情感/橙皮书）降到 1 个（游戏玩家）。
 
@@ -123,4 +124,4 @@ def load_pretty_skill(root="/path/to/pretty-skills"):
 
 ---
 
-<sub>最后更新：2026-11-26 · 新增 `快照对比鉴别术`（编程开发 · 每日巡检「真丢东西 vs 换了把尺子」鉴别 · 8 页 + 8 AI 出图 + PDF + 锦绣）· 仓库 public case 实测 **88 个**（本表清单 35 行 · **53 个待补入表** · 计数口径已于 11-21 从过期的「28 个」纠正）</sub>
+<sub>最后更新：2026-11-27 · 新增 `统计丢件鉴别术`（编程开发 · 每日巡检「统计结果少东西」鉴别 · 8 页 + 8 AI 出图 + PDF + 锦绣）· 仓库 public case 实测 **89 个**（本表清单 **37 行** · **52 个待补入表** · 计数口径已于 11-21 从过期的「28 个」纠正 · 11-27 实测校正表内行数，修正 11-26 页脚「35 行 / 53 个」的 ±1 偏差）</sub>
